@@ -44,13 +44,13 @@
                 </ol>
             </nav>
 
-            <div class="grid grid-cols-5 gap-4">
+            <div class="grid grid-cols-3 gap-4">
                 <div
                     class="flex items-center col-span-4 p-8 mb-4 rounded h-28 bg-gradient-to-r from-negative to-negative-hover dark:bg-gray-800">
 
                     <div>
                         <p class="mb-2 text-sm font-bold text-white">
-                            Job portal:
+                            Job portal:(dummy)
                         </p>
                         <div class="relative flex items-center gap-2">
                             <div
@@ -107,21 +107,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-center gap-4 rounded h-28 dark:bg-gray-800">
-                    <svg class="w-10 h-10 text-abu-abu dark:text-white" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <svg class="w-10 h-10 text-abu-abu dark:text-white" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M17.133 12.632v-1.8a5.407 5.407 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.933.933 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175Zm-13.267-.8a1 1 0 0 1-1-1 9.424 9.424 0 0 1 2.517-6.391A1.001 1.001 0 1 1 6.854 5.8a7.43 7.43 0 0 0-1.988 5.037 1 1 0 0 1-1 .995Zm16.268 0a1 1 0 0 1-1-1A7.431 7.431 0 0 0 17.146 5.8a1 1 0 0 1 1.471-1.354 9.424 9.424 0 0 1 2.517 6.391 1 1 0 0 1-1 .995ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
-                    </svg>
                 </div>
             </div>
 
