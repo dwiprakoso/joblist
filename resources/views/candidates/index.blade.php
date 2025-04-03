@@ -120,77 +120,55 @@
      
 
            <div class="grid my-2 text-right">
-              <p class="text-base text-gray-400 dark:text-gray-500">
+              <p class="text-base text-white dark:text-black">
                  Overview
               </p>
            </div>
            <div class="grid grid-cols-2 p-4 gap-4 items-center justify-center mb-4 rounded bg-slate-100 shadow-md dark:bg-gray-800">
               <div class="flex items-center p-4 rounded bg-fd7d09 h-20 dark:bg-gray-800">
-                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total lamaran<br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">20</span></h1>
+                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total lamaran<br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $jumlahRoomsApply }}</span></h1>
               </div>
               <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
-                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Proses <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">13</span></h1>
+                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Proses <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $jumlahRoomsPresentStatus }}</span></h1>
               </div>
            </div>
 
            
-           <div class="grid grid-cols-2 p-4 gap-4 items-center justify-center rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
+           <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
               <div id="pie-chart" class="items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
                  <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                    Respon Perusahaan
+                    Respon Perusahaan (dummy)
                  </p>
                  @include('components.pieChart') 
               </div>
               <div class=" items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
                  <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                    Recent Apllied
+                    Lamaran Terakhir
                  </p>
-                 <table class="mb-4  w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-                    <tbody>
-                       <tr class="bg-white divide-y">
-                          <th scope="row" class="flex  items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                             <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8" fill="#E73002"/>
-                                <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                             </svg>
-                             <div class="ps-3">
-                                <div class="text-base font-bold">Marketing Manager</div>
-                                <div class="font-semibold text-gray-500">PT. Alibaba Sejahtera</div>
-                                <div class="font-normal text-gray-500">Jakarta Pusat, Indonesia</div>
-                             </div>  
-                       </th>
-                          <th scope="row" class="flex  items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                             <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8" fill="#E73002"/>
-                                <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                             </svg>
-                             <div class="ps-3">
-                                <div class="text-base font-bold">Marketing Manager</div>
-                                <div class="font-semibold text-gray-500">PT. Alibaba Sejahtera</div>
-                                <div class="font-normal text-gray-500">Jakarta Pusat, Indonesia</div>
-                             </div>  
-                       </th>
-                          <th scope="row" class="flex  items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                             <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8" fill="#E73002"/>
-                                <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                             </svg>
-                             <div class="ps-3">
-                                <div class="text-base font-bold">Marketing Manager</div>
-                                <div class="font-semibold text-gray-500">PT. Alibaba Sejahtera</div>
-                                <div class="font-normal text-gray-500">Jakarta Pusat, Indonesia</div>
-                             </div>  
-                       </th>
-                       </tr>
-                    </tbody>
-              </table>
-              <p class="text-xs font-medium text-right mb-2 text-abu-abu dark:text-gray-500">
-                 See All
-              </p>
+                  @if(count($recentAppliedJobs) > 0)
+                  @foreach($recentAppliedJobs as $job)
+                     <div class="job-item border-b border-gray-200 dark:border-gray-700 mb-4">
+                        <div class="flex items-center px-6 py-4">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <circle cx="8" cy="8" r="8" fill="#E73002"/>
+                           <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="ps-3">
+                           <div class="text-base font-bold">{{ $job->position_name }}</div>
+                           <div class="font-semibold text-gray-500">{{ $job->company_name }}</div>
+                           <div class="font-normal text-gray-500">{{ $job->company_address }}</div>
+                           <div class="font-normal text-gray-500">{{ $job->work_system }}</div>
+                           <div class="font-normal text-gray-500">{{ $job->status }}</div>
+ 
+                        </div>
+                        </div>
+                     </div>
+                     @endforeach
+                  @else
+                        <p class="text-center">Anda belum mengajukan lamaran untuk pekerjaan apapun.</p>
+                  @endif
               </div>
            </div>
-
-           
         </div>
      </div>
      

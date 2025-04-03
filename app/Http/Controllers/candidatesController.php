@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\candidate_contact;
-use App\Models\candidates;
-use App\Models\educational_history;
 use App\Models\rooms;
-use App\Models\traces_of_experience;
+use App\Models\candidates;
 use Illuminate\Http\Request;
+use App\Models\candidate_contact;
+use Illuminate\Support\Facades\DB;
+use App\Models\educational_history;
+use App\Models\traces_of_experience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,9 +22,59 @@ class candidatesController extends Controller
         // Ambil profil kandidat dan data kontaknya
         $profile = $user->candidate;
         $contact = $profile->contact;
-        $educations = $profile->educationalHistories()->orderBy('year_in', 'desc')->orderBy('year_out', 'desc')->get(); // Adjust this based on your relationship
-        return view('candidates.index', compact('profile', 'contact', 'educations'));
+        
+        // Hitung jumlah rooms yang telah di-apply oleh user
+        $jumlahRoomsApply = 0;
+        
+        // Variabel untuk menyimpan daftar applied jobs
+        $recentAppliedJobs = [];
+        
+        if ($profile) {
+            // Asumsikan bahwa candidates_id di tabel adalah ID dari profil kandidat
+            $jumlahRoomsApply = DB::table('room_candidates')
+                                ->where('candidates_id', $profile->id)
+                                ->count();
+                                
+            // Ambil data room_candidates beserta informasi job dari tabel rooms
+            $recentAppliedJobs = DB::table('room_candidates')
+                                ->join('rooms', 'room_candidates.rooms_id', '=', 'rooms.id')
+                                ->join('companies', 'rooms.company_id', '=', 'companies.id')
+                                ->where('room_candidates.candidates_id', $profile->id)
+                                ->select(
+                                    'room_candidates.id',
+                                    'room_candidates.rooms_id',
+                                    'room_candidates.status',
+                                    'room_candidates.created_at',
+                                    'room_candidates.updated_at',
+                                    'rooms.position_name',
+                                    'rooms.departement',
+                                    'rooms.work_system',
+                                    'rooms.working_hours',
+                                    'companies.company_name',
+                                    'companies.company_address'
+                                )
+                                ->orderBy('room_candidates.created_at', 'desc')
+                                ->limit(5) // Tampilkan 5 aplikasi terbaru
+                                ->get();
+        }
+        
+        // Hitung jumlah rooms berdasarkan status
+        $jumlahRoomsPresentStatus = DB::table('room_candidates')
+        ->where('candidates_id', $profile->id)
+        ->where('status', 'present')
+        ->count();
 
+        $jumlahRoomsPendingStatus = DB::table('room_candidates')
+        ->where('candidates_id', $profile->id)
+        ->where('status', 'pending')
+        ->count();
+        
+        $roomCandidate = $profile->roomCandidate; // Ambil data room_candidate
+        $educations = $profile->educationalHistories()->orderBy('year_in', 'desc')->orderBy('year_out', 'desc')->get();
+        
+        return view('candidates.index', compact('profile', 'contact', 'roomCandidate', 'educations', 
+                                    'jumlahRoomsApply', 'jumlahRoomsPresentStatus', 'jumlahRoomsPendingStatus',
+                                    'recentAppliedJobs')); // Tambahkan variabel baru ke view
     }
     public function showProfile()
     {
