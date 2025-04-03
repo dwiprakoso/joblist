@@ -51,13 +51,13 @@
                 <div class="text-xs my-2 text-gray-500">{{ $profile->address }}</div>
                 {{-- Social Media --}}
                 <div class="flex">
-                    <a href="https://{{ $contact->instagram }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
+                    <a target="blank" href="https://{{ $contact->instagram }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
                         <svg class="w-8 h-8 text-e73002" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path fill="currentColor" fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
                         </svg>
                         <span class="sr-only">Instagram</span>
                     </a>
-                    <a href="https://{{ $contact->linkedin }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
+                    <a target="blank" href="https://{{ $contact->linkedin }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
                     
                         <svg class="w-8 h-8 text-e73002" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"/>
@@ -66,7 +66,7 @@
                         
                         <span class="sr-only">Linkedin</span>
                     </a>
-                    <a href="https://{{ $contact->whatsapp }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
+                    <a target="blank" href="https://wa.me/{{ $contact->whatsapp }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
                         <svg class="w-8 h-8 text-e73002" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd"/>
                             <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z"/>
@@ -75,7 +75,7 @@
                         
                         <span class="sr-only">Whatsapp</span>
                     </a>
-                    <a href="https://{{ $contact->website }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
+                    <a target="blank" href="https://{{ $contact->website }}" class="w-8 h-8 text-white bg-white hover:bg-slate-50 border font-medium rounded-lg text-sm p-1 text-center inline-flex items-center me-2 ">
                         <svg class="w-8 h-8 text-e73002" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M12 2a10 10 0 1 0 10 10A10.009 10.009 0 0 0 12 2Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.093 20.093 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM10 3.707a8.82 8.82 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.755 45.755 0 0 0 10 3.707Zm-6.358 6.555a8.57 8.57 0 0 1 4.73-5.981 53.99 53.99 0 0 1 3.168 4.941 32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.641 31.641 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM12 20.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 15.113 13a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd"/>
                         </svg>
@@ -97,9 +97,9 @@
                 <li class="me-2" role="presentation">
                     <button class="inline-block p-4 hover:border-e73002 border-b-2 rounded-t-lg" id="experience-tab" data-tabs-target="#experience" type="button" role="tab" aria-controls="experience" aria-selected="false">Experience</button>
                 </li>
-                <li role="presentation">
+                {{-- <li role="presentation">
                     <button class="inline-block p-4 hover:border-e73002 border-b-2 rounded-t-lg " id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
-                </li>
+                </li> --}}
             </ul>
                
         </div>
@@ -433,7 +433,7 @@
             <div class="hidden p-4 rounded-lg bg-gray-50" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
               
                    
-                      <h3 class="text-2xl font-semibold mb-4">Contact Form</h3>
+                      {{-- <h3 class="text-2xl font-semibold mb-4">Contact Form</h3>
                   
                       <form action="#" class="space-y-4" data-form>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -450,7 +450,7 @@
                               </svg>                               
                             Send Message
                         </button>
-                      </form>
+                      </form> --}}
         
                 {{-- <div class="flex">
                     <div class="relative flex-none me-4">
@@ -502,7 +502,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Edit profile company
+                        Edit Profile
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editProfile-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -518,21 +518,21 @@
                       
                         <div class="col-span-4">
                             <label for="full_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                            <input type="text" name="full_name" id="full_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukan judul" value="{{ old('full_name', $profile->full_name) }}" required="">
+                            <input type="text" name="full_name" id="full_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" value="{{ old('full_name', $profile->full_name) }}" required="">
                         </div>
                         <div class="col-span-2 sm:col-span-4">
                             <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                            <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $profile->address }}" placeholder="Masukkan alamat perusahaan" >
+                            <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $profile->address }}" placeholder="Alamat Anda" >
                         </div>
                         <div class="col-span-4">
                             <label for="headline" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Headline</label>
-                            <input type="text" name="headline" id="headline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $profile->headline }}" placeholder="Motto Perusahaan" >
+                            <input type="text" name="headline" id="headline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $profile->headline }}" placeholder="Headline Anda" >
                         </div>
                 
                         
                         <div class="col-span-4">
                             <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio</label>
-                            <textarea id="bio" name="bio" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis deskripsi dan kualifikasi">{{ $profile->bio }}</textarea>                    
+                            <textarea id="bio" name="bio" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Deskripsi Diri Anda">{{ $profile->bio }}</textarea>                    
                         </div>
                         
                     </div>
