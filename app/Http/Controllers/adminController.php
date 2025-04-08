@@ -12,4 +12,16 @@ class adminController extends Controller
     {
         return view('admin.verificationRecruiter'); // Tambahkan variabel baru ke view
     }
+    public function analisisSistem()
+    {
+        return view('admin.analisisSistem'); // Tambahkan variabel baru ke view
+    }
+    public function kelolaSistem()
+    {
+        return view('admin.kelolaSistem'); // Tambahkan variabel baru ke view
+    }
+    public function kelolaAdministrasi()
+    {
+        return view('admin.kelolaAdministrasi'); // Tambahkan variabel baru ke view
+    }
 }
