@@ -125,11 +125,11 @@
                         </div>
                     </th>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        30.06.2024 (dummy)
+                        {{ $candidate->headline }}
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap">
-                        Semarang (dummy)
+                        {{ $candidate->address }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if ($candidate->pivot->status == 'approved')

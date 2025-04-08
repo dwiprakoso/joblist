@@ -7,6 +7,7 @@ use App\Models\companies_benefit;
 use App\Models\companies_type;
 use App\Models\company_user;
 use App\Models\path_types;
+use Illuminate\Support\Facades\DB;
 use App\Models\RoomCandidate;
 use App\Models\rooms;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class recruiterController extends Controller
         $companyUser = $user->companyUser()->first();
 
         if (!$companyUser) {
-            return redirect()->back()->with('error', 'Company profile not found.');
+            return redirect()->back()->with('error', 'Profil perusahaan tidak ditemukan.');
         }
 
         $company = $companyUser->company;
@@ -50,10 +51,19 @@ class recruiterController extends Controller
 
         // Ambil count dari room yang terkait dengan company
         $roomsCount = rooms::where('company_id', $company_id)->count();
+            
+        // Menghitung total kandidat yang apply di semua room perusahaan (selain approved dan rejected)
+        $totalActiveApplicants = rooms::where('rooms.company_id', $company_id)
+            ->join('room_candidates', 'rooms.id', '=', 'room_candidates.rooms_id')
+            ->whereNotIn('room_candidates.status', ['approved', 'rejected'])
+            ->count('room_candidates.id');
 
-
-
-        return view('recruiter.index', compact('company', 'rooms', 'roomsCount'));
+        return view('recruiter.index', compact(
+            'company', 
+            'rooms', 
+            'roomsCount', 
+            'totalActiveApplicants'
+        ));
     }
 
     public function showProfile()

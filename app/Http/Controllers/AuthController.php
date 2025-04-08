@@ -35,7 +35,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'role_id' => 'required|in:1,2,3', // validasi role_id
+            'role_id' => 'required|in:1,2,3', // validasi role_id, termasuk admin (1)
         ], [
             'email.required' => 'Email tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
@@ -71,13 +71,15 @@ class AuthController extends Controller
 
             if ($hasRole) {
                 // Arahkan pengguna berdasarkan role_id
-                if ($role_id == 3) {
+                if ($role_id == 1) {
+                    // Admin redirect
+                    return redirect()->route('dashboard.admin');
+                } elseif ($role_id == 3) {
+                    // Recruiter redirect
                     return redirect()->route('dashboard.recruiter');
                 } elseif ($role_id == 2) {
+                    // Participant redirect
                     return redirect()->route('dashboard.kandidat');
-                } else {
-                    // Tambahkan redirect sesuai kebutuhan, misalnya untuk admin
-                    return redirect()->route('dashboard.admin');
                 }
             } else {
                 Auth::logout();
@@ -91,7 +93,6 @@ class AuthController extends Controller
             return redirect('login')->withErrors('Email atau password salah')->withInput();
         }
     }
-
     public function showIdentityForm()
     {
         return view('auth.lengkapiProfile');

@@ -10,7 +10,7 @@
       <title>Selection Process</title>
    </head>
    <body>
-      @include('recruiter.components.sidebar')     
+      @include('admin.components.sidebar')     
       <div class="sm:ml-80">
          <div class="p-4 m-4 rounded-lg dark:border-gray-700">
             <nav class="flex mb-4" aria-label="Breadcrumb">
@@ -28,7 +28,7 @@
             <div class="grid grid-cols-5 items-center justify-center">
                   {{-- Company Name --}}
                   <div class="col-span-4 p-8 flex items-center h-12 rounded bg-e73002 dark:bg-gray-800">
-                     <h1 class=" text-base font-normal leading-none tracking-tight text-white  dark:text-white">Selamat datang, <br/> <span class="text-xl font-extrabold text-white dark:text-blue-500">{{ $company->company_name }}</span></h1>
+                     <h1 class=" text-base font-normal leading-none tracking-tight text-white  dark:text-white">Selamat datang, <br/> <span class="text-xl font-extrabold text-white dark:text-blue-500">Admin</span></h1>
                   </div>
                   <div class="flex items-center justify-center rounded h-12 dark:bg-gray-800 gap-4">
                      {{-- Button Message --}}
@@ -87,15 +87,15 @@
             <div class="grid grid-cols-2 p-4 gap-4 items-center justify-center mb-4 rounded bg-slate-100 shadow-md dark:bg-gray-800">
                {{-- Total Job Post--}}
                <div class="flex items-center p-4 rounded bg-fd7d09 h-20 dark:bg-gray-800">
-                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Job Post <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $roomsCount }}</span></h1>
+                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Job Post <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">( dummy )</span></h1>
                </div>
                {{-- Total Pendaftar --}}
                <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
-                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $totalActiveApplicants }}</span></h1>
+                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
                </div>
             </div>
             {{-- Start --}}
-            <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
+            {{-- <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
                <div id="pie-chart" class="items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
                   <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
                      Respon Perusahaan (dummy)
@@ -142,7 +142,7 @@
                      </p>
                    @endif
                </div>
-            </div>
+            </div> --}}
             {{-- End --}}
 
             

@@ -8,6 +8,7 @@ use App\Http\Controllers\candidatesController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Recruiter\SubmissionRecruiterController;
 use App\Http\Controllers\recruiterController;
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\RoomController;
 use App\Models\RoomCandidate;
 use Illuminate\Support\Facades\Route;
@@ -108,6 +109,10 @@ Route::prefix('dashboard')->group(function () {
             Route::post('/lolos-challange', 'lolosChallange')->name('.lolosChallange');
             Route::post('/lolos-meeting-invitation', 'lolosMeetingInvitation')->name('.lolosMeetingInvitation');
         });
+    });
+    // Admin routes
+    Route::prefix('admin')->middleware('role:admin')->group(function () {
+        Route::get('/', [adminController::class, 'index'])->name('dashboard.admin');
     });
 });
 
