@@ -47,11 +47,6 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                 </div>
                                  <div>
                                     <p class="font-semibold">Apple MacBook Pro 17"</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MP17-001</p>
@@ -95,11 +90,6 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                 </div>
                                  <div>
                                     <p class="font-semibold">Microsoft Surface Pro</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SKU: MS-SP-002</p>
@@ -143,11 +133,6 @@
                         <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                                    </svg>
-                                 </div>
                                  <div>
                                     <p class="font-semibold">Magic Mouse 2</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MM-003</p>
@@ -190,17 +175,6 @@
                         </tr>
                      </tbody>
                   </table>
-               </div>
-               
-               <div class="flex items-center justify-between mt-6">
-                  <div class="text-sm text-gray-600 dark:text-gray-400">
-                     Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">3</span> entries
-                  </div>
-                  <div class="flex space-x-2">
-                     <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Previous</button>
-                     <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">1</button>
-                     <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Next</button>
-                  </div>
                </div>
             </div>
          </div>

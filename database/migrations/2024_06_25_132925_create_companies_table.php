@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company_name', 255)->notNull();
-            $table->string('logo', 255)->notNull()->nullable();
-            $table->string('banner', 255)->notNull()->nullable();
+            $table->string('logo', 255)->nullable();
+            $table->string('banner', 255)->nullable();
             $table->string('company_address', 255)->nullable();
             $table->string('company_website', 255)->nullable();
             $table->string('company_motto', 255)->nullable();
