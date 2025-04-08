@@ -113,6 +113,7 @@ Route::prefix('dashboard')->group(function () {
     // Admin routes
     Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/', [adminController::class, 'index'])->name('dashboard.admin');
+        Route::get('/verificationRecruiter', [adminController::class, 'verificationRecruiter'])->name('dashboard.admin.verificationRecruiter');
     });
 });
 

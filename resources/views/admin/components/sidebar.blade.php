@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ Route('dashboard.kandidat.status') }}"
+                <a href="{{ Route('dashboard.admin.verificationRecruiter') }}"
                     class="{{ Route::is('dashboard.kandidat.status') ? 'bg-e73002' : '' }} flex items-center p-3 m-4 rounded-lg dark:text-white hover:bg-e73002 dark:hover:bg-gray-700 group">
 
                     <svg class="{{ Route::is('dashboard.kandidat.status') ? 'text-white' : '' }} flex-shrink-0 w-6 h-6 text-abu-abu transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
@@ -63,7 +63,7 @@
 
 
                     <span
-                        class="{{ Route::is('dashboard.kandidat.status') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Verifikasi Recruiter</span>
+                        class="{{ Route::is('dashboard.admin.') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Verifikasi Recruiter</span>
                 </a>
             </li>
             <li>

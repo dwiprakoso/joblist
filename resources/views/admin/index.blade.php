@@ -95,14 +95,14 @@
                </div>
             </div>
             {{-- Start --}}
-            {{-- <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
+            {{-- <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800"> --}}
                <div id="pie-chart" class="items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
                   <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
                      Respon Perusahaan (dummy)
                   </p>
-                  @include('components.pieChart') 
+                  @include('admin.components.table') 
                </div>
-               <div class=" items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
+               {{-- <div class=" items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
                   <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
                      Lowongan Pekerjaan Anda
                   </p>
