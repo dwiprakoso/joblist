@@ -114,6 +114,8 @@ Route::prefix('dashboard')->group(function () {
     Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/', [adminController::class, 'index'])->name('dashboard.admin');
         Route::get('/verification-recruiter', [adminController::class, 'verificationRecruiter'])->name('dashboard.admin.verificationRecruiter');
+        Route::post('/verify-company/{company}', [adminController::class, 'verifyCompany'])->name('admin.verifyCompany');
+        Route::post('/reject-company/{company}', [adminController::class, 'rejectCompany'])->name('admin.rejectCompany');
         Route::get('/analisis-sistem', [adminController::class, 'analisisSistem'])->name('dashboard.admin.analisisSistem');
         Route::get('/kelola-sistem', [adminController::class, 'kelolaSistem'])->name('dashboard.admin.kelolaSistem');
         Route::get('/kelola-administrasi', [adminController::class, 'kelolaAdministrasi'])->name('dashboard.admin.kelolaAdministrasi');

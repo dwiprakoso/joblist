@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\companies;
+
 class adminController extends Controller
 {
     public function index()
@@ -10,7 +12,23 @@ class adminController extends Controller
     }
     public function verificationRecruiter()
     {
-        return view('admin.verificationRecruiter'); // Tambahkan variabel baru ke view
+        $companies = companies::with('users', 'contact')->get();
+        return view('admin.verificationRecruiter', compact('companies'));
+    }
+
+    public function verifyCompany(companies $company)
+    {
+        $company->status = 'verified';
+        $company->save();
+        
+        return redirect()->back()->with('success', 'Company has been verified successfully!');
+    }
+    public function rejectCompany(companies $company)
+    {
+        $company->status = 'rejected';
+        $company->save();
+        
+        return redirect()->back()->with('success', 'Company has been rejected.');
     }
     public function analisisSistem()
     {

@@ -33,7 +33,7 @@ class companies extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'company_users');
+        return $this->belongsToMany(User::class, 'company_users', 'company_id', 'user_id');
     }
 
     public function rooms()

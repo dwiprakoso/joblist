@@ -11,8 +11,13 @@
    </head>
    <body>
       @include('admin.components.sidebar')     
-      <div class="sm:ml-80">
-         <div class="p-4 m-4 rounded-lg dark:border-gray-700">
+         <div class="sm:ml-80">
+            <div class="p-4 m-4 rounded-lg dark:border-gray-700">
+               @if(session('success'))
+                  <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                     {{ session('success') }}
+                  </div>
+               @endif
             <nav class="flex mb-4" aria-label="Breadcrumb">
                <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
                   <li class="inline-flex items-center">
@@ -35,144 +40,82 @@
                   <table class="w-full text-sm text-left">
                      <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
                         <tr>
-                           <th scope="col" class="px-6 py-4">Product name</th>
-                           <th scope="col" class="px-6 py-4">Color</th>
-                           <th scope="col" class="px-6 py-4">Category</th>
-                           <th scope="col" class="px-6 py-4">Price</th>
+                           <th scope="col" class="px-6 py-4">Nama Perusahaan</th>
+                           <th scope="col" class="px-6 py-4">Email</th>
+                           <th scope="col" class="px-6 py-4">No Telephone</th>
+                           <th scope="col" class="px-6 py-4">Linkedin</th>
                            <th scope="col" class="px-6 py-4 text-center">Status</th>
                            <th scope="col" class="px-6 py-4 text-right">Actions</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div>
-                                    <p class="font-semibold">Apple MacBook Pro 17"</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MP17-001</p>
+                        @foreach ($companies as $company)
+                           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                 <div class="flex items-center">
+                                    <div>
+                                       <p class="font-semibold">{{ $company->company_name }}</p>
+                                       <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MP17-001</p>
+                                    </div>
                                  </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
-                                 Silver
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                                 Laptop
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              $2999
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                 In Stock
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
-                              <div class="flex justify-end space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div>
-                                    <p class="font-semibold">Microsoft Surface Pro</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: MS-SP-002</p>
+                              </th>
+                              <td class="px-6 py-4">
+                                 <div class="flex items-center">
+                                    {{ $company->users->first()->email }}
                                  </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-white border border-gray-300 mr-2"></div>
-                                 White
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">
-                                 Laptop PC
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              $1999
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
-                                 Limited
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
+                              </td>
+                              <td class="px-6 py-4">
+                                 <span class="flex items-center">
+                                    {{ $company->contact->telephone }}
+                                 </span>
+                              </td>
+                              <td class="px-6 py-4 font-medium">
+                                 <a href="{{ $company->contact->linkedin }}" target="_blank">{{ $company->company_name }}</a>
+                              </td>
+                              <td class="px-6 py-4 text-center">
+                                 @if($company->status === 'pending')
+                                     <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                         {{ $company->status }}
+                                     </span>
+                                 @elseif($company->status === 'rejected')
+                                     <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                         {{ $company->status }}
+                                     </span>
+                                 @elseif($company->status === 'verified')
+                                     <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                         {{ $company->status }}
+                                     </span>
+                                 @else
+                                     <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                                         {{ $company->status ?? 'Unknown' }}
+                                     </span>
+                                 @endif
+                             </td>
+                             <td class="px-6 py-4 text-right">
                               <div class="flex justify-end space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                 </button>
+                                 @if($company->status === 'pending')
+                                    <form action="{{ route('admin.verifyCompany', $company->id) }}" method="POST">
+                                       @csrf
+                                       <button type="submit" class="p-1.5 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                          </svg>
+                                       </button>
+                                    </form>
+                                    <form action="{{ route('admin.rejectCompany', $company->id) }}" method="POST">
+                                       @csrf
+                                       <button type="submit" class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                          </svg>
+                                       </button>
+                                    </form>
+                                 @endif
                               </div>
                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div>
-                                    <p class="font-semibold">Magic Mouse 2</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MM-003</p>
-                                 </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-gray-900 mr-2"></div>
-                                 Black
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
-                                 Accessories
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              $99
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                                 Out of Stock
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
-                              <div class="flex justify-end space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
+                        </tr>                            
+                        @endforeach
+                        
                      </tbody>
                   </table>
                </div>
