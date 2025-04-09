@@ -93,59 +93,7 @@
                <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
                   <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
                </div>
-            </div>
-            {{-- Start --}}
-            {{-- <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800"> --}}
-               {{-- <div id="pie-chart" class="items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
-                  <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                     Respon Perusahaan (dummy)
-                  </p>
-                  @include('admin.components.table') 
-               </div> --}}
-               {{-- <div class=" items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
-                  <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                     Lowongan Pekerjaan Anda
-                  </p>
-                  @if($rooms->isEmpty())
-                  <div>
-                     <div class="flex items-center justify-center w-full">
-                        <div
-                           class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg h-44 bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                           <a href="{{ route('dashboard.recruiter.selectionRoom') }}" target="_blank">
-                              <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Room anda masih <span
-                                       class="font-semibold">Kosong</span></p>
-                              </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  @else
-                     @foreach($rooms as $room)
-                      <div class="job-item border-b border-gray-200 dark:border-gray-700 mb-4">
-                         <div class="flex items-center px-6 py-4">
-                         <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="8" cy="8" r="8" fill="#E73002"/>
-                            <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                         </svg>
-                         <div class="ps-3">
-                           <div class="text-base font-bold">{{ $room->position_name }}</div>
-                           <div class="font-semibold text-gray-500">{{ $room->departement }}</div>
-                           <div class="font-normal text-gray-500">{{ $room->work_system }}</div>
-                         </div>
-                         </div>
-                      </div>
-                      @endforeach
-                      <p class="text-xs font-medium text-right mb-2 text-abu-abu dark:text-gray-500">
-                     
-                        <a href="{{ route('dashboard.recruiter.selectionRoom') }}">See All</a>
-                     </p>
-                   @endif
-               </div>
-            </div> --}}
-            {{-- End --}}
-
-            
+            </div>            
          </div>
       </div>
       

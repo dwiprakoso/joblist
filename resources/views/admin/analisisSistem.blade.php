@@ -24,50 +24,35 @@
                   </li>
                </ol>
             </nav>
+            <div class="grid grid-cols-3 p-4 gap-4 items-center justify-center mb-4 rounded bg-slate-100 shadow-md dark:bg-gray-800">
+               {{-- Total Job Post--}}
+               <div class="flex items-center p-4 rounded bg-fd7d09 h-20 dark:bg-gray-800">
+                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Job Post <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">( dummy )</span></h1>
+               </div>
+               {{-- Total Pendaftar --}}
+               <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
+                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
+               </div>
+               {{-- Total Pendaftar --}}
+               <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
+                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
+               </div>
+            </div>  
             
             <div class="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                <div class="flex justify-between items-center mb-6">
                   <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Respon Perusahaan</h2>
-                  <div>
-                     <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        Tambah Baru
-                     </button>
-                  </div>
                </div>
-               
-               <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
-                  <div class="flex flex-col md:flex-row gap-4 mb-4">
-                     <div class="flex-1">
-                        <input type="text" placeholder="Cari produk..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                     </div>
-                     <div class="flex gap-2">
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                           <option value="">Semua Kategori</option>
-                           <option value="Laptop">Laptop</option>
-                           <option value="Accessories">Accessories</option>
-                        </select>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                           </svg>
-                        </button>
-                     </div>
-                  </div>
-               </div>
-               
                <div class="overflow-x-auto">
                   <table class="w-full text-sm text-left">
                      <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
                         <tr>
-                           <th scope="col" class="px-6 py-4">Product name</th>
-                           <th scope="col" class="px-6 py-4">Color</th>
-                           <th scope="col" class="px-6 py-4">Category</th>
-                           <th scope="col" class="px-6 py-4">Price</th>
+                           <th scope="col" class="px-6 py-4">Nama Perusahaan</th>
+                           <th scope="col" class="px-6 py-4">Email</th>
+                           <th scope="col" class="px-6 py-4">No Hp</th>
+                           <th scope="col" class="px-6 py-4 ">Linkedin</th>
                            <th scope="col" class="px-6 py-4 text-center">Status</th>
-                           <th scope="col" class="px-6 py-4 text-right">Actions</th>
+                           <th scope="col" class="px-6 py-4 text-center">Detail</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -80,7 +65,7 @@
                                     </svg>
                                  </div>
                                  <div>
-                                    <p class="font-semibold">Apple MacBook Pro 17"</p>
+                                    <p class="font-semibold">Gemar Jaya</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MP17-001</p>
                                  </div>
                               </div>
@@ -88,128 +73,27 @@
                            <td class="px-6 py-4">
                               <div class="flex items-center">
                                  <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
-                                 Silver
+                                 cahaya@test
                               </div>
                            </td>
                            <td class="px-6 py-4">
                               <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                                 Laptop
+                                 66522266
                               </span>
                            </td>
                            <td class="px-6 py-4 font-medium">
-                              $2999
+                              gemarjayacahaya
                            </td>
                            <td class="px-6 py-4 text-center">
                               <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                 In Stock
+                                 verified
                               </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
-                              <div class="flex justify-end space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                 </div>
-                                 <div>
-                                    <p class="font-semibold">Microsoft Surface Pro</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: MS-SP-002</p>
-                                 </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-white border border-gray-300 mr-2"></div>
-                                 White
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">
-                                 Laptop PC
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              $1999
                            </td>
                            <td class="px-6 py-4 text-center">
-                              <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
-                                 Limited
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
-                              <div class="flex justify-end space-x-2">
+                              <div class="flex justify-center space-x-2">
                                  <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                                    </svg>
-                                 </div>
-                                 <div>
-                                    <p class="font-semibold">Magic Mouse 2</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MM-003</p>
-                                 </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-gray-900 mr-2"></div>
-                                 Black
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
-                                 Accessories
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              $99
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                                 Out of Stock
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-right">
-                              <div class="flex justify-end space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                                 <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                  </button>
                               </div>
@@ -217,17 +101,6 @@
                         </tr>
                      </tbody>
                   </table>
-               </div>
-               
-               <div class="flex items-center justify-between mt-6">
-                  <div class="text-sm text-gray-600 dark:text-gray-400">
-                     Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">3</span> entries
-                  </div>
-                  <div class="flex space-x-2">
-                     <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Previous</button>
-                     <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">1</button>
-                     <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Next</button>
-                  </div>
                </div>
             </div>
          </div>
