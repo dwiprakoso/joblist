@@ -118,6 +118,7 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/reject-company/{company}', [adminController::class, 'rejectCompany'])->name('admin.rejectCompany');
         Route::get('/analisis-sistem', [adminController::class, 'analisisSistem'])->name('dashboard.admin.analisisSistem');
         Route::get('/kelola-sistem', [adminController::class, 'kelolaSistem'])->name('dashboard.admin.kelolaSistem');
+        Route::put('/update-room-status/{room}', [adminController::class, 'updateRoomStatus'])->name('admin.updateRoomStatus');
         Route::get('/kelola-administrasi', [adminController::class, 'kelolaAdministrasi'])->name('dashboard.admin.kelolaAdministrasi');
     });
 });

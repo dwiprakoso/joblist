@@ -320,7 +320,6 @@
                                  <div class="flex items-center">
                                     <div>
                                        <p class="font-semibold">{{ $room->position_name }}</p>
-                                       <p class="text-xs text-gray-500 dark:text-gray-400">ID: 301</p>
                                     </div>
                                  </div>
                               </th>
