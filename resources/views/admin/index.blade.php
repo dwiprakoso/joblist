@@ -29,40 +29,44 @@
        
            <!-- Header Section with Welcome and Notifications -->
            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-             <!-- Welcome Message Card -->
-             <div class="md:col-span-4 p-6 flex items-center rounded-lg bg-e73002 shadow-md dark:bg-gray-800">
-               <div class="flex items-center">
-                 <div class="p-3 mr-4 rounded-full bg-white/20">
-                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
-                   </svg>
-                 </div>
-                 <div>
-                   <p class="text-sm font-medium text-white">Selamat datang,</p>
-                   <h2 class="text-xl font-bold text-white">Admin</h2>
-                 </div>
-               </div>
-             </div>
-       
-             <!-- Notification Icons Card -->
-             <div class="flex items-center justify-center gap-4 p-4 rounded-lg bg-white shadow-md dark:bg-gray-800">
-               <!-- Message Button -->
-               <button class="relative inline-flex items-center p-2 text-gray-500 hover:text-gray-900 transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Messages">
-                 <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                   <path fill-rule="evenodd" d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z" clip-rule="evenodd"/>
-                 </svg>
-                 <div class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-4 dark:border-gray-900"></div>
-               </button>
-               
-               <!-- Notification Button -->
-               <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-gray-500 hover:text-gray-900 transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Notifications">
-                 <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                   <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
-                 </svg>
-                 <div class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-4 dark:border-gray-900"></div>
-               </button>
-             </div>
-           </div>
+            <!-- Welcome Message Card -->
+            <div class="md:col-span-4 p-6 flex items-center rounded-lg bg-gradient-to-r from-[#e73002] to-[#fd7d09] shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
+              <div class="flex items-center">
+                <div class="p-3 mr-4 rounded-full bg-white bg-opacity-20">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white">Selamat datang,</p>
+                  <h2 class="text-xl font-bold text-white">Admin</h2>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Notification Icons Card -->
+            <div class="flex items-center justify-center gap-4 p-4 rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
+              <!-- Message Button -->
+              <button class="relative inline-flex items-center p-2 text-[#e73002] hover:text-[#fd7d09] transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Messages">
+                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100">
+                  <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div class="absolute w-3 h-3 bg-[#fd1d02] border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"></div>
+              </button>
+              
+              <!-- Notification Button -->
+              <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-[#e73002] hover:text-[#fd7d09] transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Notifications">
+                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100">
+                  <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                    <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+                  </svg>
+                </div>
+                <div class="absolute w-3 h-3 bg-[#fd1d02] border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"></div>
+              </button>
+            </div>
+          </div>
        
            <!-- Dropdown Notification Menu -->
            <div id="dropdownNotification" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow-xl dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
