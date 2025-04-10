@@ -98,7 +98,7 @@
       </div>
 
       <!-- Modal for job post details and status edit -->
-      <div id="job-detail-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+      <div id="job-detail-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center hidden">
          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center">
                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Detail Lowongan Pekerjaan</h3>
