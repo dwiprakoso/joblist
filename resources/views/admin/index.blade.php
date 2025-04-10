@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-          
+
             <!-- Notification Icons Card -->
             <div class="flex items-center justify-center gap-4 p-4 rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
               <!-- Message Button -->
@@ -119,7 +119,7 @@
                  </div>
                  <div>
                    <p class="mb-2 text-sm font-medium text-white">Total Job Post</p>
-                   <p class="text-2xl font-semibold text-white">24</p>
+                   <p class="text-2xl font-semibold text-white">{{ $roomscount }}</p>
                  </div>
                </div>
              </div>
@@ -134,7 +134,7 @@
                  </div>
                  <div>
                    <p class="mb-2 text-sm font-medium text-white">Total Pendaftar</p>
-                   <p class="text-2xl font-semibold text-white">156</p>
+                   <p class="text-2xl font-semibold text-white">{{ $candidatescount }}</p>
                  </div>
                </div>
              </div>
@@ -149,7 +149,7 @@
                  </div>
                  <div>
                    <p class="mb-2 text-sm font-medium text-white">Total Perusahaan</p>
-                   <p class="text-2xl font-semibold text-white">42</p>
+                   <p class="text-2xl font-semibold text-white">{{ $companiescount }}</p>
                  </div>
                </div>
              </div>
@@ -172,45 +172,27 @@
                    </tr>
                  </thead>
                  <tbody>
-                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                       Aslam Thariq
-                     </th>
-                     <td class="px-4 py-3">Marketing Manager</td>
-                     <td class="px-4 py-3">Unit MSOS</td>
-                     <td class="px-4 py-3">
-                       <span class="px-2 py-1 text-xs font-medium text-white bg-fd7d09 rounded-full">
-                         Applied
-                       </span>
-                     </td>
-                     <td class="px-4 py-3">Today</td>
-                   </tr>
-                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                       Budi Santoso
-                     </th>
-                     <td class="px-4 py-3">Software Engineer</td>
-                     <td class="px-4 py-3">Tech Division</td>
-                     <td class="px-4 py-3">
-                       <span class="px-2 py-1 text-xs font-medium text-white bg-fd1d02 rounded-full">
-                         Interview
-                       </span>
-                     </td>
-                     <td class="px-4 py-3">Yesterday</td>
-                   </tr>
-                   <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                       Siti Nurhaliza
-                     </th>
-                     <td class="px-4 py-3">HR Specialist</td>
-                     <td class="px-4 py-3">HR Department</td>
-                     <td class="px-4 py-3">
-                       <span class="px-2 py-1 text-xs font-medium text-white bg-e73002 rounded-full">
-                         Review
-                       </span>
-                     </td>
-                     <td class="px-4 py-3">April 8, 2025</td>
-                   </tr>
+                  @foreach ( $candidatesroom as $candidateroom )
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{ $candidateroom->candidate->full_name }}
+                    </th>
+                    <td class="px-4 py-3">{{ $candidateroom->rooms->position_name }}</td>
+                    <td class="px-4 py-3">{{ $candidateroom->rooms->company->company_name }}</td>
+                    <td class="px-4 py-3">
+                      <span class="px-2 py-1 text-xs font-medium text-white rounded-full
+                        @if($candidateroom->status == 'pending') bg-yellow-500
+                        @elseif($candidateroom->status == 'approved') bg-green-500
+                        @elseif($candidateroom->status == 'rejected') bg-red-500
+                        @elseif($candidateroom->status == 'present') bg-blue-500
+                        @elseif($candidateroom->status == 'absent') bg-gray-500
+                        @endif">
+                        {{ $candidateroom->status }}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3">{{ $candidateroom->created_at->format('d M Y, H:i') }}</td>
+                  </tr>
+                  @endforeach
                  </tbody>
                </table>
              </div>

@@ -5,13 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\candidates;
 use App\Models\rooms;
 use App\Models\companies;
+use App\Models\RoomCandidate;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
 {
     public function index()
     {     
-        return view('admin.index'); // Tambahkan variabel baru ke view
+        $companies = companies::with('users', 'contact')->get();
+        $companiescount = $companies->count(); // Menghitung jumlah perusahaan yang terdaftar
+
+        // Mengambil semua data dari tabel rooms
+        $rooms = rooms::all();     
+        // Menghitung jumlah baris
+        $roomscount = $rooms->count();
+
+        // Mengambil semua data dari tabel rooms
+        $candidates = candidates::all();     
+        // Menghitung jumlah baris
+        $candidatescount = $candidates->count();
+
+
+        // data aplly
+        $candidatesroom = RoomCandidate::with('rooms', 'candidate')
+                             ->latest()
+                             ->take(5)
+                             ->get();
+        return view('admin.index', compact('companies','rooms','candidates', 'companiescount', 'roomscount','candidatescount', 'candidatesroom')); // Tambahkan variabel baru ke view
     }
     public function verificationRecruiter()
     {
