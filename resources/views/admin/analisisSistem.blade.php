@@ -27,83 +27,512 @@
             <div class="grid grid-cols-3 p-4 gap-4 items-center justify-center mb-4 rounded bg-slate-100 shadow-md dark:bg-gray-800">
                {{-- Total Job Post--}}
                <div class="flex items-center p-4 rounded bg-fd7d09 h-20 dark:bg-gray-800">
-                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Job Post <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">( dummy )</span></h1>
+                  <h1 class="text-lg font-medium leading-none tracking-tight text-white dark:text-white">Total Job Post <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">24</span></h1>
                </div>
                {{-- Total Pendaftar --}}
                <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
-                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
+                  <h1 class="text-lg font-medium leading-none tracking-tight text-white dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">156</span></h1>
                </div>
-               {{-- Total Pendaftar --}}
+               {{-- Total Perusahaan --}}
                <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
-                  <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total Pendaftar <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">(dummy)</span></h1>
+                  <h1 class="text-lg font-medium leading-none tracking-tight text-white dark:text-white">Total Perusahaan <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">42</span></h1>
                </div>
-            </div>  
-            
+            </div>
             <div class="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                <div class="flex justify-between items-center mb-6">
-                  <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Respon Perusahaan</h2>
+                  <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Data Management</h2>
                </div>
-               <div class="overflow-x-auto">
-                  <table class="w-full text-sm text-left">
-                     <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
-                        <tr>
-                           <th scope="col" class="px-6 py-4">Nama Perusahaan</th>
-                           <th scope="col" class="px-6 py-4">Email</th>
-                           <th scope="col" class="px-6 py-4">No Hp</th>
-                           <th scope="col" class="px-6 py-4 ">Linkedin</th>
-                           <th scope="col" class="px-6 py-4 text-center">Status</th>
-                           <th scope="col" class="px-6 py-4 text-center">Detail</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
-                           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              <div class="flex items-center">
-                                 <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                 </div>
-                                 <div>
-                                    <p class="font-semibold">Gemar Jaya</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SKU: APP-MP17-001</p>
-                                 </div>
-                              </div>
-                           </th>
-                           <td class="px-6 py-4">
-                              <div class="flex items-center">
-                                 <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
-                                 cahaya@test
-                              </div>
-                           </td>
-                           <td class="px-6 py-4">
-                              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                                 66522266
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 font-medium">
-                              gemarjayacahaya
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                 verified
-                              </span>
-                           </td>
-                           <td class="px-6 py-4 text-center">
-                              <div class="flex justify-center space-x-2">
-                                 <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
+               
+               <!-- Tab Navigation -->
+               <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="multiViewTab" role="tablist">
+                     <li class="mr-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 active" 
+                           id="companies-tab" 
+                           data-tabs-target="#companies" 
+                           type="button" 
+                           role="tab" 
+                           aria-controls="companies" 
+                           aria-selected="true">
+                           Perusahaan
+                        </button>
+                     </li>
+                     <li class="mr-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" 
+                           id="applicants-tab" 
+                           data-tabs-target="#applicants" 
+                           type="button" 
+                           role="tab" 
+                           aria-controls="applicants" 
+                           aria-selected="false">
+                           Pendaftar
+                        </button>
+                     </li>
+                     <li class="mr-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" 
+                           id="jobposts-tab" 
+                           data-tabs-target="#jobposts" 
+                           type="button" 
+                           role="tab" 
+                           aria-controls="jobposts" 
+                           aria-selected="false">
+                           Lowongan Pekerjaan
+                        </button>
+                     </li>
+                  </ul>
+               </div>
+               
+               <!-- Tab Content -->
+               <div id="multiViewTabContent">
+                  <!-- Companies Tab Content -->
+                  <div class="block" id="companies" role="tabpanel" aria-labelledby="companies-tab">
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                           <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
+                              <tr>
+                                 <th scope="col" class="px-6 py-4">Nama Perusahaan</th>
+                                 <th scope="col" class="px-6 py-4">Email</th>
+                                 <th scope="col" class="px-6 py-4">No Hp</th>
+                                 <th scope="col" class="px-6 py-4">Linkedin</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Status</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Detail</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <!-- Company 1 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">PT. Tech Solutions Indonesia</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 101</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       hr@techsolutions.co.id
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       021-5553210
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    techsolutions-id
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                       verified
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                          </svg>
+                                       </button>
+                                       <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                              
+                              <!-- Company 2 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Digital Innovations</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 102</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       info@digitalinnovations.com
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       021-4445678
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    digitalinnovations
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                       pending
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                          </svg>
+                                       </button>
+                                       <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                              
+                              <!-- Company 3 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Future Systems</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 103</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       hr@futuresystems.com
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       021-7778899
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    futuresystems
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                       verified
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                          </svg>
+                                       </button>
+                                       <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  
+                  <!-- Applicants Tab Content -->
+                  <div class="hidden" id="applicants" role="tabpanel" aria-labelledby="applicants-tab">
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                           <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
+                              <tr>
+                                 <th scope="col" class="px-6 py-4">Nama Pendaftar</th>
+                                 <th scope="col" class="px-6 py-4">Email</th>
+                                 <th scope="col" class="px-6 py-4">No Hp</th>
+                                 <th scope="col" class="px-6 py-4">Pendidikan</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Status</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Detail</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <!-- Applicant 1 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Ahmad Rizki</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 201</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       ahmad.rizki@email.com
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       081234567890
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    S1 Teknik Informatika
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                       verified
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                              
+                              <!-- Applicant 2 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Siti Nurhayati</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 202</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       siti.nur@email.com
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       089876543210
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    S1 Manajemen Bisnis
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                       pending
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                              
+                              <!-- Applicant 3 -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Budi Santoso</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 203</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                       <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+                                       budi.s@email.com
+                                    </div>
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                       087654321098
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    D3 Teknik Elektro
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                       verified
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  
+                  <!-- Job Posts Tab Content -->
+                  <!-- Job Posts Tab Content -->
+                  <div class="hidden" id="jobposts" role="tabpanel" aria-labelledby="jobposts-tab">
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                           <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-t-lg">
+                              <tr>
+                                 <th scope="col" class="px-6 py-4">Posisi</th>
+                                 <th scope="col" class="px-6 py-4">Perusahaan</th>
+                                 <th scope="col" class="px-6 py-4">Lokasi</th>
+                                 <th scope="col" class="px-6 py-4">Gaji</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Status</th>
+                                 <th scope="col" class="px-6 py-4 text-center">Detail</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <!-- Job Post rows would go here -->
+                              <!-- Example Job Post -->
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors">
+                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="flex items-center">
+                                       <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-3 dark:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                          </svg>
+                                       </div>
+                                       <div>
+                                          <p class="font-semibold">Software Developer</p>
+                                          <p class="text-xs text-gray-500 dark:text-gray-400">ID: 301</p>
+                                       </div>
+                                    </div>
+                                 </th>
+                                 <td class="px-6 py-4">
+                                    PT. Tech Solutions Indonesia
+                                 </td>
+                                 <td class="px-6 py-4">
+                                    Jakarta
+                                 </td>
+                                 <td class="px-6 py-4 font-medium">
+                                    Rp 8.000.000 - 15.000.000
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                       active
+                                    </span>
+                                 </td>
+                                 <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center space-x-2">
+                                       <button class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                          </svg>
+                                       </button>
+                                       <button class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                       </button>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
       </div>
+
+      <!-- JavaScript untuk mengatur tab functionality -->
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+         // Set up tab functionality
+         const tabs = document.querySelectorAll('[data-tabs-target]');
+         const tabContents = document.querySelectorAll('[role="tabpanel"]');
+         
+         // Set default active tab
+         const defaultTab = document.getElementById('companies-tab');
+         const defaultTabContent = document.getElementById('companies');
+         
+         // Show default tab content
+         tabContents.forEach(content => {
+            if (content !== defaultTabContent) {
+               content.classList.add('hidden');
+            } else {
+               content.classList.remove('hidden');
+               content.classList.add('block');
+            }
+         });
+         
+         // Set default tab as active
+         defaultTab.classList.add('border-blue-600', 'text-blue-600', 'active');
+         defaultTab.setAttribute('aria-selected', 'true');
+         
+         tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+               const target = document.querySelector(tab.dataset.tabsTarget);
+               
+               // Hide all tab contents
+               tabContents.forEach(content => {
+                  content.classList.add('hidden');
+                  content.classList.remove('block');
+               });
+               
+               // Remove active state from all tabs
+               tabs.forEach(t => {
+                  t.classList.remove('border-blue-600', 'text-blue-600');
+                  t.classList.remove('active');
+                  t.setAttribute('aria-selected', 'false');
+               });
+               
+               // Show current tab content
+               target.classList.remove('hidden');
+               target.classList.add('block');
+               
+               // Set current tab as active
+               tab.classList.add('border-blue-600', 'text-blue-600');
+               tab.classList.add('active');
+               tab.setAttribute('aria-selected', 'true');
+            });
+         });
+      });
+      </script>
    </body>
 </html>
