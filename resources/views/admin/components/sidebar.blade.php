@@ -79,7 +79,7 @@
 
 
                     <span
-                        class="{{ Route::is('dashboard.kandidat.status') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Kelola Sistem</span>
+                        class="{{ Route::is('dashboard.kandidat.status') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Kelola Aplikasi</span>
                 </a>
             </li>
             <li>
