@@ -258,13 +258,11 @@
                                     </div>
                                     <div>
                                        <p class="font-semibold">{{ $candidate->full_name }}</p>
-                                       <p class="text-xs text-gray-500 dark:text-gray-400">ID: 201</p>
                                     </div>
                                  </div>
                               </th>
                               <td class="px-6 py-4">
                                  <div class="flex items-center">
-                                    <div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
                                     {{ $candidate->contact->email }}
                                  </div>
                               </td>
@@ -563,131 +561,107 @@
             </div>
          </div>
       </div>
-      <!-- Room Detail Modal -->
+      <!-- Job Details Modal -->
       <div id="roomDetailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <!-- Header Modal -->
-            <div class="border-b dark:border-gray-700 px-6 py-4 flex items-center justify-between">
-               <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
-                  <div>
-                     <span id="modal-position-name" class="block">Detail Lowongan</span>
-                     <span id="modal-company-name" class="text-sm text-gray-500 dark:text-gray-400"></span>
-                  </div>
-               </h3>
-               <button onclick="closeRoomModal()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-               </button>
-            </div>
-            
-            <!-- Banner Image (if available) -->
-            <div id="modal-room-banner" class="hidden">
-               <img id="modal-banner-img" src="" alt="Banner Lowongan" class="w-full h-48 object-cover">
+            <!-- Header Modal with Banner (if available) -->
+            <div class="relative">
+               <!-- Job banner (if available) -->
+               <div id="modal-job-banner" class="w-full h-32 bg-gray-200 dark:bg-gray-700 overflow-hidden hidden">
+                  <img id="modal-job-banner-img" src="" alt="" class="w-full h-full object-cover">
+               </div>
+               
+               <!-- Header with job title and company -->
+               <div class="border-b dark:border-gray-700 px-6 py-4 flex items-center justify-between">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                     <div>
+                        <span id="modal-position-name" class="block">Detail Lowongan</span>
+                        <span id="modal-company-name" class="text-sm text-gray-500 dark:text-gray-400"></span>
+                     </div>
+                  </h3>
+                  <button onclick="closeRoomModal()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                     </svg>
+                  </button>
+               </div>
             </div>
             
             <!-- Body Modal -->
             <div class="p-6">
-               <!-- Informasi Utama Lowongan -->
+               <!-- Job Overview Section -->
                <div class="mb-6">
-                  <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Informasi Lowongan</h4>
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Overview Lowongan</h4>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div class="space-y-2">
                         <div>
-                           <span class="text-gray-500 dark:text-gray-400 text-sm">ID Lowongan:</span>
-                           <p id="modal-room-id" class="font-medium text-gray-900 dark:text-white"></p>
-                        </div>
-                        <div>
                            <span class="text-gray-500 dark:text-gray-400 text-sm">Posisi:</span>
-                           <p id="modal-room-position" class="font-medium text-gray-900 dark:text-white"></p>
+                           <p id="modal-position" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
                         <div>
                            <span class="text-gray-500 dark:text-gray-400 text-sm">Departemen:</span>
-                           <p id="modal-room-departement" class="font-medium text-gray-900 dark:text-white"></p>
+                           <p id="modal-departement" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
                         <div>
-                           <span class="text-gray-500 dark:text-gray-400 text-sm">Kriteria Pengalaman:</span>
-                           <p id="modal-room-experience" class="font-medium text-gray-900 dark:text-white"></p>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Gaji:</span>
+                           <p id="modal-salary" class="font-medium text-gray-900 dark:text-white"></p>
+                        </div>
+                        <div>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Jumlah Posisi:</span>
+                           <p id="modal-total-positions" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
                      </div>
                      <div class="space-y-2">
-                        <div id="modal-room-salary-container">
-                           <span class="text-gray-500 dark:text-gray-400 text-sm">Gaji:</span>
-                           <p id="modal-room-salary" class="font-medium text-gray-900 dark:text-white"></p>
+                        <div>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Sistem Kerja:</span>
+                           <p id="modal-work-system" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
                         <div>
-                           <span class="text-gray-500 dark:text-gray-400 text-sm">Total Posisi Tersedia:</span>
-                           <p id="modal-room-total-position" class="font-medium text-gray-900 dark:text-white"></p>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Jam Kerja:</span>
+                           <p id="modal-working-hours" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
                         <div>
-                           <span class="text-gray-500 dark:text-gray-400 text-sm">Batas Waktu Pendaftaran:</span>
-                           <p id="modal-room-deadline" class="font-medium text-gray-900 dark:text-white"></p>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Pengalaman:</span>
+                           <p id="modal-experience" class="font-medium text-gray-900 dark:text-white"></p>
                         </div>
-                     </div>
-                  </div>
-                  
-                  <!-- Informasi Tambahan -->
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                     <div>
-                        <span class="text-gray-500 dark:text-gray-400 text-sm">Sistem Kerja:</span>
-                        <p id="modal-room-work-system" class="font-medium text-gray-900 dark:text-white mt-1"></p>
-                     </div>
-                     <div>
-                        <span class="text-gray-500 dark:text-gray-400 text-sm">Jam Kerja:</span>
-                        <p id="modal-room-working-hours" class="font-medium text-gray-900 dark:text-white mt-1"></p>
-                     </div>
-                     <div>
-                        <span class="text-gray-500 dark:text-gray-400 text-sm">Akses:</span>
-                        <p id="modal-room-access" class="font-medium text-gray-900 dark:text-white mt-1"></p>
+                        <div>
+                           <span class="text-gray-500 dark:text-gray-400 text-sm">Deadline:</span>
+                           <p id="modal-deadline" class="font-medium text-gray-900 dark:text-white"></p>
+                        </div>
                      </div>
                   </div>
                </div>
                
-               <!-- Deskripsi Lowongan -->
-               <div id="modal-description-section" class="mb-6 hidden">
+               <!-- Company Location Section -->
+               <div id="modal-location-section" class="mb-6">
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Lokasi</h4>
+                  <p id="modal-location" class="text-gray-700 dark:text-gray-300"></p>
+               </div>
+               
+               <!-- Job Description Section -->
+               <div id="modal-description-section" class="mb-6">
                   <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Deskripsi Pekerjaan</h4>
-                  <p id="modal-room-description" class="text-gray-700 dark:text-gray-300 whitespace-pre-line"></p>
+                  <p id="modal-description" class="text-gray-700 dark:text-gray-300 whitespace-pre-line"></p>
                </div>
                
-               <!-- Persyaratan -->
-               <div id="modal-requirements-section" class="mb-6 hidden">
+               <!-- Job Requirements Section -->
+               <div id="modal-requirements-section" class="mb-6">
                   <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Persyaratan</h4>
-                  <p id="modal-room-requirements" class="text-gray-700 dark:text-gray-300 whitespace-pre-line"></p>
+                  <p id="modal-requirements" class="text-gray-700 dark:text-gray-300 whitespace-pre-line"></p>
                </div>
                
-               <!-- Informasi Perusahaan -->
+               <!-- Status Section -->
                <div class="mb-6">
-                  <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Informasi Perusahaan</h4>
-                  
-                  <div id="modal-company-motto-container" class="hidden mb-2">
-                     <p id="modal-company-motto" class="text-gray-700 dark:text-gray-300 italic text-center"></p>
-                  </div>
-                  
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <div id="modal-company-type-container">
-                        <span class="text-gray-500 dark:text-gray-400 text-sm">Jenis Perusahaan:</span>
-                        <p id="modal-company-type" class="font-medium text-gray-900 dark:text-white"></p>
-                     </div>
-                     <div id="modal-company-website-container" class="hidden">
-                        <span class="text-gray-500 dark:text-gray-400 text-sm">Website:</span>
-                        <p id="modal-company-website" class="font-medium"></p>
-                     </div>
-                  </div>
-                  
-                  <div id="modal-company-address-container" class="hidden mt-2">
-                     <span class="text-gray-500 dark:text-gray-400 text-sm">Alamat:</span>
-                     <p id="modal-company-address" class="font-medium text-gray-900 dark:text-white"></p>
-                  </div>
-                  
-                  <div id="modal-company-description-container" class="hidden mt-4">
-                     <span class="text-gray-500 dark:text-gray-400 text-sm">Tentang Perusahaan:</span>
-                     <p id="modal-company-description" class="font-medium text-gray-700 dark:text-gray-300 mt-1"></p>
-                  </div>
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b pb-2 dark:border-gray-700">Status</h4>
+                  <div id="modal-access-rights"></div>
                </div>
             </div>
             
             <!-- Footer Modal -->
-            <div class="border-t dark:border-gray-700 px-6 py-4 flex justify-end">
+            <div class="border-t dark:border-gray-700 px-6 py-4 flex justify-between">
+               <button id="modal-website-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors hidden">
+                  Kunjungi Website
+               </button>
                <button onclick="closeRoomModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
                   Tutup
                </button>
@@ -1047,190 +1021,137 @@
          }
       });
 
-      // Modal Detail Lowongan
-      // Modal Detail Lowongan
-function openRoomModal(room) {
-    try {
-        console.log("Opening modal with data:", room);
-        
-        // Validasi data room
-        if (!room) {
-            console.error("Room data is missing");
-            return;
-        }
-        
-        if (!room.company) {
-            console.error("Company data is missing in room object");
-            return;
-        }
-        
-        // Set data dasar ke dalam modal
-        document.getElementById('modal-position-name').textContent = room.position_name || 'N/A';
-        document.getElementById('modal-company-name').textContent = room.company.company_name || 'N/A';
-        
-        // Set logo perusahaan
-        const logoImg = document.getElementById('modal-logo-img');
-        if (logoImg) {
-            logoImg.src = room.company.logo ? `/storage/${room.company.logo}` : '/images/company-empty.png';
-        }
-        
-        // Set ID Lowongan (diformat: ROOM-00X)
-        document.getElementById('modal-room-id').textContent = `ROOM-${String(room.id).padStart(3, '0')}`;
-        
-        // Set informasi utama lowongan
-        document.getElementById('modal-room-position').textContent = room.position_name || 'N/A';
-        document.getElementById('modal-room-departement').textContent = room.departement || 'N/A';
-        document.getElementById('modal-room-experience').textContent = room.years_of_experience_criteria || 'N/A';
-        document.getElementById('modal-room-total-position').textContent = room.total_open_position || 'N/A';
-        
-        // Format dan tampilkan deadline
-        try {
-            const deadline = new Date(room.deadline);
-            const formattedDeadline = deadline.toLocaleDateString('id-ID', {
-                day: 'numeric', 
-                month: 'long', 
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('modal-room-deadline').textContent = formattedDeadline;
-        } catch (dateError) {
-            console.error("Error formatting deadline:", dateError);
-            document.getElementById('modal-room-deadline').textContent = room.deadline || 'N/A';
-        }
-        
-        // Tampilkan informasi gaji jika tersedia
-        const salaryContainer = document.getElementById('modal-room-salary-container');
-        if (room.salary) {
-            try {
-                // Format gaji dengan format mata uang Rupiah
-                const formattedSalary = new Intl.NumberFormat('id-ID', { 
-                    style: 'currency', 
-                    currency: 'IDR',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0
-                }).format(room.salary);
-                
-                document.getElementById('modal-room-salary').textContent = formattedSalary;
-                salaryContainer.classList.remove('hidden');
-            } catch (formatError) {
-                console.error("Error formatting salary:", formatError);
-                document.getElementById('modal-room-salary').textContent = room.salary;
-                salaryContainer.classList.remove('hidden');
-            }
-        } else {
-            salaryContainer.classList.add('hidden');
-        }
-        
-        // Set informasi tambahan
-        document.getElementById('modal-room-work-system').textContent = room.work_system || 'N/A';
-        document.getElementById('modal-room-working-hours').textContent = room.working_hours || 'N/A';
-        document.getElementById('modal-room-access').textContent = room.access_rights || 'N/A';
-        
-        // Tampilkan banner jika tersedia
-        const bannerContainer = document.getElementById('modal-room-banner');
-        const bannerImg = document.getElementById('modal-banner-img');
-        if (room.banner) {
+      // Job Details Modal Functions
+      function openRoomModal(room) {
+         // Set basic position details
+         document.getElementById('modal-position-name').textContent = room.position_name;
+         document.getElementById('modal-position').textContent = room.position_name;
+         document.getElementById('modal-departement').textContent = room.departement;
+         document.getElementById('modal-salary').textContent = `${formatCurrency(room.salary)} / bulan`;
+         document.getElementById('modal-total-positions').textContent = room.total_open_position;
+         document.getElementById('modal-work-system').textContent = room.work_system;
+         document.getElementById('modal-working-hours').textContent = room.working_hours;
+         document.getElementById('modal-experience').textContent = room.years_of_experience_criteria;
+         document.getElementById('modal-deadline').textContent = formatDate(room.deadline);
+         
+         // Set company name
+         document.getElementById('modal-company-name').textContent = room.company.company_name;
+         
+         // Set company logo if available
+         const logoImg = document.getElementById('modal-logo-img');
+         logoImg.src = room.company.logo ? `/storage/${room.company.logo}` : '/images/profile-empty.png';
+         
+         // Set banner if available
+         const bannerContainer = document.getElementById('modal-job-banner');
+         const bannerImg = document.getElementById('modal-job-banner-img');
+         if (room.banner) {
             bannerImg.src = `/storage/${room.banner}`;
             bannerContainer.classList.remove('hidden');
-        } else {
+         } else {
             bannerContainer.classList.add('hidden');
-        }
-        
-        // Tampilkan deskripsi lowongan jika tersedia
-        const descriptionSection = document.getElementById('modal-description-section');
-        const descriptionElement = document.getElementById('modal-room-description');
-        if (room.description) {
+         }
+         
+         // Set location details
+         const locationSection = document.getElementById('modal-location-section');
+         const locationElement = document.getElementById('modal-location');
+         if (room.company.company_address) {
+            locationElement.textContent = room.company.company_address;
+            locationSection.classList.remove('hidden');
+         } else {
+            locationSection.classList.add('hidden');
+         }
+         
+         // Set description if available
+         const descriptionSection = document.getElementById('modal-description-section');
+         const descriptionElement = document.getElementById('modal-description');
+         if (room.description) {
             descriptionElement.textContent = room.description;
             descriptionSection.classList.remove('hidden');
-        } else {
+         } else {
             descriptionSection.classList.add('hidden');
-        }
-        
-        // Tampilkan persyaratan jika tersedia
-        const requirementsSection = document.getElementById('modal-requirements-section');
-        const requirementsElement = document.getElementById('modal-room-requirements');
-        if (room.requirements) {
+         }
+         
+         // Set requirements if available
+         const requirementsSection = document.getElementById('modal-requirements-section');
+         const requirementsElement = document.getElementById('modal-requirements');
+         if (room.requirements) {
             requirementsElement.textContent = room.requirements;
             requirementsSection.classList.remove('hidden');
-        } else {
+         } else {
             requirementsSection.classList.add('hidden');
-        }
-        
-        // Set informasi perusahaan
-        
-        // Tampilkan motto perusahaan jika tersedia
-        const mottoContainer = document.getElementById('modal-company-motto-container');
-        const mottoElement = document.getElementById('modal-company-motto');
-        if (room.company.company_motto) {
-            mottoElement.textContent = room.company.company_motto;
-            mottoContainer.classList.remove('hidden');
-        } else {
-            mottoContainer.classList.add('hidden');
-        }
-        
-        // Tampilkan jenis perusahaan
-        document.getElementById('modal-company-type').textContent = room.company.company_type || 'Tidak ditentukan';
-        
-        // Tampilkan website perusahaan jika tersedia
-        const websiteContainer = document.getElementById('modal-company-website-container');
-        const websiteElement = document.getElementById('modal-company-website');
-        if (room.company.company_website) {
-            websiteElement.innerHTML = `<a href="${room.company.company_website}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-                ${room.company.company_website}
-            </a>`;
-            websiteContainer.classList.remove('hidden');
-        } else {
-            websiteContainer.classList.add('hidden');
-        }
-        
-        // Tampilkan alamat perusahaan jika tersedia
-        const addressContainer = document.getElementById('modal-company-address-container');
-        const addressElement = document.getElementById('modal-company-address');
-        if (room.company.company_address) {
-            addressElement.textContent = room.company.company_address;
-            addressContainer.classList.remove('hidden');
-        } else {
-            addressContainer.classList.add('hidden');
-        }
-        
-        // Tampilkan deskripsi perusahaan jika tersedia
-        const companyDescContainer = document.getElementById('modal-company-description-container');
-        const companyDescElement = document.getElementById('modal-company-description');
-        if (room.company.company_description) {
-            companyDescElement.textContent = room.company.company_description;
-            companyDescContainer.classList.remove('hidden');
-        } else {
-            companyDescContainer.classList.add('hidden');
-        }
-        
-        // Tampilkan modal
-        document.getElementById('roomDetailModal').classList.remove('hidden');
-    } catch (error) {
-        console.error("Error opening room modal:", error);
-        alert("Terjadi kesalahan saat membuka detail lowongan. Silakan coba lagi.");
-    }
-}
+         }
+         
+         // Set access rights status with appropriate color
+         const accessRightsElement = document.getElementById('modal-access-rights');
+         let statusHTML = '';
+         
+         if (room.access_rights === 'public') {
+            statusHTML = `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+               <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+               </svg>
+               Public
+            </span>`;
+         } else if (room.access_rights === 'private') {
+            statusHTML = `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
+               <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+               </svg>
+               Private
+            </span>`;
+         } else {
+            statusHTML = `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+               ${room.access_rights}
+            </span>`;
+         }
+         
+         accessRightsElement.innerHTML = statusHTML;
+         
+         // Set website button if available
+         const websiteBtn = document.getElementById('modal-website-btn');
+         if (room.company.company_website) {
+            websiteBtn.classList.remove('hidden');
+            websiteBtn.onclick = function() {
+               window.open(room.company.company_website, '_blank');
+            };
+         } else {
+            websiteBtn.classList.add('hidden');
+         }
+         
+         // Show modal
+         document.getElementById('roomDetailModal').classList.remove('hidden');
+      }
 
-// Fungsi untuk menutup modal detail lowongan
-function closeRoomModal() {
-    document.getElementById('roomDetailModal').classList.add('hidden');
-}
+      function closeRoomModal() {
+         // Hide modal
+         document.getElementById('roomDetailModal').classList.add('hidden');
+      }
 
-// Menutup modal saat mengklik di luar modal
-document.addEventListener('DOMContentLoaded', function() {
-    const modalElement = document.getElementById('roomDetailModal');
-    if (modalElement) {
-        modalElement.addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeRoomModal();
-            }
-        });
-    }
-});
+      // Helper function to format currency
+      function formatCurrency(amount) {
+         if (!amount) return 'Tidak tersedia';
+         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
+      }
+
+      // Helper function to format date
+      function formatDate(dateString) {
+         if (!dateString) return 'Tidak tersedia';
+         const date = new Date(dateString);
+         return new Intl.DateTimeFormat('id-ID', { 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+         }).format(date);
+      }
+
+      // Close modal when clicking outside
+      document.getElementById('roomDetailModal').addEventListener('click', function(event) {
+         if (event.target === this) {
+            closeRoomModal();
+         }
+      });
       </script>
       
 
