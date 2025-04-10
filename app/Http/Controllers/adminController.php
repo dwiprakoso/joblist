@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\candidates;
+use App\Models\rooms;
 use App\Models\companies;
 
 class adminController extends Controller
@@ -32,7 +34,20 @@ class adminController extends Controller
     }
     public function analisisSistem()
     {
-        return view('admin.analisisSistem'); // Tambahkan variabel baru ke view
+        $companies = companies::with('users', 'contact')->get();
+        $companiescount = $companies->count(); // Menghitung jumlah perusahaan yang terdaftar
+
+        // Mengambil semua data dari tabel rooms
+        $rooms = rooms::all();     
+        // Menghitung jumlah baris
+        $roomscount = $rooms->count();
+
+        // Mengambil semua data dari tabel rooms
+        $candidates = candidates::all();     
+        // Menghitung jumlah baris
+        $candidatescount = $candidates->count();
+
+        return view('admin.analisisSistem', compact('companies','rooms','candidates', 'companiescount', 'roomscount','candidatescount')); // Tambahkan variabel baru ke view
     }
     public function kelolaSistem()
     {
