@@ -32,37 +32,55 @@ class recruiterController extends Controller
     {
         // Ambil user yang sedang login
         $user = auth()->user();
-
+        
         // Ambil ID company dari user yang sedang login
         $company_id = $user->companyUser->company_id;
         $companyUser = $user->companyUser()->first();
-
+        
         if (!$companyUser) {
             return redirect()->back()->with('error', 'Profil perusahaan tidak ditemukan.');
         }
-
+        
         $company = $companyUser->company;
-
+        
         // Ambil 3 data terbaru dari room yang terkait dengan company berdasarkan kolom updated_at
+        // Dengan eager loading untuk roomCandidates
         $rooms = rooms::where('company_id', $company_id)
+            ->with('candidates')
             ->orderBy('updated_at', 'desc')
             ->take(3)
             ->get();
-
+        
+        // Tambahkan perhitungan untuk setiap room
+        foreach ($rooms as $room) {
+            $totalApplicants = $room->candidates ? $room->candidates->count() : 0;
+            $filledPositions = $room->candidates ? $room->candidates->where('status', 'approved')->count() : 0;
+            
+            // Menambahkan properti baru ke objek room
+            $room->totalApplicants = $totalApplicants;
+            $room->filledPositions = $filledPositions;
+        }
+        
         // Ambil count dari room yang terkait dengan company
         $roomsCount = rooms::where('company_id', $company_id)->count();
-            
+        
         // Menghitung total kandidat yang apply di semua room perusahaan (selain approved dan rejected)
         $totalActiveApplicants = rooms::where('rooms.company_id', $company_id)
             ->join('room_candidates', 'rooms.id', '=', 'room_candidates.rooms_id')
             ->whereNotIn('room_candidates.status', ['approved', 'rejected'])
             ->count('room_candidates.id');
-
+        
+        // Menghitung posisi yang masih open
+        $openPositions = rooms::where('company_id', $company_id)
+            ->where('deadline', '>=', now())
+            ->sum('total_open_position');
+        
         return view('recruiter.index', compact(
             'company', 
-            'rooms', 
-            'roomsCount', 
-            'totalActiveApplicants'
+            'rooms',
+            'roomsCount',
+            'totalActiveApplicants',
+            'openPositions'
         ));
     }
 
