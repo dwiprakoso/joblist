@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-white/20">
-                    <a href="#" class="text-white/90 hover:text-white text-sm font-medium flex items-center">
+                    <a href="{{ route('dashboard.recruiter.selectionRoom') }}" class="text-white/90 hover:text-white text-sm font-medium flex items-center">
                         Lihat Detail
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-white/20">
-                    <a href="#" class="text-white/90 hover:text-white text-sm font-medium flex items-center">
+                    <a href="{{ route('dashboard.recruiter.candidate') }}" class="text-white/90 hover:text-white text-sm font-medium flex items-center">
                         Lihat Detail
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
