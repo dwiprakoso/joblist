@@ -44,29 +44,26 @@
             </nav>
 
             <div class="grid grid-cols-3 gap-4">
-                <div
-                    class="flex items-center col-span-4 p-8 mb-4 rounded h-28 bg-gradient-to-r from-negative to-negative-hover dark:bg-gray-800">
-
+                <div class="flex items-center col-span-4 p-8 mb-4 rounded-lg h-28 bg-gradient-to-r from-[#e73002] to-[#fd7d09] shadow-md">
                     <div>
                         <p class="mb-2 text-sm font-bold text-white">
                             Job portal:
                         </p>
                         <div class="relative flex items-center gap-2">
-                            <div
-                                class="absolute inset-y-0 flex items-center pointer-events-none rtl:inset-r-0 start-0 ps-3">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            <div class="absolute inset-y-0 flex items-center pointer-events-none rtl:inset-r-0 start-0 ps-3">
+                                <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
                             <input type="text" id="table-search-users"
-                                class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 w-80 bg-gray-50 focus:ring-negative focus:border-negative"
+                                class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 w-80 bg-gray-50 focus:ring-[#e73002] focus:border-[#e73002] hover:border-[#fd7d09] transition-colors"
                                 placeholder="Search participant">
-
+            
                             <div class="relative">
                                 <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 "
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 transition-colors"
                                     type="button">
                                     <span class="sr-only">Role Category</span>
                                     Role Category
@@ -78,32 +75,30 @@
                                 </button>
                                 <!-- Dropdown menu -->
                                 <div id="dropdownAction"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44">
+                                    <ul class="py-1 text-sm text-gray-700"
                                         aria-labelledby="dropdownActionButton">
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+                                                class="block px-4 py-2 hover:bg-gray-100 hover:text-[#e73002] transition-colors">Reward</a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
+                                                class="block px-4 py-2 hover:bg-gray-100 hover:text-[#e73002] transition-colors">Promote</a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate
+                                                class="block px-4 py-2 hover:bg-gray-100 hover:text-[#e73002] transition-colors">Activate
                                                 account</a>
                                         </li>
                                     </ul>
                                     <div class="py-1">
                                         <a href="#"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#e73002] transition-colors">Delete
                                             User</a>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -159,7 +154,7 @@
         </div>
     </div>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form id="jobPortalForm" action="{{ route('dashboard.recruiter.selectionRoom.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Main modal -->
         <div id="postJob-modal" tabindex="-1" aria-hidden="true"
@@ -311,7 +306,7 @@
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <div class="flex">
-                            <button data-modal-hide="postJob-modal" data-modal-target="timeline-modal"
+                            <button type="button" data-modal-hide="postJob-modal" data-modal-target="timeline-modal"
                                 data-modal-show="timeline-modal"
                                 class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 ">
                                 Berikutnya
@@ -329,167 +324,194 @@
         </div>
 
         <!-- modal timeline -->
-        <div id="timeline-modal" tabindex="-1" aria-hidden="true"
-            class="hidden fixed top-0 right-0 left-0 z-50  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full h-full max-w-4xl p-4">
-                <!-- Modal content -->
-                <div class="relative flex flex-col h-full rounded-lg shadow bg-gray-50">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 ">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Buat Job Portal - Data Step Seleksi
-                        </h3>
-                        <button type="button"
-                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="timeline-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="flex-grow p-4 overflow-y-auto md:p-5">
-                        <div class="relative mb-4 md:mb-5">
+        <!-- Modal Timeline -->
+<div id="timeline-modal" tabindex="-1" aria-hidden="true"
+class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div class="relative w-full h-full max-w-4xl p-4">
+    <!-- Modal content -->
+    <div class="relative flex flex-col h-full rounded-lg shadow bg-gray-50">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5">
+            <h3 class="text-lg font-semibold text-gray-900">
+                Buat Job Portal - Data Step Seleksi
+            </h3>
+            <button type="button"
+                class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+                data-modal-toggle="timeline-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="flex-grow p-4 overflow-y-auto md:p-5">
+            <!-- Container untuk semua tahapan -->
+            <div class="path-container mb-4">
+                <!-- Tahapan akan ditambahkan disini secara dinamis -->
+            </div>
 
-                            {{-- Tahap Upload Berkas --}}
-                            <div tabindex="0"
-                                class="p-2 mb-2 bg-white rounded-md shadow-md path-selection focus:outline-none focus-within:border-l-8 focus-within:border-e73002">
-
-
-                                <x-heading-postroom order="1" title="Tahap Upload Berkas" />
-                                <div class="grid grid-cols-5 gap-4 uploud-berkas">
-                                    {{-- Judul Tahap 1 --}}
-                                    <div class="col-span-5">
-                                        <x-label-input-post-room label="Judul" name="berkas.path_name"
-                                            placeholder="Judul" :required="true" />
-                                    </div>
-                                    {{-- Deskripsi Tahap 1 --}}
-                                    <div class="col-span-5">
-                                        <x-textarea-post-room label="Deskripsi" name="berkas.deskripsi" />
-                                    </div>
-
-                                    {{-- Rentang Waktu Tahap 1 --}}
-                                    <div class="col-span-2 ">
-                                        <x-range-date-picker-post-room startName="berkas.start"
-                                            endName="berkas.end" />
-                                    </div>
-                                    {{-- Lampiran Tahap 1  --}}
-                                    <div class="col-span-2 col-end-6 ">
-                                        <x-file-input-post-room label="Lampiran" name="berkas.lampiran" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                        <div class="relative mb-4 md:mb-5">
-                            <div tabindex="0"
-                                class="p-2 mb-2 bg-white rounded-md shadow-md path-selection focus:outline-none focus-within:border-l-8 focus-within:border-e73002">
-                                {{-- Tahap 2 --}}
-                                <x-heading-postroom order="2" title="Tahap Challenge" />
-                                <div class="grid grid-cols-5 gap-4 uploud-berkas">
-                                    {{-- Judul Tahap 2 --}}
-                                    <div class="col-span-5">
-                                        <x-label-input-post-room label="Judul" name="challange.path_name"
-                                            placeholder="Judul" :required="true" />
-                                    </div>
-                                    {{-- Deskripsi Tahap 2 --}}
-                                    <div class="col-span-5">
-                                        <x-textarea-post-room label="Deskripsi" name="challange.deskripsi" />
-                                    </div>
-                                    {{-- Lokasi / Link Meeting Tahap 2 --}}
-                                    <div class="col-span-5">
-                                        <x-label-input-post-room label="Lokasi / Link Challange"
-                                            name="challange.link_lampiran_challange"
-                                            placeholder="Masukkan lokasi atau link online challange"
-                                            :required="true" />
-                                    </div>
-                                    {{-- Rentang Waktu Tahap 2 --}}
-                                    <div class="col-span-2 ">
-                                        <x-range-date-picker-post-room startName="challange.start"
-                                            endName="challange.end" />
-                                    </div>
-                                    {{-- Lampiran Tahap 2  --}}
-                                    <div class="col-span-2 col-end-6 ">
-                                        <x-file-input-post-room label="Lampiran" name="challange.lampiran" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="relative mb-4 md:mb-5">
-                            <div tabindex="0"
-                                class="p-2 mb-2 bg-white rounded-md shadow-md path-selection focus:outline-none focus-within:border-l-8 focus-within:border-e73002">
-                                {{-- Tahap 3 --}}
-                                <x-heading-postroom order="3" title="Tahap Meeting" />
-                                <div class="grid grid-cols-5 gap-4 uploud-berkas">
-                                    {{-- Judul Tahap 3 --}}
-                                    <div class="col-span-5">
-                                        <x-label-input-post-room label="Judul" name="meet.path_name"
-                                            placeholder="Judul" :required="true" />
-                                    </div>
-                                    {{-- Deskripsi Tahap 3 --}}
-                                    <div class="col-span-5">
-                                        <x-textarea-post-room label="Deskripsi" name="meet.deskripsi" />
-                                    </div>
-                                    {{-- Lokasi / Link Meeting Tahap 3 --}}
-                                    <div class="col-span-5">
-                                        <x-label-input-post-room label="Link / Lokasi Meeting"
-                                            name="meet.lokasi_link_meet"
-                                            placeholder="Masukkan lokasi atau link online meeting"
-                                            :required="true" />
-                                    </div>
-                                    {{-- Rentang Waktu Tahap 3 --}}
-                                    <div class="col-span-2 ">
-                                        <x-range-date-picker-post-room startName="meet.start" endName="meet.end" />
-                                    </div>
-                                    {{-- Lampiran Tahap 3  --}}
-                                    <div class="col-span-2 col-end-6 ">
-                                        <x-file-input-post-room label="Lampiran" name="meet.lampiran" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="flex items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <div class="flex">
-                            <button data-modal-hide="timeline-modal" data-modal-target="postJob-modal"
-                                data-modal-show="postJob-modal"
-                                class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg me-3 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
-                                </svg>
-                                Kembali
-                            </button>
-                            <button
-                                class="flex items-center justify-center h-8 px-3 text-sm font-medium text-white border border-gray-300 rounded-lg bg-positive hover:bg-positive-hover"
-                                type="submit">
-                                {{-- form="formSelectionPath" id="submitButton" --}}
-                                <svg class="w-6 h-6 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd"
-                                        d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.414A2 2 0 0 0 20.414 6L18 3.586A2 2 0 0 0 16.586 3H5Zm3 11a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6H8v-6Zm1-7V5h6v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1Z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd" d="M14 17h-4v-2h4v2Z" clip-rule="evenodd" />
-                                </svg>
-                                Simpan
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Tombol Tambah Tahapan -->
+            <div class="text-center mb-4">
+                <button id="add-path-btn" type="button"
+                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none">
+                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Tambah Tahapan
+                </button>
             </div>
         </div>
+
+        <!-- Modal footer -->
+        <div class="flex items-center p-4 border-t border-gray-200 rounded-b">
+            <button type="button" data-modal-hide="timeline-modal" data-modal-target="postJob-modal" data-modal-show="postJob-modal"
+                class="flex items-center me-3 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100">
+                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
+                </svg>
+                Kembali
+            </button>
+            <button type="submit"
+                class="flex items-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-lg hover:bg-green-600">
+                <svg class="w-4 h-4 me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Simpan
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Template untuk tahapan seleksi -->
+<template id="path-template">
+<div class="path-item p-4 mb-4 bg-white rounded-lg shadow">
+    <div class="flex justify-between items-center mb-3">
+        <h3 class="text-base font-semibold text-gray-900">Tahapan <span class="path-number">__ORDER__</span></h3>
+        
+        <div class="flex items-center">
+            <!-- Tombol Move Up/Down -->
+            <div class="flex space-x-1 mr-2">
+                <button type="button" class="move-up-btn p-1 text-gray-500 rounded hover:bg-gray-100" title="Pindah ke atas">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                </button>
+                
+                <button type="button" class="move-down-btn p-1 text-gray-500 rounded hover:bg-gray-100" title="Pindah ke bawah">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Tombol Delete -->
+            <button type="button" class="delete-path-btn p-1 text-red-500 rounded hover:bg-red-100" title="Hapus tahapan">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Form fields dengan layout sederhana -->
+    <div class="space-y-3">
+        <!-- Jenis Tahapan -->
+        <div>
+            <label for="path_type___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Jenis Tahapan</label>
+            <select name="paths[__INDEX__][path_type_id]" id="path_type___INDEX__" class="path-type-select w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                <option value="">Pilih Jenis Tahapan</option>
+                <option value="1">Upload Berkas</option>
+                <option value="2">Meeting Invitation</option>
+                <option value="3">Challenge</option>
+                <option value="4">Custom</option>
+            </select>
+        </div>
+        
+        <!-- Judul Tahapan -->
+        <div>
+            <label for="path_name___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Judul</label>
+            <input type="text" name="paths[__INDEX__][path_name]" id="path_name___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Judul Tahapan" required>
+        </div>
+        
+        <!-- Deskripsi -->
+        <div>
+            <label for="path_desc___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Deskripsi</label>
+            <textarea name="paths[__INDEX__][deskripsi]" id="path_desc___INDEX__" rows="2" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Deskripsi tahapan"></textarea>
+        </div>
+        
+        <!-- Rentang Waktu -->
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label for="path_start___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Mulai</label>
+                <input type="date" name="paths[__INDEX__][start]" id="path_start___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="path_end___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                <input type="date" name="paths[__INDEX__][end]" id="path_end___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+        </div>
+        
+        <!-- Lampiran -->
+        <div>
+            <label for="path_lampiran___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Lampiran</label>
+            <input type="file" name="paths[__INDEX__][lampiran]" id="path_lampiran___INDEX__" class="w-full text-sm text-gray-700 border border-gray-300 rounded-md">
+        </div>
+        
+        <!-- Field untuk Meeting dan Challenge -->
+        <div class="meeting-challenge-fields" style="display: none;">
+            <label for="path_link___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Link / Lokasi</label>
+            <input type="text" name="paths[__INDEX__][link_lokasi]" id="path_link___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Masukkan lokasi atau link">
+        </div>
+        
+        <!-- Field untuk Custom Fields -->
+        <div class="custom-fields" style="display: none;">
+            <div class="custom-fields-container space-y-3">
+                <!-- Custom field akan ditambahkan disini -->
+            </div>
+            <button type="button" class="add-custom-field-btn mt-2 inline-flex items-center px-3 py-1 text-xs font-medium text-blue-700 bg-blue-100 rounded-lg hover:bg-blue-200">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m6 0H6" />
+                </svg>
+                Tambah Field Custom
+            </button>
+        </div>
+    </div>
+</div>
+</template>
+
+<!-- Template untuk custom field -->
+<template id="custom-field-template">
+<div class="custom-field-item grid grid-cols-5 gap-3 py-2 border-t border-gray-200">
+    <div class="col-span-2">
+        <label class="block mb-1 text-sm font-medium text-gray-700">Nama Field</label>
+        <input type="text" name="paths[__INDEX__][custom_fields][__FIELD_INDEX__][name]" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Nama Field" required>
+    </div>
+    
+    <div class="col-span-2">
+        <label class="block mb-1 text-sm font-medium text-gray-700">Tipe Input</label>
+        <select name="paths[__INDEX__][custom_fields][__FIELD_INDEX__][type]" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+            <option value="text">Text</option>
+            <option value="date">Date</option>
+            <option value="file">File</option>
+            <option value="textarea">Textarea</option>
+        </select>
+    </div>
+    
+    <div class="col-span-1 flex items-end">
+        <button type="button" class="delete-custom-field-btn p-1 text-red-500 rounded hover:bg-red-100 mb-1" title="Hapus field">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+</div>
+</template>
     </form>
 </body>
-
+<script src="{{ asset('js/dynamic-path.js') }}"></script>
 </html>
