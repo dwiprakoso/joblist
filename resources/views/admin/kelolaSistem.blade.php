@@ -127,70 +127,76 @@
          </div>
        </div>
        <!-- Status Update Modal -->
-      <div id="statusUpdateModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+       <div id="statusUpdateModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4">
             <div class="p-6">
                <div class="flex justify-between items-center mb-4">
-                     <h3 class="text-lg font-medium text-gray-900 dark:text-white">Update Status</h3>
-                     <button type="button" onclick="closeModal()" class="text-gray-400 hover:text-gray-500">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                     </button>
+                  <h3 class="text-lg font-medium text-gray-900 dark:text-white">Update Status</h3>
+                  <button type="button" onclick="closeModal()" class="text-gray-400 hover:text-gray-500">
+                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                     </svg>
+                  </button>
                </div>
                
                <form id="updateStatusForm" method="POST">
-                     @csrf
-                     @method('PUT')
-                     <input type="hidden" id="room_id" name="room_id">
-                     
-                     <div class="mb-4">
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Position: <span id="modal_position" class="font-medium"></span></p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Company: <span id="modal_company" class="font-medium"></span></p>
-                     </div>
-                     
-                     <div class="mb-4">
-                        <label for="access_rights" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
-                        <select id="access_rights" name="access_rights" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                           <option value="public">Public</option>
-                           <option value="private">Private</option>
-                        </select>
-                     </div>
-                     
-                     <div class="mt-6 flex justify-end">
-                        <button type="button" onclick="closeModal()" class="mr-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">
-                           Cancel
-                        </button>
-                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                           Update Status
-                        </button>
-                     </div>
+                  @csrf
+                  @method('PUT')
+                  <input type="hidden" id="room_id" name="room_id">
+                  
+                  <div class="mb-4">
+                     <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Position: <span id="modal_position" class="font-medium"></span></p>
+                     <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Company: <span id="modal_company" class="font-medium"></span></p>
+                  </div>
+                  
+                  <div class="mb-4">
+                     <label for="access_rights" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                     <select id="access_rights" name="access_rights" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                     </select>
+                  </div>
+                  
+                  <div class="mt-6 flex justify-end">
+                     <button type="button" onclick="closeModal()" class="mr-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">
+                        Cancel
+                     </button>
+                     <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Update Status
+                     </button>
+                  </div>
                </form>
             </div>
          </div>
       </div>
       <script>
          function openRoomModal(room) {
-         // Set form values
-         document.getElementById('room_id').value = room.id;
-         document.getElementById('modal_position').textContent = room.position_name;
-         document.getElementById('modal_company').textContent = room.company.company_name;
-         document.getElementById('access_rights').value = room.access_rights;
-         
-         // Set form action with correct path including 'dashboard'
-         document.getElementById('updateStatusForm').action = `/dashboard/admin/update-room-status/${room.id}`;
-         
-         // Show modal
-         document.getElementById('statusUpdateModal').classList.remove('hidden');
-      }
-      // Auto close alert after 3 seconds
-      setTimeout(function() {
-         const alert = document.getElementById('alert-success');
-         if (alert) {
-               alert.style.display = 'none';
+            // Set form values
+            document.getElementById('room_id').value = room.id;
+            document.getElementById('modal_position').textContent = room.position_name;
+            document.getElementById('modal_company').textContent = room.company.company_name;
+            document.getElementById('access_rights').value = room.access_rights;
+            
+            // Set form action with correct path including 'dashboard'
+            document.getElementById('updateStatusForm').action = `/dashboard/admin/update-room-status/${room.id}`;
+            
+            // Show modal
+            document.getElementById('statusUpdateModal').classList.remove('hidden');
          }
-      }, 2000);
-     </script>
+      
+         // Fungsi yang hilang untuk menutup modal
+         function closeModal() {
+            document.getElementById('statusUpdateModal').classList.add('hidden');
+         }
+         
+         // Auto close alert after 3 seconds
+         setTimeout(function() {
+            const alert = document.getElementById('alert-success');
+            if (alert) {
+               alert.style.display = 'none';
+            }
+         }, 2000);
+      </script>
 
    </body>
 </html>
