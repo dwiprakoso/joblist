@@ -238,7 +238,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>  
 
 </body>
 <!-- Script untuk menangani modal -->

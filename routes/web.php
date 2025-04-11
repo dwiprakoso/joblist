@@ -96,6 +96,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/selectionRoom/{id}', [RoomController::class, 'selectionRoomDetail'])->name('dashboard.recruiter.selectionRoom.detail');
         Route::get('/candidate', [recruiterController::class, 'candidate'])->name('dashboard.recruiter.candidate');
 
+        // Message
+        Route::get('/message', [recruiterController::class, 'message'])->name('dashboard.recruiter.message');
+
         // Join or Create Company routes
         Route::post('/join-company', [recruiterController::class, 'joinCompany'])->name('dashboard.recruiter.joinCompany');
         Route::post('/create-company', [recruiterController::class, 'createCompany'])->name('dashboard.recruiter.createCompany');
