@@ -38,6 +38,20 @@ class adminController extends Controller
         $companies = companies::with('users', 'contact')->get();
         return view('admin.verificationRecruiter', compact('companies'));
     }
+    public function updateCompanyStatus(Request $request, $id)
+    {
+        $company = Companies::findOrFail($id);
+        
+        $request->validate([
+            'status' => 'required|in:pending,verified,rejected',
+        ]);
+        
+        $company->status = $request->status;
+        $company->save();
+        
+        return redirect()->route('dashboard.admin.verificationRecruiter')
+            ->with('success', 'Company status updated successfully');
+    }
 
     public function verifyCompany(companies $company)
     {
