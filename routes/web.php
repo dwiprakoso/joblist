@@ -114,10 +114,8 @@ Route::prefix('dashboard')->group(function () {
     Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/', [adminController::class, 'index'])->name('dashboard.admin');
         Route::get('/verification-recruiter', [adminController::class, 'verificationRecruiter'])->name('dashboard.admin.verificationRecruiter');
-        
         // Fix the route by removing the extra 'admin/' from the path
         Route::post('/company/{company}/update-status', [adminController::class, 'updateCompanyStatus'])->name('admin.updateCompanyStatus');
-        
         Route::post('/verify-company/{company}', [adminController::class, 'verifyCompany'])->name('admin.verifyCompany');
         Route::post('/reject-company/{company}', [adminController::class, 'rejectCompany'])->name('admin.rejectCompany');
         Route::get('/analisis-sistem', [adminController::class, 'analisisSistem'])->name('dashboard.admin.analisisSistem');
