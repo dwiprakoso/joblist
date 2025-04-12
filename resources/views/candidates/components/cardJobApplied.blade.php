@@ -1,5 +1,7 @@
-<a href="{{ route('dashboard.kandidat.status.detail', $room->id) }}"
-    class="inline-flex p-2 text-white rounded-lg bg-slate-100 active" aria-current="page">
+<a href="{{ ($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) ? '#' : route('dashboard.kandidat.status.detail', $room->id) }}"
+    class="inline-flex p-2 text-white rounded-lg bg-slate-100 active {{ ($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) ? 'cursor-not-allowed opacity-50' : '' }}" 
+    aria-current="page"
+    {{ ($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) ? 'tabindex="-1"' : '' }}>
     <div class="w-full">
         <div class="flex justify-between">
             <div class="flex">
