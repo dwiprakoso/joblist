@@ -235,8 +235,7 @@ class candidatesController extends Controller
 
     public function lowongan()
     {
-        // Mengambil semua data rooms beserta data company terkait
-        $rooms = rooms::with('company')->paginate(4);
+        $rooms = Rooms::with('company')->where('access_rights', 'public')->paginate(5);
 
         // Prepare benefits for all rooms
         $allBenefits = [];
