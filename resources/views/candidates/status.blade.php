@@ -110,7 +110,10 @@
 
             <div class="grid grid-cols-1 gap-4">
                 @foreach ($rooms as $room)
-                    @include('candidates.components.cardJobApplied')
+                    @include('candidates.components.cardJobApplied', [
+                        'room' => $room,
+                        'room_candidate' => $roomCandidatesMap[$room->id] ?? null
+                    ])
                 @endforeach
             </div>
         </div>

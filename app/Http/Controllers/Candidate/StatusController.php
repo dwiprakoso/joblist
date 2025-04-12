@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Candidate;
 
 use App\Http\Controllers\Controller;
 use App\Models\paths;
+use App\Models\RoomCandidate;
 use App\Models\submission_challange;
 use App\Models\submission_meeting_invitation;
 use App\Models\submission_pemberkasan;
@@ -15,9 +16,13 @@ class StatusController extends Controller
     {
         $candidate = auth()->user()->candidate;
         $rooms = $candidate->rooms()->get();
+        
+        // Create a collection that maps room IDs to their corresponding room_candidate record
+        $roomCandidatesMap = RoomCandidate::where('candidates_id', $candidate->id)
+            ->get()
+            ->keyBy('rooms_id');
 
-
-        return view('candidates.status', compact('rooms'));
+        return view('candidates.status', compact('rooms', 'roomCandidatesMap'));
     }
 
     public function detail($id)

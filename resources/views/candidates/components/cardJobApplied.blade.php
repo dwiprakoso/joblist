@@ -7,8 +7,14 @@
                 {{-- Keterangan --}}
                 <div class="ps-3">
                     <div class="flex items-center gap-4 text-base font-bold text-gray-800">
-                        <span class="text-xs text-gray-500"> {{ $room->position_name }}</span>
-
+                        <span class="text-xs text-gray-500">
+                            {{ $room->position_name }}
+                            @if($room->access_rights == 'private')
+                                <span class="text-red-500">(ditutup)</span>
+                            @elseif (isset($room_candidate) && $room_candidate->status == 'approved')
+                                <span class="text-red-500">(diterima)</span>
+                            @endif
+                        </span>
                     </div>
                     <div class="flex gap-2 my-1">
                         <div class="flex items-center">
@@ -45,25 +51,19 @@
                     </div>
                 </div>
             </div>
-            <div class="flex">
-                <div class="flex items-center gap-4 text-base font-bold text-gray-800">
-                    <span
-                        class="inline-flex items-center bg-negative text-white text-xs font-medium px-2.5 py-0.5 rounded-full">
-                        Pilihan 1
-                    </span>
-                </div>
-            </div>
         </div>
 
         <div class="p-2 mt-4 bg-gray-50 rounded-xl">
             <ul class="flex items-center w-full text-sm font-medium text-center text-e73002 sm:text-base"
                 id="default-tab" data-tabs-toggle="#default-tab-content" data-tabs-active-classes="text-e73002"
                 data-tabs-inactive-classes="text-gray-500" role="tablist">
+                
+                <!-- Tab 1: Pemberkasan -->
                 <li class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-e73002 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 "
                     role="path point selection">
-                    <button class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200"
+                    <button class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) cursor-not-allowed opacity-50 @endif"
                         id="participant-tab" data-tabs-target="#participant" type="button" role="tab"
-                        aria-controls="participant" aria-selected="true">
+                        aria-controls="participant" aria-selected="true" @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) disabled @endif>
                         <div class="ps-3">
                             <span class="inline-flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full ">
                                 <svg class="w-3 h-3 text-gray-500" xmlns="http://www.w3.org/2000/svg"
@@ -74,23 +74,22 @@
                                     <path
                                         d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                                 </svg>
-
-
                             </span>
                             <div
                                 class="flex text-xs items-center after:content-['/']  sm:after:hidden after:mx-2 after:text-gray-200">
                                 <span class="hidden text-xs sm:inline-flex sm:ms-1">Pemberkasan</span>
                             </div>
-
                         </div>
                     </button>
                 </li>
+                
+                <!-- Tab 2: Meet Invitation -->
                 <li class="flex  md:w-full items-center  sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-e73002 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 "
                     role="path point selection">
                     <button
-                        class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 "
+                        class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) cursor-not-allowed opacity-50 @endif"
                         id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                        aria-controls="dashboard" aria-selected="false">
+                        aria-controls="dashboard" aria-selected="false" @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) disabled @endif>
                         <div class="ps-3">
                             <span class="inline-flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full">
                                 <svg class="w-3 h-3 text-gray-500" xmlns="http://www.w3.org/2000/svg"
@@ -99,43 +98,43 @@
                                         d="M4.848 2.771A49.144 49.144 0 0 1 12 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 0 1-3.476.383.39.39 0 0 0-.297.17l-2.755 4.133a.75.75 0 0 1-1.248 0l-2.755-4.133a.39.39 0 0 0-.297-.17 48.9 48.9 0 0 1-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97ZM6.75 8.25a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H7.5Z"
                                         clip-rule="evenodd" />
                                 </svg>
-
                             </span>
                             <span
                                 class="flex items-center text-xs after:content-['/']  sm:after:hidden after:mx-2 after:text-gray-200 ">
                                 Meet<span class="hidden text-xs sm:inline-flex sm:ms-1">Invitation</span>
                             </span>
-
                         </div>
                     </button>
                 </li>
+                
+                <!-- Tab 3: Challenge -->
                 <li class="flex  md:w-full items-center  sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-e73002 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 "
                     role="path point selection">
                     <button
-                        class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 "
+                        class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) cursor-not-allowed opacity-50 @endif"
                         id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                        aria-controls="dashboard" aria-selected="false">
+                        aria-controls="dashboard" aria-selected="false" @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) disabled @endif>
                         <div class="ps-3">
                             <span class="inline-flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full ">
-
                                 <svg class="w-3 h-3 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                     <path
                                         d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                                 </svg>
-
                             </span>
                             <span
                                 class="flex items-center text-xs after:content-['/']  sm:after:hidden after:mx-2 after:text-gray-200 ">
                                 Challange<span class="hidden text-xs sm:inline-flex sm:ms-1"></span>
                             </span>
-
                         </div>
                     </button>
                 </li>
+                
+                <!-- Tab 4: Pengumuman -->
                 <li class="flex items-center" role="path point selection">
-                    <button class="flex me-2" id="settings-tab" data-tabs-target="#settings" type="button"
-                        role="tab" aria-controls="settings" aria-selected="false">
+                    <button class="flex me-2 @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) cursor-not-allowed opacity-50 @endif" 
+                        id="settings-tab" data-tabs-target="#settings" type="button"
+                        role="tab" aria-controls="settings" aria-selected="false" @if($room->access_rights == 'private' || (isset($room_candidate) && $room_candidate->status == 'approved')) disabled @endif>
                         <div class="ps-3">
                             <span class="inline-flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full ">
                                 <svg class="w-3 h-3 text-gray-500" aria-hidden="true"
@@ -151,7 +150,6 @@
                         </div>
                     </button>
                 </li>
-
             </ul>
         </div>
     </div>

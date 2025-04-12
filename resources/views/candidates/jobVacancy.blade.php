@@ -138,9 +138,6 @@
                                         <div class="flex items-center justify-center p-2 rounded bg-[#fd7d09] dark:bg-gray-800">
                                            <h1 class="text-xs font-bold leading-none tracking-tight text-white dark:text-white">Posisi dibuka: <span class="text-xs font-bold text-white dark:text-blue-500">{{ $room->total_open_position }}</span></h1>
                                         </div>
-                                        <div class="flex items-center justify-center p-2 rounded bg-[#e73002] dark:bg-gray-800">
-                                           <h1 class="text-xs font-bold leading-none tracking-tight text-white dark:text-white">Total Pendaftar: <span class="text-xs font-bold text-white dark:text-blue-500">236</span></h1>
-                                        </div>
                                     </div>
                                 </div>
                             </button>
