@@ -16,26 +16,19 @@ class candidatesController extends Controller
 {
     public function index()
     {
-        // Ambil user yang sedang login
+        // Kode yang sudah ada tetap sama
         $user = Auth::user();
-
-        // Ambil profil kandidat dan data kontaknya
         $profile = $user->candidate;
         $contact = $profile->contact;
-        
-        // Hitung jumlah rooms yang telah di-apply oleh user
         $jumlahRoomsApply = 0;
-        
-        // Variabel untuk menyimpan daftar applied jobs
         $recentAppliedJobs = [];
         
         if ($profile) {
-            // Asumsikan bahwa candidates_id di tabel adalah ID dari profil kandidat
+            // Kode yang sudah ada tetap sama
             $jumlahRoomsApply = DB::table('room_candidates')
                                 ->where('candidates_id', $profile->id)
                                 ->count();
                                 
-            // Ambil data room_candidates beserta informasi job dari tabel rooms
             $recentAppliedJobs = DB::table('room_candidates')
                                 ->join('rooms', 'room_candidates.rooms_id', '=', 'rooms.id')
                                 ->join('companies', 'rooms.company_id', '=', 'companies.id')
@@ -54,11 +47,30 @@ class candidatesController extends Controller
                                     'companies.company_address'
                                 )
                                 ->orderBy('room_candidates.created_at', 'desc')
-                                ->limit(5) // Tampilkan 5 aplikasi terbaru
+                                ->limit(5)
                                 ->get();
+                                
+            // Mengambil notifikasi perubahan status
+            $notifications = DB::table('room_candidates')
+                            ->join('rooms', 'room_candidates.rooms_id', '=', 'rooms.id')
+                            ->join('companies', 'rooms.company_id', '=', 'companies.id')
+                            ->where('room_candidates.candidates_id', $profile->id)
+                            ->whereIn('room_candidates.status', ['accepted', 'rejected', 'present']) // Status yang biasanya berubah
+                            ->where('room_candidates.updated_at', '>', now()->subDays(7)) // Notifikasi seminggu terakhir
+                            ->select(
+                                'room_candidates.id',
+                                'room_candidates.status',
+                                'room_candidates.updated_at',
+                                'rooms.position_name',
+                                'rooms.departement',
+                                'companies.company_name'
+                            )
+                            ->orderBy('room_candidates.updated_at', 'desc')
+                            ->limit(3) // Maksimal 10 notifikasi terbaru
+                            ->get();
         }
         
-        // Hitung jumlah rooms berdasarkan status
+        // Kode yang sudah ada tetap sama
         $jumlahRoomsPresentStatus = DB::table('room_candidates')
         ->where('candidates_id', $profile->id)
         ->where('status', 'present')
@@ -69,12 +81,14 @@ class candidatesController extends Controller
         ->where('status', 'pending')
         ->count();
         
-        $roomCandidate = $profile->roomCandidate; // Ambil data room_candidate
+        $roomCandidate = $profile->roomCandidate;
         $educations = $profile->educationalHistories()->orderBy('year_in', 'desc')->orderBy('year_out', 'desc')->get();
         
-        return view('candidates.index', compact('profile', 'contact', 'roomCandidate', 'educations', 
-                                    'jumlahRoomsApply', 'jumlahRoomsPresentStatus', 'jumlahRoomsPendingStatus',
-                                    'recentAppliedJobs')); // Tambahkan variabel baru ke view
+        return view('candidates.index', compact(
+            'profile', 'contact', 'roomCandidate', 'educations', 
+            'jumlahRoomsApply', 'jumlahRoomsPresentStatus', 'jumlahRoomsPendingStatus',
+            'recentAppliedJobs', 'notifications' // Tambahkan notifications ke compact
+        ));
     }
     public function showProfile()
     {

@@ -30,7 +30,7 @@
         <!-- Header Section with Welcome and Notifications -->
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
          <!-- Welcome Message Card -->
-         <div class="md:col-span-4 p-6 flex items-center rounded-lg bg-gradient-to-r from-[#e73002] to-[#fd7d09] shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
+         <div class="md:col-span-5 p-6 flex items-center rounded-lg bg-gradient-to-r from-[#e73002] to-[#fd7d09] shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
            <div class="flex items-center">
              <div class="p-3 mr-4 rounded-full bg-white bg-opacity-20">
                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -42,19 +42,6 @@
                <h2 class="text-xl font-bold text-white">{{ $profile->full_name }}</h2>
              </div>
            </div>
-         </div>
-
-         <!-- Notification Icons Card -->
-         <div class="flex items-center justify-center gap-2 p-1 rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
-           <!-- Notification Button -->
-           <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-[#e73002] hover:text-[#fd7d09] transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Notifications">
-             <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100">
-               <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                 <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
-               </svg>
-             </div>
-             <div class="absolute w-3 h-3 bg-[#fd1d02] border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"></div>
-           </button>
          </div>
        </div>
     
@@ -69,7 +56,7 @@
          <div class="divide-y divide-gray-100 dark:divide-gray-700">
            <a href="#" class="flex px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
              <div class="relative flex-shrink-0">
-               <img class="rounded-full w-11 h-11 border-2 border-orange-100" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Profile image">
+               <img class="rounded-full w-11 h-11 border-2 border-orange-100" src="{{  $profile->photo_path ? asset('storage/' .  $profile->photo_path) : asset('images/profile-empty.png') }}" alt="Profile image">
                <div class="absolute flex items-center justify-center w-5 h-5 -right-1 -bottom-1 bg-[#fd7d09] border-2 border-white rounded-full dark:border-gray-800">
                  <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                    <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
@@ -77,11 +64,57 @@
                  </svg>
                </div>
              </div>
-             <div class="w-full ps-3">
-               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span></div>
-               <div class="text-xs text-gray-500 dark:text-gray-400">Marketing Manager - Unit MSOS</div>
-               <div class="text-xs text-[#e73002] dark:text-[#fd7d09] mt-1">a few moments ago</div>
-             </div>
+             <!-- Bagian Notifikasi -->
+            <div class="notifications-container bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Notifikasi</h3>
+              
+              @if(count($notifications) > 0)
+                  @foreach($notifications as $notification)
+                      <div class="flex items-center border-b dark:border-gray-700 py-3 last:border-b-0">
+                          <div class="w-10 h-10 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center">
+                              @if($notification->status == 'accepted')
+                                  <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                  </svg>
+                              @elseif($notification->status == 'rejected')
+                                  <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                  </svg>
+                              @elseif($notification->status == 'present')
+                                  <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                  </svg>
+                              @endif
+                          </div>
+                          <div class="w-full ps-3">
+                              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
+                                  Status aplikasi <span class="font-semibold text-gray-900 dark:text-white">
+                                      @if($notification->status == 'accepted')
+                                          diterima
+                                      @elseif($notification->status == 'rejected')
+                                          ditolak
+                                      @elseif($notification->status == 'present')
+                                          diundang wawancara
+                                      @else
+                                          {{ $notification->status }}
+                                      @endif
+                                  </span>
+                              </div>
+                              <div class="text-xs text-gray-500 dark:text-gray-400">
+                                  {{ $notification->position_name }} - {{ $notification->departement }} - {{ $notification->company_name }}
+                              </div>
+                              <div class="text-xs text-[#e73002] dark:text-[#fd7d09] mt-1">
+                                  {{ \Carbon\Carbon::parse($notification->updated_at)->diffForHumans() }}
+                              </div>
+                          </div>
+                      </div>
+                  @endforeach
+              @else
+                  <div class="text-center text-gray-500 dark:text-gray-400 py-4">
+                      Tidak ada notifikasi baru
+                  </div>
+              @endif
+            </div>
            </a>
          </div>
          
