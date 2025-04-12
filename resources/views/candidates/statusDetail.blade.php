@@ -10,16 +10,15 @@
     <link rel="icon" href="{{ url('images/job-match-white.svg') }}">
     <title>Selection Process</title>
 </head>
-
 <body>
     @include('candidates.components.sidebar')
-
-    <div class=" sm:ml-80">
-        <div class="p-4 m-4 rounded-lg dark:border-gray-700">
+    <div class="sm:ml-80">
+        <div class="p-6 m-4 rounded-lg shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+            <!-- Breadcrumb Navigation -->
             <nav class="flex mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
-                        <a href="#"
+                        <a href="{{ route('dashboard.kandidat') }}"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                             <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 20 20">
@@ -36,9 +35,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <a href="/postroom"
-                                class="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Post
-                                Room</a>
+                            <a href="{{ route('dashboard.kandidat.status') }}"
+                                class="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Status</a>
                         </div>
                     </li>
                     <li aria-current="page">
@@ -48,8 +46,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="text-sm font-medium text-gray-500 ms-1 md:ms-2 dark:text-gray-400">Postingan
-                                ke-1</span>
+                            <span class="text-sm font-medium text-gray-500 ms-1 md:ms-2 dark:text-gray-400">{{ $room->position_name }}</span>
                         </div>
                     </li>
                 </ol>
@@ -179,11 +176,7 @@
                 </div>
             </div>
         </div>
-
-
+        </div>
     </div>
-    </div>
-
 </body>
-
 </html>
