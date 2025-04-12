@@ -10,168 +10,207 @@
       <title>Selection Process</title>
 </head>
 <body>
-    @include('candidates.components.sidebar')
-
-    <div class="sm:ml-80">
-        <div class="p-4 m-4 rounded-lg dark:border-gray-700">
-
-
-           <nav class="flex mb-4" aria-label="Breadcrumb">
-              <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
-              <li class="inline-flex items-center">
-                  <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                  <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
-                  </svg>
-                  Dashboard
-                  </a>
-              </li>
-              </ol>
-          </nav>
-
-           <div class="grid grid-cols-5 items-center justify-center">
-                 <div class="col-span-4 p-8 flex items-center h-12 rounded bg-e73002 dark:bg-gray-800">
-                    <h1 class=" text-base font-normal leading-none tracking-tight text-white  dark:text-white">Selamat datang, <br/> <span class="text-xl font-extrabold text-white dark:text-blue-500">{{ $profile->full_name }}</span></h1>
-                 </div>
-                 <div class="flex items-center justify-center rounded h-12 dark:bg-gray-800 gap-4">
-                    <button class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400" type="button">
-             
-                       <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                          <path fill-rule="evenodd" d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z" clip-rule="evenodd"/>
-                       </svg>
-                       
-                       <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-4 dark:border-gray-900"></div>
-                    </button>
-                    <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400" type="button">
-                       <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                       <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
-                       </svg>
-                       
-                       <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-4 dark:border-gray-900"></div>
-                    </button>
-                       
-                 </div>
-           </div>
-
-           
-                       <!-- Dropdown menu -->
-                       <div id="dropdownNotification" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
-                          <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                                Notifications
-                          </div>
-                          <div class="divide-y divide-gray-100 dark:divide-gray-700">
-                             <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <div class="flex-shrink-0">
-                                <img class="rounded-full w-11 h-11" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Jese image">
-                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
-                                   <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                      <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
-                                      <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
-                                   </svg>
-                                </div>
-                                </div>
-                                <div class="w-full ps-3">
-                                   <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span> Marketing Manager - Unit MSOS</div>
-                                   <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
-                                </div>
-                             </a>
-                             <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <div class="flex-shrink-0">
-                                <img class="rounded-full w-11 h-11" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Jese image">
-                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
-                                   <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                      <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
-                                      <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
-                                   </svg>
-                                </div>
-                                </div>
-                                <div class="w-full ps-3">
-                                   <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span> Marketing Manager - Unit MSOS</div>
-                                   <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
-                                </div>
-                             </a>
-                             <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <div class="flex-shrink-0">
-                                <img class="rounded-full w-11 h-11" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Jese image">
-                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
-                                   <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                      <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
-                                      <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
-                                   </svg>
-                                </div>
-                                </div>
-                                <div class="w-full ps-3">
-                                   <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span> Marketing Manager - Unit MSOS</div>
-                                   <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
-                                </div>
-                             </a>
-                           
-                             
-                          </div>
-                          <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-                             <div class="inline-flex items-center ">
-                                <svg class="w-4 h-4 me-2 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
-                                <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
-                                </svg>
-                                View all
-                             </div>
-                          </a>
-                          </div>
-     
-
-           <div class="grid my-2 text-right">
-              <p class="text-base text-white dark:text-black">
-                 Overview
-              </p>
-           </div>
-           <div class="grid grid-cols-2 p-4 gap-4 items-center justify-center mb-4 rounded bg-slate-100 shadow-md dark:bg-gray-800">
-              <div class="flex items-center p-4 rounded bg-fd7d09 h-20 dark:bg-gray-800">
-                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Total lamaran<br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $jumlahRoomsApply }}</span></h1>
-              </div>
-              <div class="flex items-center p-4 rounded bg-fd1d02 h-20 dark:bg-gray-800">
-                 <h1 class=" text-lg font-medium leading-none tracking-tight text-white  dark:text-white">Proses <br/> <span class="text-2xl font-extrabold text-white dark:text-blue-500">{{ $jumlahRoomsPresentStatus }}</span></h1>
-              </div>
-           </div>
-
-           
-           <div class="grid grid-cols-2 p-4 gap-4  rounded bg-slate-100 drop-shadow-md dark:bg-gray-800">
-              <div id="pie-chart" class="items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
-                 <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                    Respon Perusahaan (dummy)
-                 </p>
-                 @include('components.pieChart') 
-              </div>
-              <div class=" items-center p-4 justify-center rounded bg-white drop-shadow-md dark:bg-gray-800">
-                 <p class="text-sm font-bold text-right mb-2 text-black dark:text-gray-500">
-                    Lamaran Terakhir
-                 </p>
-                  @if(count($recentAppliedJobs) > 0)
-                  @foreach($recentAppliedJobs as $job)
-                     <div class="job-item border-b border-gray-200 dark:border-gray-700 mb-4">
-                        <div class="flex items-center px-6 py-4">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <circle cx="8" cy="8" r="8" fill="#E73002"/>
-                           <path d="M7 4C8.5621 5.5621 9.4379 6.4379 11 8L7 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div class="ps-3">
-                           <div class="text-base font-bold">{{ $job->position_name }}</div>
-                           <div class="font-semibold text-gray-500">{{ $job->company_name }}</div>
-                           <div class="font-normal text-gray-500">{{ $job->company_address }}</div>
-                           <div class="font-normal text-gray-500">{{ $job->work_system }}</div>
-                           <div class="font-normal text-gray-500">{{ $job->status }}</div>
- 
-                        </div>
-                        </div>
-                     </div>
-                     @endforeach
-                  @else
-                        <p class="text-center">Anda belum mengajukan lamaran untuk pekerjaan apapun.</p>
-                  @endif
-              </div>
-           </div>
-        </div>
-     </div>
-     
+   @include('candidates.components.sidebar')     
+   <div class="sm:ml-80">
+      <div class="p-6 m-4 rounded-lg shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+        <!-- Breadcrumb Navigation -->
+        <nav class="flex mb-5" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+              <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
+                <svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                </svg>
+                Dashboard
+              </a>
+            </li>
+          </ol>
+        </nav>
     
+        <!-- Header Section with Welcome and Notifications -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+         <!-- Welcome Message Card -->
+         <div class="md:col-span-4 p-6 flex items-center rounded-lg bg-gradient-to-r from-[#e73002] to-[#fd7d09] shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
+           <div class="flex items-center">
+             <div class="p-3 mr-4 rounded-full bg-white bg-opacity-20">
+               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+               </svg>
+             </div>
+             <div>
+               <p class="text-sm font-medium text-white">Selamat datang,</p>
+               <h2 class="text-xl font-bold text-white">{{ $profile->full_name }}</h2>
+             </div>
+           </div>
+         </div>
+
+         <!-- Notification Icons Card -->
+         <div class="flex items-center justify-center gap-2 p-1 rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800">
+           <!-- Notification Button -->
+           <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-[#e73002] hover:text-[#fd7d09] transition-colors duration-200 focus:outline-none dark:text-gray-400" type="button" aria-label="Notifications">
+             <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100">
+               <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                 <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+               </svg>
+             </div>
+             <div class="absolute w-3 h-3 bg-[#fd1d02] border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"></div>
+           </button>
+         </div>
+       </div>
+    
+        <!-- Dropdown Notification Menu -->
+        <div id="dropdownNotification" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow-xl dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+         <!-- Header with brand gradient -->
+         <div class="flex items-center justify-between px-4 py-3 font-medium text-white bg-gradient-to-r from-[#e73002] to-[#fd7d09] rounded-t-lg dark:from-[#e73002] dark:to-[#fd7d09]">
+           <span>Notifications</span>
+           <span class="inline-flex items-center justify-center w-6 h-6 text-xs font-semibold bg-white text-[#e73002] rounded-full">1</span>
+         </div>
+         
+         <div class="divide-y divide-gray-100 dark:divide-gray-700">
+           <a href="#" class="flex px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+             <div class="relative flex-shrink-0">
+               <img class="rounded-full w-11 h-11 border-2 border-orange-100" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Profile image">
+               <div class="absolute flex items-center justify-center w-5 h-5 -right-1 -bottom-1 bg-[#fd7d09] border-2 border-white rounded-full dark:border-gray-800">
+                 <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                   <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
+                   <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
+                 </svg>
+               </div>
+             </div>
+             <div class="w-full ps-3">
+               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span></div>
+               <div class="text-xs text-gray-500 dark:text-gray-400">Marketing Manager - Unit MSOS</div>
+               <div class="text-xs text-[#e73002] dark:text-[#fd7d09] mt-1">a few moments ago</div>
+             </div>
+           </a>
+         </div>
+         
+         <a href="#" class="block py-3 text-sm font-medium text-center text-[#e73002] hover:bg-orange-50 rounded-b-lg transition-all duration-200 dark:text-[#fd7d09] dark:hover:bg-gray-700">
+           <div class="inline-flex items-center">
+             <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
+               <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+             </svg>
+             View all
+           </div>
+         </a>
+       </div>
+    
+        <!-- Section Header -->
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Overview</h3>
+
+        </div>
+    
+        <!-- Dashboard Metrics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+         <!-- Job Post Card -->
+         <div class="p-6 bg-gradient-to-r from-orange-500 to-orange-400 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 dark:from-orange-600 dark:to-orange-500 overflow-hidden relative">
+            <div class="absolute -bottom-6 -right-6 opacity-10">
+                <svg class="w-32 h-32" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 4h-3V2h-2v2h-4V2H8v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z"></path>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="mb-1 text-sm font-medium text-white/80">Total Lamaran</p>
+                    <p class="text-3xl font-bold text-white">{{ $jumlahRoomsApply }}</p>
+                </div>
+                <div class="p-3 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/20">
+                <a href="{{ route('dashboard.kandidat.status') }}" class="text-white/90 hover:text-white text-sm font-medium flex items-center">
+                    Lihat Detail
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+         
+         <!-- Pendaftar Card -->
+         <div class="p-6 bg-gradient-to-r from-red-600 to-red-500 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 dark:from-red-700 dark:to-red-600 overflow-hidden relative">
+            <div class="absolute -bottom-6 -right-6 opacity-10">
+                <svg class="w-32 h-32" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"></path>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="mb-1 text-sm font-medium text-white/80">Lamaran di Proses</p>
+                    <p class="text-3xl font-bold text-white">{{ $jumlahRoomsPresentStatus }}</p>
+                </div>
+                <div class="p-3 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                    </svg>
+                </div>
+            </div>
+            
+        </div>
+         </div>
+    
+        <!-- Recent Activity Section -->
+        <div class="bg-white mt-6 p-6 rounded-lg shadow-md dark:bg-gray-700">
+         <div class="flex justify-between items-center mb-4">
+           <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Recent Activity</h3>
+           <a href="{{ route('dashboard.kandidat.status') }}" class="text-blue-600 hover:underline dark:text-blue-400 text-sm">View All</a>
+         </div>
+         <div class="overflow-x-auto">
+           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
+               <tr>
+                 <th scope="col" class="px-4 py-3 rounded-tl-lg">Position</th>
+                 <th scope="col" class="px-4 py-3">Perusahaan</th>
+                 <th scope="col" class="px-4 py-3">Work System</th>
+                 <th scope="col" class="px-4 py-3">Status</th>
+                 <th scope="col" class="px-4 py-3 rounded-tr-lg">Applied</th>
+               </tr>
+             </thead>
+             <tbody>
+               @if(count($recentAppliedJobs) > 0)
+                 @foreach($recentAppliedJobs as $job)
+                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                       <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">
+                         {{ $job->position_name }}
+                       </a>
+                     </th>
+                     <td class="px-4 py-3">{{ $job->company_name }}</td>
+                     <td class="px-4 py-3">
+                       {{ $job->work_system }}
+                     </td>
+                     <td class="px-4 py-3">
+                       {{ $job->status }}
+                     </td>
+                     <td class="px-4 py-3">
+                        @if(is_string($job->created_at))
+                            {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+                        @else
+                            {{ $job->created_at->diffForHumans() }}
+                        @endif
+                    </td>
+                   </tr>
+                 @endforeach
+               @else
+                 <tr class="bg-white dark:bg-gray-800">
+                   <td colspan="5" class="px-4 py-6 text-center text-gray-500 dark:text-gray-400">
+                     Belum ada posisi yang dibuka.
+                     <a href="{{ route('dashboard.recruiter.selectionRoom') }}" class="text-blue-600 hover:underline dark:text-blue-400">
+                       Buka posisi baru
+                     </a>
+                   </td>
+                 </tr>
+               @endif
+             </tbody>
+           </table>
+         </div>
+       </div>
+    </div>
+   
 </body>
 </html>

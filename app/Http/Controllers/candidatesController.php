@@ -256,4 +256,8 @@ class candidatesController extends Controller
     {
         return view('candidates.statusDetail');
     }
+    public function message()
+    {
+        return view('candidates.message');
+    }
 }

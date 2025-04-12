@@ -49,7 +49,8 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/profile/update-photo', [CandidatesController::class, 'updatePhoto'])->name('dashboard.kandidat.updatePhoto');
         Route::post('/profile/add-education', [CandidatesController::class, 'addEducation'])->name('dashboard.kandidat.addEducation');
         Route::post('/profile/add-experience', [CandidatesController::class, 'addExperience'])->name('dashboard.kandidat.addExperience');
-
+        // Message
+        Route::get('/message', [CandidatesController::class, 'message'])->name('dashboard.kandidat.message');
         Route::get('/lowongan', [CandidatesController::class, 'lowongan'])->name('dashboard.kandidat.lowongan');
 
         Route::controller(StatusController::class)->prefix('status')->name('dashboard.kandidat.status')->group(function () {

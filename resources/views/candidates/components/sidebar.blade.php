@@ -66,6 +66,23 @@
                         class="{{ Route::is('dashboard.kandidat.status') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Status</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('dashboard.kandidat.message') }}"
+                    class="{{ Route::is('dashboard.kandidat.message') ? 'bg-e73002' : '' }} flex items-center p-3 m-4 rounded-lg dark:text-white hover:bg-e73002 dark:hover:bg-gray-700 group">
+            
+                    <svg class="{{ Route::is('dashboard.kandidat.message') ? 'text-white' : '' }} flex-shrink-0 w-6 h-6 text-abu-abu transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <!-- Chat/Message icon -->
+                        <path fill-rule="evenodd"
+                            d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4v3a1 1 0 0 0 1.707.707L14.414 16H20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4Zm2 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm5-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                            clip-rule="evenodd" />
+                    </svg>
+            
+                    <span
+                        class="{{ Route::is('dashboard.kandidat.message') ? 'text-white' : '' }} ms-3 font-poppins font-semibold text-abu-abu group-hover:text-white text-lg">Message</span>
+                </a>
+            </li>
         </ul>
         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <li>
