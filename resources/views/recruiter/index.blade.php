@@ -66,24 +66,29 @@
               <span class="inline-flex items-center justify-center w-6 h-6 text-xs font-semibold bg-white text-[#e73002] rounded-full">1</span>
             </div>
             
-            <div class="divide-y divide-gray-100 dark:divide-gray-700">
-              <a href="#" class="flex px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                <div class="relative flex-shrink-0">
-                  <img class="rounded-full w-11 h-11 border-2 border-orange-100" src="https://media.licdn.com/dms/image/D5603AQHC4IFjmiQi1Q/profile-displayphoto-shrink_400_400/0/1680830096821?e=1721260800&v=beta&t=djkevYMcgIYM7wYZJxQ1Xrp7N6e5KE8IqNhd0PCIi6A" alt="Profile image">
-                  <div class="absolute flex items-center justify-center w-5 h-5 -right-1 -bottom-1 bg-[#fd7d09] border-2 border-white rounded-full dark:border-gray-800">
-                    <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                      <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
-                      <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
-                    </svg>
+            @foreach ( $latestCandidates as $latestCandidate )
+              <div class="divide-y divide-gray-100 dark:divide-gray-700">
+                <a href="#" class="flex px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <div class="relative flex-shrink-0">
+                    <img class="rounded-full w-11 h-11 border-2 border-orange-100" src="{{  $latestCandidate->candidate->photo_path ? asset('storage/' .  $latestCandidate->candidate->photo_path) : asset('images/profile-empty.png') }}" alt="profile image - {{ $latestCandidate->candidate->full_name  }}">
+                    <div class="absolute flex items-center justify-center w-5 h-5 -right-1 -bottom-1 bg-[#fd7d09] border-2 border-white rounded-full dark:border-gray-800">
+                      <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                        <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
+                        <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <div class="w-full ps-3">
-                  <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">Aslam Thariq</span></div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">Marketing Manager - Unit MSOS</div>
-                  <div class="text-xs text-[#e73002] dark:text-[#fd7d09] mt-1">a few moments ago</div>
-                </div>
-              </a>
-            </div>
+                  <div class="w-full ps-3">
+                    <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Pendaftar baru <span class="font-semibold text-gray-900 dark:text-white">{{ $latestCandidate->candidate->full_name }}</span></div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Posisi <span class="font-semibold text-gray-900 dark:text-white">{{ $latestCandidate->rooms->position_name }}</span></div>
+                    <div class="text-xs text-[#e73002] dark:text-[#fd7d09] mt-1">
+                      {{ $latestCandidate->created_at->diffForHumans() }}
+                  </div>
+                  </div>
+                </a>
+              </div>  
+            @endforeach
+            
             
             <a href="#" class="block py-3 text-sm font-medium text-center text-[#e73002] hover:bg-orange-50 rounded-b-lg transition-all duration-200 dark:text-[#fd7d09] dark:hover:bg-gray-700">
               <div class="inline-flex items-center">
