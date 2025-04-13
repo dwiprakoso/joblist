@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
     Route::get('/lowongan', [LandingPageController::class, 'cariLowongan'])->name('cariLowongan');
-    Route::get('/create-cv', [LandingPageController::class, 'cvMaker'])->name('cvMaker');
+    
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->middleware('save.selected.tab');
@@ -59,7 +59,7 @@ Route::prefix('dashboard')->group(function () {
         });
         // Route::get('/status', [CandidatesController::class, 'status'])->name('dashboard.kandidat.status');
 
-
+        Route::get('/create-cv', [CandidatesController::class, 'cvMaker'])->name('dashboard.kandidat.cvMaker');
         // Route::get('/statusDetail', [CandidatesController::class, 'statusDetail'])->name('dashboard.kandidat.statusDetail');
 
         Route::prefix('apply')->controller(RoomCandidateController::class)->group(function () {

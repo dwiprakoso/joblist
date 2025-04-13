@@ -274,4 +274,8 @@ class candidatesController extends Controller
     {
         return view('candidates.message');
     }
+    public function cvMaker()
+    {  
+        return view('candidates.cvMaker');
+    }
 }

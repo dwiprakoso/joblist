@@ -46,7 +46,7 @@
                                     <a href="#section-contact" class="nav-link-item drop-trigger ">Contact</a>
                                 </li>
                                 <li class="nav-item nav-item-has-children">
-                                    <a href="{{ route('cvMaker') }}" class="nav-link-item drop-trigger ">Buat CV</a>
+                                    <a href="{{ route('dashboard.kandidat.cvMaker') }}" class="nav-link-item drop-trigger ">Buat CV</a>
                                 </li>
                                 <li class="nav-item nav-item-has-children">
                                     <a href="{{ route('cariLowongan') }}" class="nav-link-item drop-trigger ">Cari Lowongan</a>
