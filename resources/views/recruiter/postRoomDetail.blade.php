@@ -116,11 +116,11 @@
     </div>
 </div>
 
-<!-- Progress Tabs with Enhanced Styling -->
+<!-- Progress Tabs with Enhanced Styling - Dinamis -->
 <div class="p-6 mb-4 border bg-white rounded-xl shadow-md">
     <ul class="flex flex-wrap md:flex-nowrap items-center w-full text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" data-tabs-active-classes="text-red-600" data-tabs-inactive-classes="text-gray-500" role="tablist">
-        <!-- Phase 1 -->
-        <li class="relative flex flex-col items-center w-full md:w-1/5 mb-4 md:mb-0" role="path point selection">
+        <!-- Phase 0: Participant Info (selalu ada) -->
+        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }} mb-4 md:mb-0" role="path point selection">
             <div class="flex items-center">
                 <button class="flex flex-col items-center" id="participant-tab" data-tabs-target="#participant" type="button" role="tab" aria-controls="participant" aria-selected="false">
                     <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">1</span>
@@ -131,82 +131,122 @@
             <div class="hidden md:block w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 absolute top-5 left-1/2 -z-10"></div>
         </li>
         
-        <!-- Phase 2 -->
-        <li class="relative flex flex-col items-center w-full md:w-1/5 mb-4 md:mb-0" role="path point selection">
+        <!-- Tahapan Dinamis berdasarkan pathData -->
+        @foreach($pathData as $index => $data)
+        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }} mb-4 md:mb-0" role="path point selection">
             <div class="flex items-center">
-                <button class="flex flex-col items-center" id="pemberkasan-tab" data-tabs-target="#pemberkasan" type="button" role="tab" aria-controls="pemberkasan" aria-selected="false">
-                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">2</span>
-                    <span class="mt-2 font-medium text-red-600">Tahap Pemberkasan</span>
-                    <span class="block mt-1 text-xs text-gray-500">{{ $berkasPath->pathPemberkasan->rentang_waktu }}</span>
+                <button class="flex flex-col items-center" id="path-tab-{{ $index + 1 }}" data-tabs-target="#path-content-{{ $index + 1 }}" type="button" role="tab" aria-controls="path-content-{{ $index + 1 }}" aria-selected="false">
+                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">{{ $index + 2 }}</span>
+                    <span class="mt-2 font-medium text-red-600">{{ $data['path']->path_name }}</span>
+                    @if(isset($data['detail']->rentang_waktu))
+                    <span class="block mt-1 text-xs text-gray-500">{{ $data['detail']->rentang_waktu }}</span>
+                    @endif
                 </button>
             </div>
+            @if($index < count($pathData) - 1)
             <div class="hidden md:block w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 absolute top-5 left-1/2 -z-10"></div>
+            @endif
         </li>
+        @endforeach
         
-        <!-- Phase 3 -->
-        <li class="relative flex flex-col items-center w-full md:w-1/5 mb-4 md:mb-0" role="path point selection">
-            <div class="flex items-center">
-                <button class="flex flex-col items-center" id="challange-tab" data-tabs-target="#challange" type="button" role="tab" aria-controls="challange" aria-selected="false">
-                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">3</span>
-                    <span class="mt-2 font-medium text-red-600">Tahap Challange</span>
-                    <span class="block mt-1 text-xs text-gray-500">{{ $challangePath->pathChallange->rentang_waktu }}</span>
-                </button>
-            </div>
-            <div class="hidden md:block w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 absolute top-5 left-1/2 -z-10"></div>
-        </li>
-        
-        <!-- Phase 4 -->
-        <li class="relative flex flex-col items-center w-full md:w-1/5 mb-4 md:mb-0" role="path point selection">
-            <div class="flex items-center">
-                <button class="flex flex-col items-center" id="meeting-tab" data-tabs-target="#meeting" type="button" role="tab" aria-controls="meeting" aria-selected="false">
-                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">4</span>
-                    <span class="mt-2 font-medium text-red-600">Tahap Meeting</span>
-                    <span class="block mt-1 text-xs text-gray-500">{{ $meetPath->pathMeetingInvitation->rentang_waktu }}</span>
-                </button>
-            </div>
-            <div class="hidden md:block w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 absolute top-5 left-1/2 -z-10"></div>
-        </li>
-        
-        <!-- Phase 5 -->
-        <li class="flex flex-col items-center w-full md:w-1/5" role="path point selection">
+        <!-- Phase terakhir: Offering (selalu ada) -->
+        <li class="flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }}" role="path point selection">
             <div class="flex items-center">
                 <button class="flex flex-col items-center" id="approved-tab" data-tabs-target="#approved" type="button" role="tab" aria-controls="approved" aria-selected="false">
-                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">5</span>
+                    <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">{{ count($pathData) + 2 }}</span>
                     <span class="mt-2 font-medium text-red-600">Tahap Offering</span>
                 </button>
             </div>
         </li>
     </ul>
 </div>
-            <div id="default-tab-content">
-                <div class="hidden p-4 border rounded-lg bg-gray-50" id="participant" role="tabpanel"
-                    aria-labelledby="participant-tab">
-                    @include('recruiter.components.participantTable')
-                </div>
-                <div class="hidden p-4 border rounded-lg bg-gray-50" id="pemberkasan" role="tabpanel"
-                    aria-labelledby="pemberkasan-tab">
-                    @include('recruiter.components.pemberkasanTable')
-                </div>
-                <div class="hidden p-4 border rounded-lg bg-gray-50" id="challange" role="tabpanel"
-                    aria-labelledby="challange-tab">
-                    @include('recruiter.components.challangeTable')
-                    <h1>Challange</h1>
-                </div>
-                <div class="hidden p-4 border rounded-lg bg-gray-50" id="meeting" role="tabpanel"
-                    aria-labelledby="meeting-tab">
-                    @include('recruiter.components.meetInvitationTable')
-                    <h1>meetInvitation</h1>
-                </div>
-                <div class="hidden p-4 border rounded-lg bg-gray-50" id="approved" role="tabpanel"
-                    aria-labelledby="approved-tab">
-                    @include('recruiter.components.approvedTable')
-                    <h1>Approved</h1>
-                </div>
-            </div>
-        </div>
 
-
+<div id="default-tab-content">
+    <!-- Tab Participant -->
+    <div class="hidden p-4 border rounded-lg bg-gray-50" id="participant" role="tabpanel"
+        aria-labelledby="participant-tab">
+        @include('recruiter.components.participantTable')
     </div>
+    
+    <!-- Tab untuk setiap tahapan dinamis -->
+    @foreach($pathData as $index => $data)
+    <div class="hidden p-4 border rounded-lg bg-gray-50" id="path-content-{{ $index + 1 }}" role="tabpanel"
+        aria-labelledby="path-tab-{{ $index + 1 }}">
+        
+        <!-- Menentukan komponen tabel yang ditampilkan berdasarkan tipe path -->
+        @switch($data['path']->path_type_id)
+            @case(1)
+                @include('recruiter.components.pemberkasanTable', ['berkasCandidates' => $data['candidates']])
+                @break
+            @case(2)
+                @include('recruiter.components.meetInvitationTable', ['meetCandidates' => $data['candidates']])
+                @break
+            @case(3)
+                @include('recruiter.components.challangeTable', ['challangeCandidates' => $data['candidates']])
+                @break
+            @default
+                <!-- Template untuk tipe tahapan custom -->
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-4">{{ $data['path']->path_name }}</h3>
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">Nama Kandidat</th>
+                                    <th scope="col" class="py-3 px-6">Tanggal Submit</th>
+                                    <th scope="col" class="py-3 px-6">Status</th>
+                                    <th scope="col" class="py-3 px-6">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($data['candidates'] && count($data['candidates']) > 0)
+                                    @foreach($data['candidates'] as $candidate)
+                                    <tr class="bg-white border-b">
+                                        <td class="py-4 px-6">{{ $candidate->candidate->full_name ?? 'Nama tidak tersedia' }}</td>
+                                        <td class="py-4 px-6">{{ $candidate->created_at ? $candidate->created_at->format('d/m/Y') : '-' }}</td>
+                                        <td class="py-4 px-6">
+                                            <span class="px-2 py-1 text-xs rounded-full {{ $candidate->status == 'approved' ? 'bg-green-100 text-green-800' : ($candidate->status == 'rejected' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
+                                                {{ ucfirst($candidate->status) }}
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <button class="text-blue-600 hover:text-blue-900">Detail</button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr class="bg-white border-b">
+                                        <td colspan="4" class="py-4 px-6 text-center">Belum ada kandidat yang mengikuti tahapan ini</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @break
+            @endswitch
+    </div>
+    @endforeach
+    
+    <!-- Tab Approved/Offering -->
+    <div class="hidden p-4 border rounded-lg bg-gray-50" id="approved" role="tabpanel"
+        aria-labelledby="approved-tab">
+        @include('recruiter.components.approvedTable')
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Script untuk tab default yang aktif saat halaman pertama kali dibuka
+        const firstTab = document.querySelector('[data-tabs-toggle="#default-tab-content"] button');
+        if (firstTab) {
+            firstTab.click();
+        }
+    });
+    </script>
 </body>
 
 </html>
