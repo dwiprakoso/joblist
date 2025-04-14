@@ -37,16 +37,13 @@ class RoomController extends Controller
     // Method untuk menyimpan data room baru
     public function store(Request $request)
     {
-
         DB::beginTransaction();
         try {
             $fileServices = new FileServices();
 
-            // dd($request->all());
-
+            // Simpan data room dasar
             $roomInput = $request->all();
-
-            $room =  rooms::create([
+            $room = rooms::create([
                 'company_id' => auth()->user()->companyUser->company_id,
                 'position_name' => $roomInput['position_name'],
                 'departement' => $roomInput['departement'],
@@ -59,68 +56,114 @@ class RoomController extends Controller
                 'access_rights' => $roomInput['access_rights'],
                 'description' => $roomInput['description'],
                 'requirements' => $roomInput['requirements'],
-
             ]);
 
-
-            $uploadBerkas = paths::create([
-                'room_id' => $room->id,
-                'path_name' => $request->berkas_path_name,
-                'path_type_id' => 1,
-            ]);
-
-            $meetInvitation = paths::create([
-                'room_id' => $room->id,
-                'path_name' => $request->meet_path_name,
-                'path_type_id' => 2,
-            ]);
-
-            $challangePath = paths::create([
-                'room_id' => $room->id,
-                'path_name' =>
-                $request->challange_path_name,
-                'path_type_id' => 3,
-            ]);
-
-            $fileBerkas = $fileServices->uploadFile($request->file('berkas_lampiran'), 'berkas');
-            $meetBerkas = $fileServices->uploadFile($request->file('meet_lampiran'), 'meet');
-            $challangeBerkas = $fileServices->uploadFile($request->file('challange_lampiran'), 'challange');
-
-            $berkas_rentang_waktu = $request->berkas_start . ' - ' . $request->berkas_end;
-            $meet_rentang_waktu = $request->meet_start . ' - ' . $request->meet_end;
-            $challange_rentang_waktu = $request->challange_start . ' - ' . $request->challange_end;
-
-
-            path_pemberkasan::create([
-                'path_id' => $uploadBerkas->id,
-                'deskripsi' => $request->berkas_deskripsi,
-                'rentang_waktu' => $berkas_rentang_waktu,
-                'lampiran' => $fileBerkas
-            ]);
-
-            path_meeting_invitation::create([
-                'path_id' => $meetInvitation->id,
-                'deskripsi' => $request->meet_deskripsi,
-                'lokasi_link_meet' =>  $request->meet_lokasi_link_meet,
-                'rentang_waktu' => $meet_rentang_waktu,
-                'lampiran' => $meetBerkas
-            ]);
-
-            path_challange::create([
-                'path_id' => $challangePath->id,
-                'deskripsi' => $request->challange_deskripsi,
-                'link_lampiran_challange' => $request->challange_link_lampiran_challange,
-                'rentang_waktu' => $challange_rentang_waktu,
-                'lampiran' => $challangeBerkas,
-            ]);
+            // Proses setiap tahapan seleksi dari input
+            if ($request->has('step_type')) {
+                foreach ($request->step_type as $index => $type) {
+                    // Tentukan path_type_id berdasarkan jenis tahapan
+                    $pathTypeId = $this->getPathTypeIdByStepType($type);
+                    
+                    // Buat path untuk tahapan ini
+                    $path = paths::create([
+                        'room_id' => $room->id,
+                        'path_name' => $request->step_name[$index],
+                        'path_type_id' => $pathTypeId,
+                        'step_order' => $index + 1, // Tambahkan kolom ini jika ingin menyimpan urutan
+                    ]);
+                    
+                    // Upload file jika ada
+                    $lampiran = null;
+                    if (isset($request->file('step_attachment')[$index])) {
+                        $lampiran = $fileServices->uploadFile(
+                            $request->file('step_attachment')[$index], 
+                            strtolower($type)
+                        );
+                    }
+                    
+                    // Format rentang waktu
+                    $rentangWaktu = $request->step_start_date[$index] . ' - ' . $request->step_end_date[$index];
+                    
+                    // Simpan detail sesuai jenis tahapan
+                    switch ($type) {
+                        case 'Upload Berkas':
+                            path_pemberkasan::create([
+                                'path_id' => $path->id,
+                                'deskripsi' => $request->step_description[$index] ?? '',
+                                'rentang_waktu' => $rentangWaktu,
+                                'lampiran' => $lampiran
+                            ]);
+                            break;
+                            
+                        case 'Meeting':
+                            path_meeting_invitation::create([
+                                'path_id' => $path->id,
+                                'deskripsi' => $request->step_description[$index] ?? '',
+                                'lokasi_link_meet' => $request->step_location[$index] ?? '',
+                                'rentang_waktu' => $rentangWaktu,
+                                'lampiran' => $lampiran
+                            ]);
+                            break;
+                            
+                        case 'Challenge':
+                            path_challange::create([
+                                'path_id' => $path->id,
+                                'deskripsi' => $request->step_description[$index] ?? '',
+                                'link_lampiran_challange' => $request->step_location[$index] ?? '',
+                                'rentang_waktu' => $rentangWaktu,
+                                'lampiran' => $lampiran
+                            ]);
+                            break;
+                            
+                        default:
+                            // Untuk jenis tahapan baru, dapat diperluaskan dengan membuat model baru
+                            // atau menggunakan pendekatan yang lebih generik dengan path_details
+                            
+                            // Contoh pendekatan generik untuk tipe tahapan custom:
+                            $customFields = [
+                                'deskripsi' => $request->step_description[$index] ?? '',
+                                'lokasi' => $request->step_location[$index] ?? '',
+                                'rentang_waktu' => $rentangWaktu,
+                                'lampiran' => $lampiran
+                            ];
+                            
+                            foreach ($customFields as $key => $value) {
+                                if (!empty($value)) {
+                                    \App\Models\path_details::create([
+                                        'path_id' => $path->id,
+                                        'field_key' => $key,
+                                        'field_type' => $key == 'lampiran' ? 'file' : 'text',
+                                        'value' => $value
+                                    ]);
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
 
             DB::commit();
             return redirect()->back()->with('success', 'Data lowongan berhasil disimpan.');
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e->getMessage());
-            // something went wrong
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Menentukan path_type_id berdasarkan jenis tahapan
+     */
+    private function getPathTypeIdByStepType($stepType)
+    {
+        $pathTypes = [
+            'Upload Berkas' => 1,
+            'Meeting' => 2,
+            'Challenge' => 3,
+            // Tambahkan pemetaan untuk jenis tahapan baru
+        ];
+        
+        // Jika jenis tahapan tidak dikenali, gunakan tipe generic
+        return $pathTypes[$stepType] ?? 4; // Asumsi 4 adalah ID untuk tipe generic
     }
 
 
@@ -156,16 +199,57 @@ class RoomController extends Controller
     {
         $room = rooms::findOrFail($id);
         $allcandidates = $room->candidates()->paginate(5);
-        $berkasPath = paths::where('room_id', $room->id)->where('path_type_id', 1)->first();
-        $meetPath = paths::where('room_id', $room->id)->where('path_type_id', 2)->first();
-        $challangePath = paths::where('room_id', $room->id)->where('path_type_id', 3)->first();
-
-        $berkasCandidates = $this->paginate($berkasPath->pathPemberkasan->submissionPemberkasan, 5);
-        $meetCandidates = $this->paginate($meetPath->pathMeetingInvitation->submissionMeetingInvitation, 5);
-        $challangeCandidates = $this->paginate($challangePath->pathChallange->submissionChallange, 5);
+        
+        // Ambil semua tahapan untuk room ini dalam urutan yang benar
+        $paths = paths::where('room_id', $room->id)
+            ->orderBy('step_order', 'asc')
+            ->get();
+        
+        // Siapkan array untuk menyimpan data yang akan ditampilkan
+        $pathData = [];
+        
+        foreach ($paths as $path) {
+            $pathInfo = [
+                'path' => $path,
+                'candidates' => null
+            ];
+            
+            // Tangani berdasarkan tipe path
+            switch ($path->path_type_id) {
+                case 1: // Upload Berkas
+                    if ($path->pathPemberkasan) {
+                        $pathInfo['detail'] = $path->pathPemberkasan;
+                        $pathInfo['candidates'] = $this->paginate($path->pathPemberkasan->submissionPemberkasan, 5);
+                    }
+                    break;
+                    
+                case 2: // Meeting
+                    if ($path->pathMeetingInvitation) {
+                        $pathInfo['detail'] = $path->pathMeetingInvitation;
+                        $pathInfo['candidates'] = $this->paginate($path->pathMeetingInvitation->submissionMeetingInvitation, 5);
+                    }
+                    break;
+                    
+                case 3: // Challenge
+                    if ($path->pathChallange) {
+                        $pathInfo['detail'] = $path->pathChallange;
+                        $pathInfo['candidates'] = $this->paginate($path->pathChallange->submissionChallange, 5);
+                    }
+                    break;
+                    
+                default:
+                    // Tangani tipe path custom jika ada
+                    $pathInfo['detail'] = $path->pathDetails;
+                    // Logika untuk kandidat custom harus ditambahkan
+                    break;
+            }
+            
+            $pathData[] = $pathInfo;
+        }
+        
         $approvedCandidates = $room->candidates()->wherePivot('status', 'approved')->paginate(5);
-
-        return view('recruiter.postRoomDetail', compact('room', 'allcandidates', 'berkasPath', 'meetPath', 'challangePath', 'berkasCandidates', 'meetCandidates', 'challangeCandidates', 'approvedCandidates'));
+    
+        return view('recruiter.postRoomDetail', compact('room', 'allcandidates', 'pathData', 'approvedCandidates'));
     }
 
     /**

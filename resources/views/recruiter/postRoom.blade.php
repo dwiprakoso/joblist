@@ -19,7 +19,7 @@
             <nav class="flex mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('dashboard.recruiter') }}"
+                        <a href="#"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                             <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 20 20">
@@ -154,7 +154,7 @@
         </div>
     </div>
 
-    <form id="jobPortalForm" action="{{ route('dashboard.recruiter.selectionRoom.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Main modal -->
         <div id="postJob-modal" tabindex="-1" aria-hidden="true"
@@ -306,7 +306,7 @@
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <div class="flex">
-                            <button type="button" data-modal-hide="postJob-modal" data-modal-target="timeline-modal"
+                            <button data-modal-hide="postJob-modal" data-modal-target="timeline-modal"
                                 data-modal-show="timeline-modal"
                                 class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 ">
                                 Berikutnya
@@ -324,194 +324,265 @@
         </div>
 
         <!-- modal timeline -->
-        <!-- Modal Timeline -->
-<div id="timeline-modal" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-<div class="relative w-full h-full max-w-4xl p-4">
-    <!-- Modal content -->
-    <div class="relative flex flex-col h-full rounded-lg shadow bg-gray-50">
-        <!-- Modal header -->
-        <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5">
-            <h3 class="text-lg font-semibold text-gray-900">
-                Buat Job Portal - Data Step Seleksi
-            </h3>
-            <button type="button"
-                class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
-                data-modal-toggle="timeline-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="flex-grow p-4 overflow-y-auto md:p-5">
-            <!-- Container untuk semua tahapan -->
-            <div class="path-container mb-4">
-                <!-- Tahapan akan ditambahkan disini secara dinamis -->
+        <!-- modal timeline -->
+        <div id="timeline-modal" tabindex="-1" aria-hidden="true"
+            class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full h-full max-w-4xl p-4">
+                <!-- Modal content -->
+                <div class="relative flex flex-col h-full rounded-lg shadow bg-gray-50">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 ">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Buat Job Portal - Data Step Seleksi
+                        </h3>
+                        <button type="button"
+                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="timeline-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="flex-grow p-4 overflow-y-auto md:p-5">
+                        <!-- Container untuk semua tahapan -->
+                        <div id="selection-steps-container">
+                            <!-- Template tahapan akan ditambahkan secara dinamis di sini -->
+                        </div>
+                        
+                        <!-- Tombol untuk menambah tahapan baru -->
+                        <div class="mt-4">
+                            <button type="button" id="add-selection-step"
+                                class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white rounded-lg bg-[#e73002] hover:bg-[#fd7d09] transition-colors">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Tambah Tahapan Seleksi
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <div class="flex">
+                            <button data-modal-hide="timeline-modal" data-modal-target="postJob-modal"
+                                data-modal-show="postJob-modal"
+                                class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg me-3 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
+                                </svg>
+                                Kembali
+                            </button>
+                            <button
+                                class="flex items-center justify-center h-8 px-3 text-sm font-medium text-white border border-gray-300 rounded-lg bg-positive hover:bg-positive-hover"
+                                type="submit">
+                                <svg class="w-6 h-6 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.414A2 2 0 0 0 20.414 6L18 3.586A2 2 0 0 0 16.586 3H5Zm3 11a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6H8v-6Zm1-7V5h6v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M14 17h-4v-2h4v2Z" clip-rule="evenodd" />
+                                </svg>
+                                Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Tombol Tambah Tahapan -->
-            <div class="text-center mb-4">
-                <button id="add-path-btn" type="button"
-                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none">
-                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Tambah Tahapan
-                </button>
-            </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="flex items-center p-4 border-t border-gray-200 rounded-b">
-            <button type="button" data-modal-hide="timeline-modal" data-modal-target="postJob-modal" data-modal-show="postJob-modal"
-                class="flex items-center me-3 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100">
-                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
-                </svg>
-                Kembali
-            </button>
-            <button type="submit"
-                class="flex items-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-lg hover:bg-green-600">
-                <svg class="w-4 h-4 me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Simpan
-            </button>
         </div>
     </div>
-</div>
-</div>
 
-<!-- Template untuk tahapan seleksi -->
-<template id="path-template">
-<div class="path-item p-4 mb-4 bg-white rounded-lg shadow">
-    <div class="flex justify-between items-center mb-3">
-        <h3 class="text-base font-semibold text-gray-900">Tahapan <span class="path-number">__ORDER__</span></h3>
-        
-        <div class="flex items-center">
-            <!-- Tombol Move Up/Down -->
-            <div class="flex space-x-1 mr-2">
-                <button type="button" class="move-up-btn p-1 text-gray-500 rounded hover:bg-gray-100" title="Pindah ke atas">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                    </svg>
-                </button>
+    <!-- Template untuk tahapan seleksi -->
+    <template id="selection-step-template">
+        <div class="relative mb-4 md:mb-5 selection-step">
+            <div tabindex="0"
+                class="p-2 mb-2 bg-white rounded-md shadow-md path-selection focus:outline-none focus-within:border-l-8 focus-within:border-e73002">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="flex items-center text-lg font-bold">
+                        <span class="flex items-center justify-center w-6 h-6 mr-2 text-white rounded-full bg-[#e73002]">
+                            <span class="step-number">1</span>
+                        </span>
+                        <span class="font-medium">Tahap <span class="step-type-text">Seleksi</span></span>
+                    </h3>
+                    <button type="button" class="delete-step text-gray-500 hover:text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
                 
-                <button type="button" class="move-down-btn p-1 text-gray-500 rounded hover:bg-gray-100" title="Pindah ke bawah">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
+                <div class="grid grid-cols-5 gap-4">
+                    <!-- Tipe Tahap -->
+                    <div class="col-span-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Tipe Tahapan</label>
+                        <select class="step-type bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                            <option value="Upload Berkas">Upload Berkas</option>
+                            <option value="Challenge">Challenge</option>
+                            <option value="Meeting">Meeting</option>
+                            <option value="Interview">Interview</option>
+                            <option value="Test">Test</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Judul Tahap -->
+                    <div class="col-span-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Judul</label>
+                        <input type="text" name="step_name[]" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5" 
+                            placeholder="Judul tahapan" required>
+                    </div>
+                    
+                    <!-- Deskripsi Tahap -->
+                    <div class="col-span-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
+                        <textarea name="step_description[]" rows="3" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5"
+                            placeholder="Deskripsi tahapan"></textarea>
+                    </div>
+                    
+                    <!-- Lokasi / Link (opsional, muncul tergantung tipe) -->
+                    <div class="col-span-5 location-link-field">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Lokasi / Link</label>
+                        <input type="text" name="step_location[]" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5" 
+                            placeholder="Masukkan lokasi atau link">
+                    </div>
+                    
+                    <!-- Rentang Waktu -->
+                    <div class="col-span-2">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Rentang Waktu</label>
+                        <div class="flex space-x-2">
+                            <div class="relative max-w-sm">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" type="text" 
+                                    name="step_start_date[]"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                                    placeholder="Tanggal mulai">
+                            </div>
+                            <div class="relative max-w-sm">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" type="text" 
+                                    name="step_end_date[]"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                                    placeholder="Tanggal akhir">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lampiran -->
+                    <div class="col-span-2 col-end-6">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Lampiran</label>
+                        <input type="file" name="step_attachment[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                    </div>
+                </div>
             </div>
-            
-            <!-- Tombol Delete -->
-            <button type="button" class="delete-path-btn p-1 text-red-500 rounded hover:bg-red-100" title="Hapus tahapan">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
         </div>
-    </div>
-    
-    <!-- Form fields dengan layout sederhana -->
-    <div class="space-y-3">
-        <!-- Jenis Tahapan -->
-        <div>
-            <label for="path_type___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Jenis Tahapan</label>
-            <select name="paths[__INDEX__][path_type_id]" id="path_type___INDEX__" class="path-type-select w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                <option value="">Pilih Jenis Tahapan</option>
-                <option value="1">Upload Berkas</option>
-                <option value="2">Meeting Invitation</option>
-                <option value="3">Challenge</option>
-                <option value="4">Custom</option>
-            </select>
-        </div>
-        
-        <!-- Judul Tahapan -->
-        <div>
-            <label for="path_name___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Judul</label>
-            <input type="text" name="paths[__INDEX__][path_name]" id="path_name___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Judul Tahapan" required>
-        </div>
-        
-        <!-- Deskripsi -->
-        <div>
-            <label for="path_desc___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Deskripsi</label>
-            <textarea name="paths[__INDEX__][deskripsi]" id="path_desc___INDEX__" rows="2" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Deskripsi tahapan"></textarea>
-        </div>
-        
-        <!-- Rentang Waktu -->
-        <div class="grid grid-cols-2 gap-3">
-            <div>
-                <label for="path_start___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Mulai</label>
-                <input type="date" name="paths[__INDEX__][start]" id="path_start___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-            </div>
-            <div>
-                <label for="path_end___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Selesai</label>
-                <input type="date" name="paths[__INDEX__][end]" id="path_end___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-            </div>
-        </div>
-        
-        <!-- Lampiran -->
-        <div>
-            <label for="path_lampiran___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Lampiran</label>
-            <input type="file" name="paths[__INDEX__][lampiran]" id="path_lampiran___INDEX__" class="w-full text-sm text-gray-700 border border-gray-300 rounded-md">
-        </div>
-        
-        <!-- Field untuk Meeting dan Challenge -->
-        <div class="meeting-challenge-fields" style="display: none;">
-            <label for="path_link___INDEX__" class="block mb-1 text-sm font-medium text-gray-700">Link / Lokasi</label>
-            <input type="text" name="paths[__INDEX__][link_lokasi]" id="path_link___INDEX__" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Masukkan lokasi atau link">
-        </div>
-        
-        <!-- Field untuk Custom Fields -->
-        <div class="custom-fields" style="display: none;">
-            <div class="custom-fields-container space-y-3">
-                <!-- Custom field akan ditambahkan disini -->
-            </div>
-            <button type="button" class="add-custom-field-btn mt-2 inline-flex items-center px-3 py-1 text-xs font-medium text-blue-700 bg-blue-100 rounded-lg hover:bg-blue-200">
-                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m6 0H6" />
-                </svg>
-                Tambah Field Custom
-            </button>
-        </div>
-    </div>
-</div>
-</template>
+    </template>
 
-<!-- Template untuk custom field -->
-<template id="custom-field-template">
-<div class="custom-field-item grid grid-cols-5 gap-3 py-2 border-t border-gray-200">
-    <div class="col-span-2">
-        <label class="block mb-1 text-sm font-medium text-gray-700">Nama Field</label>
-        <input type="text" name="paths[__INDEX__][custom_fields][__FIELD_INDEX__][name]" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Nama Field" required>
-    </div>
-    
-    <div class="col-span-2">
-        <label class="block mb-1 text-sm font-medium text-gray-700">Tipe Input</label>
-        <select name="paths[__INDEX__][custom_fields][__FIELD_INDEX__][type]" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-            <option value="text">Text</option>
-            <option value="date">Date</option>
-            <option value="file">File</option>
-            <option value="textarea">Textarea</option>
-        </select>
-    </div>
-    
-    <div class="col-span-1 flex items-end">
-        <button type="button" class="delete-custom-field-btn p-1 text-red-500 rounded hover:bg-red-100 mb-1" title="Hapus field">
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-    </div>
-</div>
-</template>
     </form>
 </body>
-<script src="{{ asset('js/dynamic-path.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('selection-steps-container');
+        const addButton = document.getElementById('add-selection-step');
+        const template = document.getElementById('selection-step-template');
+        
+        let stepCount = 0;
+        
+        // Function to add a new selection step
+        function addSelectionStep() {
+            stepCount++;
+            
+            // Clone the template
+            const newStep = template.content.cloneNode(true);
+            
+            // Update step number
+            newStep.querySelector('.step-number').textContent = stepCount;
+            
+            // Set up delete button
+            const deleteButton = newStep.querySelector('.delete-step');
+            deleteButton.addEventListener('click', function() {
+                if (confirm('Anda yakin ingin menghapus tahapan ini?')) {
+                    this.closest('.selection-step').remove();
+                    updateStepNumbers();
+                }
+            });
+            
+            // Set up type change handler
+            const typeSelect = newStep.querySelector('.step-type');
+            const locationLinkField = newStep.querySelector('.location-link-field');
+            const stepTypeText = newStep.querySelector('.step-type-text');
+            
+            typeSelect.addEventListener('change', function() {
+                const selectedType = this.value;
+                stepTypeText.textContent = selectedType;
+                
+                // Show or hide location/link field based on type
+                if (selectedType === 'Meeting' || selectedType === 'Challenge' || selectedType === 'Interview') {
+                    locationLinkField.style.display = 'block';
+                    locationLinkField.querySelector('label').textContent = 
+                        selectedType === 'Meeting' ? 'Lokasi / Link Meeting' : 
+                        selectedType === 'Challenge' ? 'Link Challenge' : 'Lokasi Interview';
+                } else {
+                    locationLinkField.style.display = 'none';
+                }
+            });
+            
+            // Initialize the locationLinkField visibility
+            locationLinkField.style.display = 'none';
+            
+            // Generate unique names for the inputs
+            const inputs = newStep.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                if (input.name && input.name.includes('[]')) {
+                    const baseName = input.name.replace('[]', '');
+                    input.name = `${baseName}[${stepCount}]`;
+                }
+            });
+            
+            // Add to the container
+            container.appendChild(newStep);
+            
+            // Initialize datepickers (if using a library)
+            if (typeof initDatepickers === 'function') {
+                initDatepickers();
+            }
+        }
+        
+        // Function to update step numbers after deletion
+        function updateStepNumbers() {
+            const steps = container.querySelectorAll('.selection-step');
+            steps.forEach((step, index) => {
+                step.querySelector('.step-number').textContent = index + 1;
+            });
+            stepCount = steps.length;
+        }
+        
+        // Add first step automatically
+        addSelectionStep();
+        
+        // Set up add button
+        addButton.addEventListener('click', addSelectionStep);
+    });
+    </script>
+
+
 </html>

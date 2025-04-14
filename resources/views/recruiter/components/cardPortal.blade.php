@@ -1,13 +1,10 @@
 <div class="flex flex-row items-center p-1 bg-white border border-gray-200 rounded-lg shadow h-44 hover:bg-gray-100">
-
     <div class="flex-grow p-2 ">
         <a href="{{ route('dashboard.recruiter.selectionRoom.detail', $room->id) }}">
-
             <div class="text-base font-bold text-gray-500">{{ $room->position_name }}</div>
             <div class="text-xs font-semibold text-gray-500">{{ $room->departement }} | {{ $room->working_hours }} |
                 {{ $room->work_system }}</div>
             <div class="text-xs font-normal text-gray-500">Tenggat : {{ $room->deadline->format('d-m-Y') }}</div>
-
 
             <div class="grid items-center justify-center grid-cols-2 gap-4 mt-2 rounded ">
                 <div class="flex items-center p-2 rounded bg-fd7d09 dark:bg-gray-800">
@@ -65,8 +62,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- Share modal -->
 <div id="course-modal" tabindex="-1" aria-hidden="true"
