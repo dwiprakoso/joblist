@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\rooms;
+use App\Models\resumes;
 use App\Models\candidates;
+use App\Models\pendidikan;
 use Illuminate\Http\Request;
 use App\Models\candidate_contact;
 use Illuminate\Support\Facades\DB;
 use App\Models\educational_history;
+use App\Models\keahlian;
+use App\Models\pengalamanKerja;
+use App\Models\pengalamanOrganisasi;
+use App\Models\sertifikat;
 use App\Models\traces_of_experience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -278,4 +284,93 @@ class candidatesController extends Controller
     {  
         return view('candidates.cvMaker');
     }
+    public function storeCv(Request $request)
+    {
+        // Validate the personal data
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telepon' => 'nullable|string|max:20',
+            'lokasi' => 'nullable|string|max:255',
+            'ringkasan' => 'nullable|string',
+            // Add any other validations as necessary
+        ]);
+
+        // Store personal data into the candidate model
+        $candidate = new resumes();
+        $candidate->nama = $validatedData['nama'];
+        $candidate->email = $validatedData['email'];
+        $candidate->telepon = $validatedData['telepon'];
+        $candidate->lokasi = $validatedData['lokasi'];
+        $candidate->ringkasan = $validatedData['ringkasan'];
+        $candidate->user_id = auth()->user()->id; // Assuming the user is authenticated
+        $candidate->save();
+
+        // Store education data
+        if ($request->has('pendidikan')) {
+            foreach ($request->pendidikan as $education) {
+                $educationModel = new pendidikan();
+                $educationModel->resume_id= $candidate->id;
+                $educationModel->gelar = $education['gelar'];
+                $educationModel->institusi = $education['institusi'];
+                $educationModel->tahun_mulai = $education['tahun_mulai'];
+                $educationModel->tahun_selesai = $education['tahun_selesai'] ?? null;
+                $educationModel->save();
+            }
+        }
+
+        // Store work experience data
+        if ($request->has('pengalaman')) {
+            foreach ($request->pengalaman as $experience) {
+                $experienceModel = new pengalamanKerja();
+                $experienceModel->resume_id = $candidate->id;
+                $experienceModel->posisi = $experience['posisi'];
+                $experienceModel->perusahaan = $experience['perusahaan'];
+                $experienceModel->tanggal_mulai = $experience['tanggal_mulai'];
+                $experienceModel->tanggal_selesai = $experience['tanggal_selesai'] ?? null;
+                $experienceModel->deskripsi = $experience['deskripsi'];
+                $experienceModel->save();
+            }
+        }
+
+        // Store organization experience data
+        if ($request->has('organisasi')) {
+            foreach ($request->organisasi as $organization) {
+                $organizationModel = new pengalamanOrganisasi();
+                $organizationModel->resume_id = $candidate->id;
+                $organizationModel->posisi = $organization['posisi'];
+                $organizationModel->organisasi = $organization['organisasi'];
+                $organizationModel->tanggal_mulai = $organization['tanggal_mulai'];
+                $organizationModel->tanggal_selesai = $organization['tanggal_selesai'] ?? null;
+                $organizationModel->deskripsi = $organization['deskripsi'];
+                $organizationModel->save();
+            }
+        }
+
+        // Store certificates data
+        if ($request->has('sertifikat')) {
+            foreach ($request->sertifikat as $certificate) {
+                $certificateModel = new sertifikat();
+                $certificateModel->resume_id = $candidate->id;
+                $certificateModel->nama_sertifikat = $certificate['sertifikat'];
+                $certificateModel->penerbit = $certificate['penerbit'];
+                $certificateModel->tanggal_terbit = $certificate['tanggal_terbit'];
+                $certificateModel->save();
+            }
+        }
+
+        // Store skills (keahlian) data
+        if ($request->has('keahlian')) {
+            foreach ($request->keahlian as $skill) {
+                $skillModel = new keahlian();
+                $skillModel->resume_id = $candidate->id;
+                $skillModel->nama_keahlian = $skill;
+                $skillModel->save();
+            }
+        }
+
+        // After successfully storing the data, redirect with a success message
+        return redirect()->route('dashboard.kandidat')->with('success', 'CV Anda telah dibuat!');
+    }
+
 }

@@ -61,6 +61,7 @@ Route::prefix('dashboard')->group(function () {
 
         Route::get('/create-cv', [CandidatesController::class, 'cvMaker'])->name('dashboard.kandidat.cvMaker');
         // Route::get('/statusDetail', [CandidatesController::class, 'statusDetail'])->name('dashboard.kandidat.statusDetail');
+        Route::post('/store-cv', [candidatesController::class, 'storeCv'])->name('dashboard.kandidat.storeCv');
 
         Route::prefix('apply')->controller(RoomCandidateController::class)->group(function () {
             Route::get('/{id}', 'apply')->name('kandidat.apply');

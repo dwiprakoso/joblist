@@ -64,7 +64,8 @@
                     <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                         <h3 class="text-lg font-semibold mb-4 text-gray-800">Data Pribadi</h3>
                         
-                        <form action="#" method="POST">
+                        <form action="{{ route('dashboard.kandidat.storeCv') }}" method="POST">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-700">Nama Lengkap</label>
@@ -603,7 +604,7 @@
 
         
         // Atau submit form jika endpoint sudah siap
-        // this.submit();
+        this.submit();
     });
 </script>
 </html>
