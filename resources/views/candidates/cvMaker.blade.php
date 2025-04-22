@@ -79,7 +79,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <label for="telepon" class="block mb-2 text-sm font-medium text-gray-700">Nomor Telepon</label>
-                                    <input type="tel" id="telepon" name="telepon" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                    <input type="number" id="telepon" name="telepon" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                                 </div>
                                 <div>
                                     <label for="lokasi" class="block mb-2 text-sm font-medium text-gray-700">Domisili</label>
@@ -108,11 +108,11 @@
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label class="block mb-2 text-sm font-medium text-gray-700">Tahun Mulai</label>
-                                            <input type="text" name="pendidikan[0][tahun_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                            <input type="date" name="pendidikan[0][tahun_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                                         </div>
                                         <div>
                                             <label class="block mb-2 text-sm font-medium text-gray-700">Tahun Selesai</label>
-                                            <input type="text" name="pendidikan[0][tahun_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                            <input type="date" name="pendidikan[0][tahun_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                                         </div>
                                     </div>
                                 </div>
@@ -140,11 +140,11 @@
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Mulai</label>
-                                            <input type="text" name="pengalaman[0][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                            <input type="date" name="pengalaman[0][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                                         </div>
                                         <div>
                                             <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Selesai</label>
-                                            <input type="text" name="pengalaman[0][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                            <input type="date" name="pengalaman[0][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                                         </div>
                                     </div>
                                     <div class="mb-2">
@@ -158,6 +158,69 @@
                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                                 </svg>
                                 Tambah Pengalaman
+                            </button>
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800">Pengalaman Organisasi</h3>
+                            <div id="organisasi-container">
+                                <div class="organisasi-item border border-gray-200 p-4 rounded-lg mb-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Posisi</label>
+                                            <input type="text" name="organisasi[0][posisi]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Nama Organisasi</label>
+                                            <input type="text" name="organisasi[0][organisasi]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Mulai</label>
+                                            <input type="date" name="organisasi[0][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                                            <input type="date" name="organisasi[0][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="block mb-2 text-sm font-medium text-gray-700">Deskripsi Kegiatan</label>
+                                        <textarea name="organisasi[0][deskripsi]" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5" placeholder="Jelaskan kegiatan yang dilakukan selama di organisasi"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="tambah-organisasi" class="text-[#e73002] hover:text-[#fd7d09] font-medium text-sm inline-flex items-center mb-6">
+                                <svg class="w-4 h-4 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                Tambah Pengalaman Organisasi
+                            </button>
+
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800">Sertifikat</h3>
+                            <div id="sertifikat-container">
+                                <div class="sertifikat-item border border-gray-200 p-4 rounded-lg mb-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Nama Sertifikat</label>
+                                            <input type="text" name="sertifikat[0][sertifikat]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Penerbit</label>
+                                            <input type="text" name="sertifikat[0][penerbit]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Diterbitkan</label>
+                                            <input type="date" name="sertifikat[0][tanggal_terbit]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="tambah-sertifikat" class="text-[#e73002] hover:text-[#fd7d09] font-medium text-sm inline-flex items-center mb-6">
+                                <svg class="w-4 h-4 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                Tambah Sertifikat
                             </button>
 
                             <h3 class="text-lg font-semibold mb-4 text-gray-800">Keterampilan</h3>
@@ -296,11 +359,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Tahun Mulai</label>
-                    <input type="text" name="pendidikan[${pendidikanCount}][tahun_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                    <input type="date" name="pendidikan[${pendidikanCount}][tahun_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Tahun Selesai</label>
-                    <input type="text" name="pendidikan[${pendidikanCount}][tahun_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                    <input type="date" name="pendidikan[${pendidikanCount}][tahun_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                 </div>
             </div>
         `;
@@ -341,11 +404,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal Mulai</label>
-                    <input type="text" name="pengalaman[${pengalamanCount}][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                    <input type="date" name="pengalaman[${pengalamanCount}][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal Selesai</label>
-                    <input type="text" name="pengalaman[${pengalamanCount}][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                    <input type="date" name="pengalaman[${pengalamanCount}][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                 </div>
             </div>
             <div class="mb-2">
@@ -361,7 +424,94 @@
             container.removeChild(newPengalaman);
         });
     });
-    
+    // Script untuk menambah pengalaman organisasi
+    document.getElementById('tambah-organisasi').addEventListener('click', function() {
+        const container = document.getElementById('organisasi-container');
+        const organisasiCount = container.querySelectorAll('.organisasi-item').length;
+        
+        const newOrganisasi = document.createElement('div');
+        newOrganisasi.className = 'organisasi-item border border-gray-200 p-4 rounded-lg mb-4';
+        newOrganisasi.innerHTML = `
+            <div class="flex justify-end mb-2">
+                <button type="button" class="hapus-organisasi text-red-500 hover:text-red-700">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Posisi</label>
+                    <input type="text" name="organisasi[${organisasiCount}][posisi]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Nama Organisasi</label>
+                    <input type="text" name="organisasi[${organisasiCount}][organisasi]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Mulai</label>
+                    <input type="date" name="organisasi[${organisasiCount}][tanggal_mulai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                    <input type="date" name="organisasi[${organisasiCount}][tanggal_selesai]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="block mb-2 text-sm font-medium text-gray-700">Deskripsi Kegiatan</label>
+                <textarea name="organisasi[${organisasiCount}][deskripsi]" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5" placeholder="Jelaskan kegiatan yang dilakukan selama di organisasi"></textarea>
+            </div>
+        `;
+        
+        container.appendChild(newOrganisasi);
+        
+        // Event listener untuk tombol hapus
+        newOrganisasi.querySelector('.hapus-organisasi').addEventListener('click', function() {
+            container.removeChild(newOrganisasi);
+        });
+    });
+    // Script untuk menambah sertifikat
+    document.getElementById('tambah-sertifikat').addEventListener('click', function() {
+        const container = document.getElementById('sertifikat-container');
+        const sertifikatCount = container.querySelectorAll('.sertifikat-item').length;
+        
+        const newSertifikat = document.createElement('div');
+        newSertifikat.className = 'sertifikat-item border border-gray-200 p-4 rounded-lg mb-4';
+        newSertifikat.innerHTML = `
+            <div class="flex justify-end mb-2">
+                <button type="button" class="hapus-sertifikat text-red-500 hover:text-red-700">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Nama Sertifikat</label>
+                    <input type="text" name="sertifikat[${sertifikatCount}][sertifikat]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Penerbit</label>
+                    <input type="text" name="sertifikat[${sertifikatCount}][penerbit]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Diterbitkan</label>
+                    <input type="date" name="sertifikat[${sertifikatCount}][tanggal_terbit]" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(newSertifikat);
+        
+        // Event listener untuk tombol hapus
+        newSertifikat.querySelector('.hapus-sertifikat').addEventListener('click', function() {
+            container.removeChild(newSertifikat);
+        });
+    });
     // Script untuk menambah keterampilan/keahlian
     document.getElementById('tambah-keahlian').addEventListener('click', function() {
         const inputKeahlian = document.getElementById('input-keahlian');
