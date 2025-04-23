@@ -33,4 +33,8 @@ class rooms extends Model
         return $this->belongsToMany(candidates::class, 'room_candidates')
             ->withPivot('status');
     }
+    public function selectionSteps()
+    {
+        return $this->hasMany(SelectionStep::class);
+    }
 }

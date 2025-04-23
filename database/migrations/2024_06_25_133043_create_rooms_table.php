@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('requirements')->nullable();
             $table->enum('years_of_experience_criteria', ['<1 tahun', '1 tahun', '2 tahun', '3 - 4 tahun'])->default('<1 tahun');
             $table->integer('total_open_position');
-            $table->integer('salary')->nullable(); // assuming "sallary" was meant to be "salary"
+            $table->string('salary', 4000)->nullable(); // assuming "sallary" was meant to be "salary"
             $table->datetime('deadline');
             $table->enum('access_rights', ['public', 'private'])->default('public');
             $table->enum('work_system', ['WFO', 'Hybrid', 'WFH'])->default('WFO');

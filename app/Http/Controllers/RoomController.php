@@ -202,7 +202,6 @@ class RoomController extends Controller
         
         // Ambil semua tahapan untuk room ini dalam urutan yang benar
         $paths = paths::where('room_id', $room->id)
-            ->orderBy('step_order', 'asc')
             ->get();
         
         // Siapkan array untuk menyimpan data yang akan ditampilkan
