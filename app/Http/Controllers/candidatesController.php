@@ -17,6 +17,7 @@ use App\Models\sertifikat;
 use App\Models\traces_of_experience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class candidatesController extends Controller
 {
@@ -369,8 +370,32 @@ class candidatesController extends Controller
             }
         }
 
-        // After successfully storing the data, redirect with a success message
-        return redirect()->route('dashboard.kandidat')->with('success', 'CV Anda telah dibuat!');
+        // Langsung download PDF setelah data tersimpan
+        // Ambil data terkait untuk PDF
+        $pendidikan = pendidikan::where('resume_id', $candidate->id)->get();
+        $pengalamanKerja = pengalamanKerja::where('resume_id', $candidate->id)->get();
+        $pengalamanOrganisasi = pengalamanOrganisasi::where('resume_id', $candidate->id)->get();
+        $sertifikat = sertifikat::where('resume_id', $candidate->id)->get();
+        $keahlian = keahlian::where('resume_id', $candidate->id)->get();
+        
+        $pdf = Pdf::loadView('candidates.pdf.cv', [
+            'resume' => $candidate,
+            'pendidikan' => $pendidikan,
+            'pengalamanKerja' => $pengalamanKerja,
+            'pengalamanOrganisasi' => $pengalamanOrganisasi,
+            'sertifikat' => $sertifikat,
+            'keahlian' => $keahlian,
+        ]);
+        
+        // Atur ukuran kertas dan orientasi
+        $pdf->setPaper('a4', 'portrait');
+        
+        // Kirim flash message ke session untuk ditampilkan setelah redirect
+        session()->flash('success', 'CV Anda telah dibuat!');
+        
+        // Return PDF sebagai download dengan nama yang sesuai
+        return $pdf->download('CV_'.$candidate->nama.'_'.date('Y-m-d').'.pdf');
     }
+    
 
 }
