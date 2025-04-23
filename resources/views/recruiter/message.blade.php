@@ -20,12 +20,12 @@
             <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gradient-to-r from-[#e73002] to-[#fd7d09] text-white">
                <h1 class="text-xl font-bold text-white">Pesan</h1>
                <!-- Tombol pesan baru dengan tooltip -->
-               <button class="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors relative group">
+               <a href="{{ route('dashboard.recruiter.newMessage') }}" class="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors relative group">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                   </svg>
                   <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Pesan Baru</span>
-               </button>
+               </a>
             </div>
             
             <!-- Search bar untuk mencari pesan -->
@@ -40,171 +40,188 @@
             
             <!-- Daftar pesan yang ditingkatkan dengan warna yang disesuaikan -->
             <div>
-               <!-- Pesan aktif -->
-               <div class="p-3 border-l-4 border-[#fd7d09] bg-orange-50 dark:bg-gray-800 cursor-pointer transition-all duration-200">
-                  <div class="flex items-start">
-                     <div class="relative">
-                        <img src="{{ url('images/job-match-white.svg') }}" alt="Logo Kitabisa" class="w-10 h-10 rounded-full mr-3 object-cover border border-gray-200 dark:border-gray-600">
-                     </div>
-                     <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-start">
-                           <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">Kitabisa</h3>
-                           <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-1">9 hari lalu</span>
+               @if(isset($conversations) && count($conversations) > 0)
+                  @foreach($conversations as $conversation)
+                     <!-- Determine if this conversation is active -->
+                     @php
+                        $isActive = false;
+                        if (isset($activeConversation) && $activeConversation['user_id'] == $conversation['user_id']) {
+                           $isActive = true;
+                        } elseif (isset($activeUserDetails) && $activeUserDetails['user_id'] == $conversation['user_id']) {
+                           $isActive = true;
+                        }
+                     @endphp
+                     
+                     <a href="{{ route('dashboard.recruiter.showMessage', $conversation['user_id']) }}" 
+                        class="block {{ $isActive ? 'border-l-4 border-[#fd7d09] bg-orange-50 dark:bg-gray-800' : 'hover:bg-orange-50 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700' }} p-3 cursor-pointer transition-all duration-200">
+                        <div class="flex items-start">
+                           <div class="relative">
+                              <img src="{{ asset('storage/' . $conversation['logo']) }}" alt="Logo" class="w-10 h-10 rounded-full mr-3 object-cover border border-gray-200 dark:border-gray-600">
+                              @if($conversation['unread_count'] > 0)
+                                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                    {{ $conversation['unread_count'] }}
+                                 </span>
+                              @endif
+                           </div>
+                           <div class="flex-1 min-w-0">
+                              <div class="flex justify-between items-start">
+                                 <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">{{ $conversation['name'] }}</h3>
+                                 <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-1">{{ $conversation['last_message_time']->diffForHumans() }}</span>
+                              </div>
+                              <p class="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5">{{ $conversation['last_message'] }}</p>
+                           </div>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5">Dwi: Selamat Siang, Perkenalkan saya Dwi dari Tim Rekrutmen...</p>
-                     </div>
+                     </a>
+                  @endforeach
+               @else
+                  <div class="p-4 text-center text-gray-500">
+                     Tidak ada percakapan. 
+                     <a href="{{ route('dashboard.recruiter.newMessage') }}" class="text-[#fd7d09] hover:underline">Mulai percakapan baru</a>
                   </div>
-               </div>
-               
-               <!-- Pesan lainnya -->
-               <div class="p-3 hover:bg-orange-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-200 dark:border-gray-700 transition-all duration-200">
-                  <div class="flex items-start">
-                     <div class="relative">
-                        <img src="{{ url('images/ocbc.svg') }}" alt="Logo OCBC" class="w-10 h-10 rounded-full mr-3 object-cover border border-gray-200 dark:border-gray-600">
-                     </div>
-                     <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-start">
-                           <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">PT Bank OCBC NISP, Tbk</h3>
-                           <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-1">16 hari lalu</span>
-                        </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5">Dwi: Selamat Siang, Perkenalkan saya Dwi dari...</p>
-                     </div>
-                  </div>
-               </div>
-               
-               <div class="p-3 hover:bg-orange-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-200 dark:border-gray-700 transition-all duration-200">
-                  <div class="flex items-start">
-                     <div class="relative">
-                        <img src="{{ url('images/kompas.svg') }}" alt="Logo Kompas" class="w-10 h-10 rounded-full mr-3 object-cover border border-gray-200 dark:border-gray-600">
-                     </div>
-                     <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-start">
-                           <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">Kompas Gramedia</h3>
-                           <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-1">16 hari lalu</span>
-                        </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5">Dwi: Selamat Siang, Perkenalkan saya Dwi dari...</p>
-                     </div>
-                  </div>
-               </div>
+               @endif
             </div>
          </div>
 
          <!-- Area percakapan (panel kanan) -->
          <div class="flex-1 flex flex-col h-screen">
-            <!-- Header percakapan -->
-            <div class="p-4 bg-gradient-to-r from-[#e73002] to-[#fd7d09] border-b border-gray-200 dark:border-gray-700 flex justify-between items-center sticky top-0 z-10">
-               <div class="flex items-center">
-                  <img src="{{ url('images/job-match-white.svg') }}" alt="Logo Kitabisa" class="w-10 h-10 rounded-full mr-3 border border-white/30">
-                  <div>
-                     <div class="flex items-center">
-                        <h3 class="font-semibold text-white">Kitabisa</h3>
-                     </div>
-                  </div>
-                </div>
-            </div>
-            
-            <!-- Area pesan dengan indikator tanggal -->
-            <div class="flex-1 overflow-y-auto p-4 bg-orange-50 dark:bg-gray-750">
-               <div class="max-w-3xl mx-auto">
-                  <!-- Indikator tanggal -->
-                  <div class="flex justify-center mb-6">
-                     <span class="px-3 py-1 text-xs text-gray-500 bg-white rounded-full shadow-sm dark:bg-gray-700 dark:text-gray-300">
-                        9 April 2025
-                     </span>
-                  </div>
-                  
-                  <!-- Pesan dari pengguna dengan desain bubble yang ditingkatkan -->
-                  <div class="mb-6 flex justify-end">
-                     <div class="max-w-[80%] bg-gradient-to-r from-[#e73002] to-[#fd7d09] text-white rounded-lg p-3 shadow-sm">
-                        <div>
-                           <p class="mb-2">
-                              Selamat siang Tim Rekrutmen Kitabisa,
-                           </p>
-                           <p class="mb-2">
-                              Terima kasih atas kesempatan wawancara yang diberikan minggu lalu. Saya sangat tertarik dengan posisi UX Designer yang ditawarkan dan ingin menanyakan kapan kira-kira hasil dari tahap wawancara akan diumumkan?
-                           </p>
-                           <p class="mb-1">
-                              Salam,
-                           </p>
-                           <p>
-                              Dwi Prakoso
-                           </p>
+            @if(isset($activeConversation) || isset($activeUserDetails))
+               <!-- Header percakapan -->
+               <div class="p-4 bg-gradient-to-r from-[#e73002] to-[#fd7d09] border-b border-gray-200 dark:border-gray-700 flex justify-between items-center sticky top-0 z-10">
+                  <div class="flex items-center">
+                     <img src="{{ asset('storage/' . (isset($activeConversation) ? $activeConversation['logo'] : $activeUserDetails['logo'])) }}" alt="Logo" class="w-10 h-10 rounded-full mr-3 border border-white/30">
+                     <div>
+                        <div class="flex items-center">
+                           <h3 class="font-semibold text-white">{{ isset($activeConversation) ? $activeConversation['name'] : $activeUserDetails['name'] }}</h3>
                         </div>
-                        <div class="text-right text-xs text-white/80 mt-1 flex items-center justify-end">
-                           <span>9 hari yang lalu</span>
-                           <span class="ml-1">
-                              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                              </svg>
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-                  
-                  <!-- Contoh pesan dari perusahaan -->
-                  <div class="mb-6 flex">
-                     <img src="{{ url('images/job-match-white.svg') }}" alt="Logo Kitabisa" class="w-8 h-8 rounded-full mr-2 self-end">
-                     <div class="max-w-[80%] bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
-                        <div class="text-gray-800 dark:text-gray-200">
-                           <p class="mb-2">
-                              Halo Dwi,
-                           </p>
-                           <p>
-                              Terima kasih atas ketertarikan Anda pada posisi UX Designer di Kitabisa. Kami sedang dalam proses mengevaluasi seluruh kandidat dan akan mengumumkan hasilnya paling lambat akhir minggu ini. Kami akan segera menghubungi Anda begitu keputusan telah dibuat.
-                           </p>
-                        </div>
-                        <div class="text-left text-xs text-gray-500 dark:text-gray-400 mt-1">
-                           9 hari yang lalu
-                        </div>
-                     </div>
-                  </div>
-                  
-                  <!-- Indikator sedang mengetik -->
-                  <div class="flex mb-6">
-                     <img src="{{ url('images/job-match-white.svg') }}" alt="Logo Kitabisa" class="w-8 h-8 rounded-full mr-2 self-end">
-                     <div class="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
-                        <div class="flex space-x-1">
-                           <div class="w-2 h-2 bg-[#e73002] rounded-full animate-bounce"></div>
-                           <div class="w-2 h-2 bg-[#e73002] rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                           <div class="w-2 h-2 bg-[#e73002] rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            
-            <!-- Area input pesan yang ditingkatkan -->
-            <div class="border-t border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800">
-               <!-- Area input teks dengan desain yang ditingkatkan -->
-               <div class="flex">
-                  <div class="flex-1">
-                     <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg mb-2 relative">
-                        <textarea 
-                           rows="3" 
-                           placeholder="Ketik pesan Anda di sini..." 
-                           class="w-full p-3 bg-transparent focus:outline-none focus:ring-2 focus:ring-[#fd7d09] dark:text-white resize-none"
-                        ></textarea>
                      </div>
                   </div>
                </div>
                
-               <!-- Bar aksi yang ditingkatkan dengan opsi tambahan -->
-               <div class="flex justify-end items-center">
-                  
-                  <!-- Aksi sisi kanan -->
-                  <div class="flex items-center space-x-2">  
-                     <!-- Tombol kirim dengan gaya yang ditingkatkan -->
-                     <button class="px-6 py-2.5 bg-gradient-to-r from-[#e73002] to-[#fd7d09] hover:from-[#d62d00] hover:to-[#ed7407] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fd7d09] focus:ring-opacity-50 transition-all duration-200 flex items-center">
-                        <span>Kirim</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                        </svg>
-                     </button>
+               <!-- Area pesan dengan indikator tanggal -->
+               <div class="flex-1 overflow-y-auto p-4 bg-orange-50 dark:bg-gray-750" id="message-container">
+                  <div class="max-w-3xl mx-auto">
+                     @if(isset($messages) && count($messages) > 0)
+                        @php
+                           $currentDate = null;
+                        @endphp
+                        
+                        @foreach($messages as $message)
+                           @php
+                              $messageDate = $message->created_at->format('d F Y');
+                              $showDateHeader = ($currentDate !== $messageDate);
+                              $currentDate = $messageDate;
+                              $isSentByMe = $message->sender_id == Auth::id();
+                           @endphp
+                           
+                           @if($showDateHeader)
+                              <!-- Indikator tanggal -->
+                              <div class="flex justify-center mb-6">
+                                 <span class="px-3 py-1 text-xs text-gray-500 bg-white rounded-full shadow-sm dark:bg-gray-700 dark:text-gray-300">
+                                    {{ $messageDate }}
+                                 </span>
+                              </div>
+                           @endif
+                           
+                           @if($isSentByMe)
+                              <!-- Pesan dari pengguna -->
+                              <div class="mb-6 flex justify-end">
+                                 <div class="max-w-[80%] bg-gradient-to-r from-[#e73002] to-[#fd7d09] text-white rounded-lg p-3 shadow-sm">
+                                    <div>
+                                       {!! nl2br(e($message->message)) !!}
+                                    </div>
+                                    <div class="text-right text-xs text-white/80 mt-1 flex items-center justify-end">
+                                       <span>{{ $message->created_at->diffForHumans() }}</span>
+                                       <span class="ml-1">
+                                          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                          </svg>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           @else
+                              <!-- Pesan dari perusahaan/lawan bicara -->
+                              <div class="mb-6 flex">
+                                 <img src="{{ asset('storage/' . (isset($activeConversation) ? $activeConversation['logo'] : $activeUserDetails['logo'])) }}" alt="Logo" class="w-8 h-8 rounded-full mr-2 self-end">
+                                 <div class="max-w-[80%] bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
+                                    <div class="text-gray-800 dark:text-gray-200">
+                                       {!! nl2br(e($message->message)) !!}
+                                    </div>
+                                    <div class="text-left text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                       {{ $message->created_at->diffForHumans() }}
+                                    </div>
+                                 </div>
+                              </div>
+                           @endif
+                        @endforeach
+                     @else
+                        <div class="flex justify-center items-center h-full">
+                           <div class="text-center p-8 bg-white rounded-lg shadow-sm">
+                              <p class="text-gray-500 mb-4">Belum ada pesan dalam percakapan ini.</p>
+                              <p class="text-gray-400 text-sm">Kirim pesan untuk memulai percakapan.</p>
+                           </div>
+                        </div>
+                     @endif
                   </div>
                </div>
-            </div>
+               
+               <!-- Area input pesan -->
+               <div class="border-t border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800">
+                  <form action="{{ route('dashboard.recruiter.sendMessage') }}" method="POST">
+                     @csrf
+                     <input type="hidden" name="receiver_id" value="{{ isset($activeConversation) ? $activeConversation['user_id'] : $activeUserDetails['user_id'] }}">
+                     
+                     <!-- Area input teks -->
+                     <div class="flex">
+                        <div class="flex-1">
+                           <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg mb-2 relative">
+                              <textarea 
+                                 name="message" 
+                                 rows="3" 
+                                 placeholder="Ketik pesan Anda di sini..." 
+                                 class="w-full p-3 bg-transparent focus:outline-none focus:ring-2 focus:ring-[#fd7d09] dark:text-white resize-none"
+                                 required
+                              ></textarea>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Bar aksi -->
+                     <div class="flex justify-end items-center">
+                        <!-- Tombol kirim -->
+                        <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-[#e73002] to-[#fd7d09] hover:from-[#d62d00] hover:to-[#ed7407] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fd7d09] focus:ring-opacity-50 transition-all duration-200 flex items-center">
+                           <span>Kirim</span>
+                           <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                           </svg>
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            @else
+               <!-- Empty state when no conversation is selected -->
+               <div class="flex-1 flex items-center justify-center bg-orange-50 dark:bg-gray-750">
+                  <div class="text-center p-8 bg-white rounded-lg shadow-sm max-w-md">
+                     <img src="{{ url('images/job-match-white.svg') }}" alt="Logo" class="w-16 h-16 mx-auto mb-4">
+                     <h2 class="text-xl font-bold text-gray-700 mb-2">Tidak Ada Percakapan Terpilih</h2>
+                     <p class="text-gray-500 mb-4">Pilih percakapan dari daftar di sebelah kiri atau mulai percakapan baru.</p>
+                     <a href="{{ route('dashboard.recruiter.newMessage') }}" class="inline-block px-6 py-2.5 bg-gradient-to-r from-[#e73002] to-[#fd7d09] text-white font-medium rounded-lg hover:from-[#d62d00] hover:to-[#ed7407] transition-all duration-200">
+                        Mulai Percakapan Baru
+                     </a>
+                  </div>
+               </div>
+            @endif
          </div>
       </div>
       
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            // Scroll to bottom of message container
+            const messageContainer = document.getElementById('message-container');
+            if (messageContainer) {
+               messageContainer.scrollTop = messageContainer.scrollHeight;
+            }
+         });
+      </script>
    </body>
 </html>

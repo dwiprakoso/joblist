@@ -9,6 +9,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Recruiter\SubmissionRecruiterController;
 use App\Http\Controllers\recruiterController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RoomController;
 use App\Models\RoomCandidate;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +51,13 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/profile/add-education', [CandidatesController::class, 'addEducation'])->name('dashboard.kandidat.addEducation');
         Route::post('/profile/add-experience', [CandidatesController::class, 'addExperience'])->name('dashboard.kandidat.addExperience');
         // Message
-        Route::get('/message', [CandidatesController::class, 'message'])->name('dashboard.kandidat.message');
+        Route::get('/message', [MessageController::class, 'index'])->name('dashboard.kandidat.message');
+        Route::get('/message/new', [MessageController::class, 'newConversation'])->name('dashboard.kandidat.newMessage');
+        Route::post('/message/start', [MessageController::class, 'startConversation'])->name('dashboard.kandidat.startMessage'); 
+        Route::get('/message/conversation/{userId}', [MessageController::class, 'showConversation'])->name('dashboard.kandidat.showMessage');
+        Route::post('/message/send', [MessageController::class, 'sendMessage'])->name('dashboard.kandidat.sendMessage');
+
+
         Route::get('/lowongan', [CandidatesController::class, 'lowongan'])->name('dashboard.kandidat.lowongan');
 
         Route::controller(StatusController::class)->prefix('status')->name('dashboard.kandidat.status')->group(function () {
@@ -99,7 +106,11 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/candidate', [recruiterController::class, 'candidate'])->name('dashboard.recruiter.candidate');
 
         // Message
-        Route::get('/message', [recruiterController::class, 'message'])->name('dashboard.recruiter.message');
+        Route::get('/message', [MessageController::class, 'indexRecruiter'])->name('dashboard.recruiter.message');
+        Route::get('/message/new', [MessageController::class, 'newConversationRecruiter'])->name('dashboard.recruiter.newMessage');
+        Route::post('/message/start', [MessageController::class, 'startConversation'])->name('dashboard.recruiter.startMessage'); 
+        Route::get('/message/conversation/{userId}', [MessageController::class, 'showConversation'])->name('dashboard.recruiter.showMessage');
+        Route::post('/message/send', [MessageController::class, 'sendMessage'])->name('dashboard.recruiter.sendMessage');
 
         // Join or Create Company routes
         Route::post('/join-company', [recruiterController::class, 'joinCompany'])->name('dashboard.recruiter.joinCompany');
