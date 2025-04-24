@@ -120,7 +120,7 @@
 <div class="p-6 mb-4 border bg-white rounded-xl shadow-md">
     <ul class="flex flex-wrap md:flex-nowrap items-center w-full text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" data-tabs-active-classes="text-red-600" data-tabs-inactive-classes="text-gray-500" role="tablist">
         <!-- Phase 0: Participant Info (selalu ada) -->
-        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }} mb-4 md:mb-0" role="path point selection">
+        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 2 }} mb-4 md:mb-0" role="path point selection">
             <div class="flex items-center">
                 <button class="flex flex-col items-center" id="participant-tab" data-tabs-target="#participant" type="button" role="tab" aria-controls="participant" aria-selected="false">
                     <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">1</span>
@@ -133,7 +133,7 @@
         
         <!-- Tahapan Dinamis berdasarkan pathData -->
         @foreach($pathData as $index => $data)
-        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }} mb-4 md:mb-0" role="path point selection">
+        <li class="relative flex flex-col items-center w-full md:w-1/{{ count($pathData) + 2 }} mb-4 md:mb-0" role="path point selection">
             <div class="flex items-center">
                 <button class="flex flex-col items-center" id="path-tab-{{ $index + 1 }}" data-tabs-target="#path-content-{{ $index + 1 }}" type="button" role="tab" aria-controls="path-content-{{ $index + 1 }}" aria-selected="false">
                     <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">{{ $index + 2 }}</span>
@@ -143,14 +143,14 @@
                     @endif
                 </button>
             </div>
-            @if($index < count($pathData) - 1)
+            @if($index < count($pathData))
             <div class="hidden md:block w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 absolute top-5 left-1/2 -z-10"></div>
             @endif
         </li>
         @endforeach
         
         <!-- Phase terakhir: Offering (selalu ada) -->
-        <li class="flex flex-col items-center w-full md:w-1/{{ count($pathData) + 1 }}" role="path point selection">
+        <li class="flex flex-col items-center w-full md:w-1/{{ count($pathData) + 2 }}" role="path point selection">
             <div class="flex items-center">
                 <button class="flex flex-col items-center" id="approved-tab" data-tabs-target="#approved" type="button" role="tab" aria-controls="approved" aria-selected="false">
                     <span class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r from-red-600 to-orange-500 shadow-md">{{ count($pathData) + 2 }}</span>
@@ -224,7 +224,7 @@
                     </div>
                 </div>
                 @break
-            @endswitch
+        @endswitch
     </div>
     @endforeach
     
@@ -234,9 +234,6 @@
         @include('recruiter.components.approvedTable')
     </div>
 </div>
-
-        </div>
-    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\path_challange;
-use App\Models\path_meeting_invitation;
-use App\Models\path_pemberkasan;
-use App\Models\path_types;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\paths;
 use App\Models\rooms;
-use App\Models\User;
-use App\Services\FileServices;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\path_types;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Auth;
+use App\Models\path_challange;
+use App\Services\FileServices;
+use App\Models\path_pemberkasan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\path_meeting_invitation;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RoomController extends Controller
 {
@@ -35,6 +36,7 @@ class RoomController extends Controller
     }
 
     // Method untuk menyimpan data room baru
+    
     public function store(Request $request)
     {
         DB::beginTransaction();
@@ -58,87 +60,37 @@ class RoomController extends Controller
                 'requirements' => $roomInput['requirements'],
             ]);
 
-            // Proses setiap tahapan seleksi dari input
+            // Proses setiap tahapan seleksi dari input dinamis
             if ($request->has('step_type')) {
                 foreach ($request->step_type as $index => $type) {
-                    // Tentukan path_type_id berdasarkan jenis tahapan
-                    $pathTypeId = $this->getPathTypeIdByStepType($type);
+                    // Validasi keberadaan data yang diperlukan
+                    $stepName = $request->input("step_name.$index", '');
+                    $stepDescription = $request->input("step_description.$index");
+                    $locationLink = $request->input("step_location.$index");
+                    $startDate = $request->input("step_start_date.$index");
+                    $endDate = $request->input("step_end_date.$index");
                     
-                    // Buat path untuk tahapan ini
-                    $path = paths::create([
-                        'room_id' => $room->id,
-                        'path_name' => $request->step_name[$index],
-                        'path_type_id' => $pathTypeId,
-                        'step_order' => $index + 1, // Tambahkan kolom ini jika ingin menyimpan urutan
-                    ]);
-                    
-                    // Upload file jika ada
-                    $lampiran = null;
-                    if (isset($request->file('step_attachment')[$index])) {
-                        $lampiran = $fileServices->uploadFile(
-                            $request->file('step_attachment')[$index], 
+                    // Upload file attachment jika ada
+                    $attachmentPath = null;
+                    if ($request->hasFile("step_attachment.$index")) {
+                        $attachmentPath = $fileServices->uploadFile(
+                            $request->file("step_attachment")[$index], 
                             strtolower($type)
                         );
                     }
                     
-                    // Format rentang waktu
-                    $rentangWaktu = $request->step_start_date[$index] . ' - ' . $request->step_end_date[$index];
-                    
-                    // Simpan detail sesuai jenis tahapan
-                    switch ($type) {
-                        case 'Upload Berkas':
-                            path_pemberkasan::create([
-                                'path_id' => $path->id,
-                                'deskripsi' => $request->step_description[$index] ?? '',
-                                'rentang_waktu' => $rentangWaktu,
-                                'lampiran' => $lampiran
-                            ]);
-                            break;
-                            
-                        case 'Meeting':
-                            path_meeting_invitation::create([
-                                'path_id' => $path->id,
-                                'deskripsi' => $request->step_description[$index] ?? '',
-                                'lokasi_link_meet' => $request->step_location[$index] ?? '',
-                                'rentang_waktu' => $rentangWaktu,
-                                'lampiran' => $lampiran
-                            ]);
-                            break;
-                            
-                        case 'Challenge':
-                            path_challange::create([
-                                'path_id' => $path->id,
-                                'deskripsi' => $request->step_description[$index] ?? '',
-                                'link_lampiran_challange' => $request->step_location[$index] ?? '',
-                                'rentang_waktu' => $rentangWaktu,
-                                'lampiran' => $lampiran
-                            ]);
-                            break;
-                            
-                        default:
-                            // Untuk jenis tahapan baru, dapat diperluaskan dengan membuat model baru
-                            // atau menggunakan pendekatan yang lebih generik dengan path_details
-                            
-                            // Contoh pendekatan generik untuk tipe tahapan custom:
-                            $customFields = [
-                                'deskripsi' => $request->step_description[$index] ?? '',
-                                'lokasi' => $request->step_location[$index] ?? '',
-                                'rentang_waktu' => $rentangWaktu,
-                                'lampiran' => $lampiran
-                            ];
-                            
-                            foreach ($customFields as $key => $value) {
-                                if (!empty($value)) {
-                                    \App\Models\path_details::create([
-                                        'path_id' => $path->id,
-                                        'field_key' => $key,
-                                        'field_type' => $key == 'lampiran' ? 'file' : 'text',
-                                        'value' => $value
-                                    ]);
-                                }
-                            }
-                            break;
-                    }
+                    // Buat entri di room_steps untuk tahapan ini
+                    \App\Models\RoomStep::create([
+                        'room_id' => $room->id,
+                        'step_number' => $index + 1,
+                        'step_type' => $type,
+                        'step_name' => $stepName,
+                        'step_description' => $stepDescription,
+                        'location_link' => $locationLink,
+                        'start_date' => $startDate,
+                        'end_date' => $endDate,
+                        'attachment_path' => $attachmentPath
+                    ]);
                 }
             }
 
@@ -196,74 +148,76 @@ class RoomController extends Controller
     //     return view('recruiter.postRoomDetail', compact('room', 'allcandidates', 'berkasPath', 'meetPath', 'challangePath', 'berkasCandidates', 'meetCandidates', 'challangeCandidates', 'approvedCandidates'));
     // }
     public function selectionRoomDetail($id)
-    {
-        $room = rooms::findOrFail($id);
-        $allcandidates = $room->candidates()->paginate(5);
-        
-        // Ambil semua tahapan untuk room ini dalam urutan yang benar
-        $paths = paths::where('room_id', $room->id)
-            ->get();
-        
-        // Siapkan array untuk menyimpan data yang akan ditampilkan
-        $pathData = [];
-        
-        foreach ($paths as $path) {
-            $pathInfo = [
-                'path' => $path,
-                'candidates' => null
-            ];
-            
-            // Tangani berdasarkan tipe path
-            switch ($path->path_type_id) {
-                case 1: // Upload Berkas
-                    if ($path->pathPemberkasan) {
-                        $pathInfo['detail'] = $path->pathPemberkasan;
-                        $pathInfo['candidates'] = $this->paginate($path->pathPemberkasan->submissionPemberkasan, 5);
-                    }
-                    break;
-                    
-                case 2: // Meeting
-                    if ($path->pathMeetingInvitation) {
-                        $pathInfo['detail'] = $path->pathMeetingInvitation;
-                        $pathInfo['candidates'] = $this->paginate($path->pathMeetingInvitation->submissionMeetingInvitation, 5);
-                    }
-                    break;
-                    
-                case 3: // Challenge
-                    if ($path->pathChallange) {
-                        $pathInfo['detail'] = $path->pathChallange;
-                        $pathInfo['candidates'] = $this->paginate($path->pathChallange->submissionChallange, 5);
-                    }
-                    break;
-                    
-                default:
-                    // Tangani tipe path custom jika ada
-                    $pathInfo['detail'] = $path->pathDetails;
-                    // Logika untuk kandidat custom harus ditambahkan
-                    break;
-            }
-            
-            $pathData[] = $pathInfo;
-        }
-        
-        $approvedCandidates = $room->candidates()->wherePivot('status', 'approved')->paginate(5);
+{
+    $room = rooms::findOrFail($id);
+    $allcandidates = $room->candidates()->paginate(5);
     
-        return view('recruiter.postRoomDetail', compact('room', 'allcandidates', 'pathData', 'approvedCandidates'));
+    // Fetch steps for this room
+    $steps = \App\Models\RoomStep::where('room_id', $room->id)
+        ->orderBy('step_number')
+        ->get();
+    
+    // Prepare data for view
+    $pathData = [];
+    
+    foreach ($steps as $step) {
+        $pathInfo = [
+            'path' => (object)[
+                'path_name' => $step->step_name,
+                'path_type_id' => $this->getPathTypeIdFromStepType($step->step_type),
+                'description' => $step->step_description
+            ],
+            'detail' => (object)[
+                'rentang_waktu' => $step->start_date && $step->end_date ? 
+                    Carbon::parse($step->start_date)->format('d M Y') . ' - ' . 
+                    Carbon::parse($step->end_date)->format('d M Y') : null,
+                'location_link' => $step->location_link,
+                'attachment_path' => $step->attachment_path
+            ],
+            'candidates' => $this->getCandidatesForStep($room, $step)
+        ];
+        
+        $pathData[] = $pathInfo;
     }
+    
+    $approvedCandidates = $room->candidates()->wherePivot('status', 'approved')->paginate(5);
 
-    /**
-     * Paginate a given collection.
-     *
-     * @param \Illuminate\Support\Collection $items
-     * @param int $perPage
-     * @param int|null $page
-     * @param array $options
-     * @return \Illuminate\Pagination\LengthAwarePaginator
-     */
-    protected function paginate(Collection $items, $perPage = 15, $page = null, $options = [])
-    {
-        $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
-        $items = $items instanceof Collection ? $items : Collection::make($items);
-        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
-    }
+    return view('recruiter.postRoomDetail', compact('room', 'allcandidates', 'pathData', 'approvedCandidates'));
+}
+
+private function getPathTypeIdFromStepType($stepType)
+{
+    // Map step_type to path_type_id
+    $mapping = [
+        'Upload Berkas' => 1,
+        'Meeting' => 2,
+        'Challenge' => 3,
+        // Add more mappings as needed
+    ];
+    
+    return $mapping[$stepType] ?? 4; // Default to 4 for other types
+}
+
+private function getCandidatesForStep($room, $step)
+{
+    // This would need to be replaced with your actual implementation
+    // based on how you track which candidates are at which step
+    $candidates = collect(); // Empty collection as placeholder
+    
+    // Return paginated candidates
+    return $this->paginate($candidates, 5);
+}
+
+private function paginate($items, $perPage = 15)
+{
+    $page = \Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1;
+    $items = $items instanceof \Illuminate\Support\Collection ? $items : collect($items);
+    return new \Illuminate\Pagination\LengthAwarePaginator(
+        $items->forPage($page, $perPage),
+        $items->count(),
+        $perPage,
+        $page,
+        ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    );
+}
 }

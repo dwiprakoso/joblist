@@ -400,6 +400,7 @@
     </div>
 
     <!-- Template untuk tahapan seleksi -->
+    <!-- Template untuk tahapan seleksi -->
     <template id="selection-step-template">
         <div class="relative mb-4 md:mb-5 selection-step">
             <div tabindex="0"
@@ -422,7 +423,7 @@
                     <!-- Tipe Tahap -->
                     <div class="col-span-5">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Tipe Tahapan</label>
-                        <select class="step-type bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
+                        <select name="step_type[]" class="step-type bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#e73002] focus:border-[#e73002] block w-full p-2.5">
                             <option value="Upload Berkas">Upload Berkas</option>
                             <option value="Challenge">Challenge</option>
                             <option value="Meeting">Meeting</option>
@@ -458,32 +459,34 @@
                     
                     <!-- Rentang Waktu -->
                     <div class="col-span-2">
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Rentang Waktu</label>
-                        <div class="flex space-x-2">
-                            <div class="relative max-w-sm">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div>
-                                <input datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" type="text" 
-                                    name="step_start_date[]"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
-                                    placeholder="Tanggal mulai">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Tanggal Mulai</label>
+                        <div class="relative max-w-sm">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
                             </div>
-                            <div class="relative max-w-sm">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div>
-                                <input datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" type="text" 
-                                    name="step_end_date[]"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
-                                    placeholder="Tanggal akhir">
+                            <input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" 
+                                name="step_start_date[]"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                                placeholder="Tanggal mulai" required>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-2">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Tanggal Akhir</label>
+                        <div class="relative max-w-sm">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
                             </div>
+                            <input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" 
+                                name="step_end_date[]"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                                placeholder="Tanggal akhir" required>
                         </div>
                     </div>
                     
@@ -491,6 +494,7 @@
                     <div class="col-span-2 col-end-6">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Lampiran</label>
                         <input type="file" name="step_attachment[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                        <input type="hidden" name="step_number[]" class="step-number-input" value="1">
                     </div>
                 </div>
             </div>
@@ -500,7 +504,7 @@
     </form>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
         const container = document.getElementById('selection-steps-container');
         const addButton = document.getElementById('add-selection-step');
         const template = document.getElementById('selection-step-template');
@@ -516,6 +520,7 @@
             
             // Update step number
             newStep.querySelector('.step-number').textContent = stepCount;
+            newStep.querySelector('.step-number-input').value = stepCount;
             
             // Set up delete button
             const deleteButton = newStep.querySelector('.delete-step');
@@ -549,14 +554,8 @@
             // Initialize the locationLinkField visibility
             locationLinkField.style.display = 'none';
             
-            // Generate unique names for the inputs
-            const inputs = newStep.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                if (input.name && input.name.includes('[]')) {
-                    const baseName = input.name.replace('[]', '');
-                    input.name = `${baseName}[${stepCount}]`;
-                }
-            });
+            // Ensure names match the database schema
+            updateInputNames(newStep);
             
             // Add to the container
             container.appendChild(newStep);
@@ -571,9 +570,35 @@
         function updateStepNumbers() {
             const steps = container.querySelectorAll('.selection-step');
             steps.forEach((step, index) => {
-                step.querySelector('.step-number').textContent = index + 1;
+                const stepNumber = index + 1;
+                step.querySelector('.step-number').textContent = stepNumber;
+                step.querySelector('.step-number-input').value = stepNumber;
             });
             stepCount = steps.length;
+        }
+        
+        // Function to update input names to match database schema
+        function updateInputNames(stepElement) {
+            // Nama-nama input sesuai dengan schema database room_steps
+            const mappings = {
+                'step_name[]': 'step_name[]',
+                'step_type[]': 'step_type[]',
+                'step_description[]': 'step_description[]',
+                'location_link[]': 'location_link[]',
+                'start_date[]': 'start_date[]',
+                'end_date[]': 'end_date[]',
+                'step_attachment[]': 'step_attachment[]',
+                'step_number[]': 'step_number[]'
+            };
+            
+            // Update all input names
+            const inputs = stepElement.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                const name = input.getAttribute('name');
+                if (name && mappings[name]) {
+                    input.setAttribute('name', mappings[name]);
+                }
+            });
         }
         
         // Add first step automatically
